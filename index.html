@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karachuonyo First - Political Campaign Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(to right, #1d4ed8, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar.open {
+            transform: translateX(0);
+        }
+        
+        @media (min-width: 768px) {
+            .sidebar {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 16rem;
+            }
+        }
+        
+        .animate-bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="text-center">
+    <div class="flex">
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar" class="sidebar fixed left-0 top-0 h-screen w-64 bg-white/95 backdrop-blur border-r border-gray-200 z-50 shadow-lg">
+            <div class="p-6">
+                <!-- Logo and Title -->
+                <div class="flex flex-col items-center justify-center gap-4 mb-8">
+                    <div class="h-14 w-14 rounded-2xl bg-gradient-to-br from-blue-700 to-green-600 flex items-center justify-center">
+                        <span class="text-white font-bold text-lg text-center">KF</span>
+                    </div>
+                    <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent text-center">
+                        Karachuonyo First
+                    </span>
+                </div>
+                
+                <!-- Navigation Menu -->
+                <nav class="flex flex-col space-y-2">
+                    <button onclick="scrollTo('home')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                        Home
+                    </button>
+                    <button onclick="scrollTo('about')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                        About
+                    </button>
+                    <button onclick="scrollTo('agenda')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                        Agenda
+                    </button>
+                    <button onclick="scrollTo('news')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                        News
+                    </button>
+                    <button onclick="scrollTo('events')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                        Events
+                    </button>
+                    <button onclick="scrollTo('gallery')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                        Gallery
+                    </button>
+                    <button onclick="scrollTo('contact')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                        Contact
+                    </button>
+                    <button onclick="scrollTo('contact')" class="btn bg-blue-600 text-white hover:bg-blue-700 mt-4 w-full">
+                        Donate Now
+                    </button>
+                </nav>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <div class="main-content flex-1 ml-0 md:ml-64">
+            <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-gray-200">
+                <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-center relative">
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" class="md:hidden absolute left-4 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                    <span class="font-extrabold text-2xl tracking-tight bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent">
+                        Welcome to Karachuonyo First
+                    </span>
+                </div>
+            </header>
+
+            <section id="home" class="relative overflow-hidden min-h-screen flex items-center">
+                <!-- Background with overlay -->
+                <div class="absolute inset-0">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-green-700"></div>
+                    <div class="absolute inset-0 bg-black/20"></div>
+                    <!-- Decorative elements -->
+                    <div class="absolute top-20 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+                    <div class="absolute bottom-20 right-10 w-48 h-48 bg-yellow-400/20 rounded-full blur-2xl"></div>
+                </div>
+                
+                <div class="relative max-w-6xl mx-auto px-4 py-24 md:py-32 text-white z-10">
+                    <div class="text-center md:text-left fade-in">
+                        <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6">
+                            <span class="block">Karachuonyo First —</span>
+                            <span class="block text-yellow-400">Putting Our People Ahead</span>
+                        </h1>
+                        
+                        <p class="text-xl md:text-2xl text-white/90 max-w-3xl mb-4 font-medium">
+                            Education. Development. Unity. Progress.
+                        </p>
+                        
+                        <p class="text-lg text-white/80 max-w-2xl mb-10">
+                            A people-centered agenda for opportunity, dignity, and shared prosperity across Karachuonyo.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                            <button onclick="scrollTo('agenda')" class="btn bg-yellow-400 text-black hover:bg-yellow-300 text-lg px-8 py-4 font-bold shadow-2xl">
+                                Join the Movement
+                            </button>
+                            <button onclick="scrollTo('contact')" class="btn border-2 border-white text-white hover:bg-white hover:text-black text-lg px-8 py-4 font-bold" style="background:transparent">
+                                Donate Today <i data-lucide="arrow-right" class="inline-block ml-2 h-5 w-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Scroll indicator -->
+                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60">
+                    <div class="flex flex-col items-center">
+                        <span class="text-sm mb-2">Scroll to explore</span>
+                        <div class="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center animate-bounce">
+                            <div class="w-1 h-3 bg-white/60 rounded-full mt-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="bg-white">
+                <div class="max-w-6xl mx-auto px-4 py-20">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <!-- Candidate Photo -->
+                        <div class="relative fade-in">
+                            <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-blue-100 via-blue-200 to-green-200 shadow-2xl relative overflow-hidden">
+                                <!-- Placeholder for candidate photo -->
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="text-center">
+                                        <div class="w-24 h-24 bg-gradient-to-br from-blue-600 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                            <span class="text-white text-2xl font-bold">FO</span>
+                                        </div>
+                                        <p class="text-gray-600 font-medium">Felix Obuya</p>
+                                        <p class="text-sm text-gray-500">Candidate Photo</p>
+                                    </div>
+                                </div>
+                                <!-- Decorative elements -->
+                                <div class="absolute top-4 right-4 w-16 h-16 bg-yellow-400/30 rounded-full blur-xl"></div>
+                                <div class="absolute bottom-4 left-4 w-20 h-20 bg-blue-600/20 rounded-full blur-xl"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Content -->
+                        <div class="fade-in">
+                            <h2 class="text-3xl md:text-4xl font-extrabold mb-6 gradient-text">Meet the Candidate</h2>
+                            <p class="text-gray-700 text-lg leading-relaxed mb-8">
+                                I am Felix Obuya—committed to servant leadership that listens first and acts fast. 
+                                Together, we will unlock opportunities for youth, safeguard health and education, 
+                                and build Karachuonyo with integrity and transparency.
+                            </p>
+                            
+                            <!-- Core Values Grid -->
+                            <div class="space-y-6">
+                                <h3 class="text-xl font-bold text-gray-900 mb-4">Core Values</h3>
+                                <div class="grid sm:grid-cols-2 gap-4">
+                                    <div class="flex items-start gap-3 p-4 rounded-xl bg-gray-50 hover:bg-blue-50 transition-colors duration-200">
+                                        <div class="flex-shrink-0">
+                                            <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+                                                <i data-lucide="shield" class="h-5 w-5 text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <h4 class="font-bold text-gray-900 mb-1">Transparency</h4>
+                                            <p class="text-sm text-gray-600">Open governance and accountability</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3 p-4 rounded-xl bg-gray-50 hover:bg-blue-50 transition-colors duration-200">
+                                        <div class="flex-shrink-0">
+                                            <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+                                                <i data-lucide="users" class="h-5 w-5 text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <h4 class="font-bold text-gray-900 mb-1">Community First</h4>
+                                            <p class="text-sm text-gray-600">People-centered decision making</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3 p-4 rounded-xl bg-gray-50 hover:bg-blue-50 transition-colors duration-200">
+                                        <div class="flex-shrink-0">
+                                            <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+                                                <i data-lucide="heart" class="h-5 w-5 text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <h4 class="font-bold text-gray-900 mb-1">Empowering Youth</h4>
+                                            <p class="text-sm text-gray-600">Investing in the next generation</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3 p-4 rounded-xl bg-gray-50 hover:bg-blue-50 transition-colors duration-200">
+                                        <div class="flex-shrink-0">
+                                            <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+                                                <i data-lucide="hammer" class="h-5 w-5 text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <h4 class="font-bold text-gray-900 mb-1">Sustainable Development</h4>
+                                            <p class="text-sm text-gray-600">Building for the future</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="agenda" class="bg-gray-50">
+                <div class="max-w-6xl mx-auto px-4 py-16">
+                    <div class="text-center mb-12 fade-in">
+                        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Our Agenda</h2>
+                        <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                            Six actionable pillars that turn promises into measurable projects for Karachuonyo's development.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row gap-6 overflow-x-auto" id="agendaContainer">
+                        <!-- Agenda items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <section id="news" class="max-w-6xl mx-auto px-4 py-16">
+                <div class="flex items-end justify-between gap-4 fade-in">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-extrabold">News & Updates</h2>
+                        <p class="text-gray-600">Campaign milestones, project progress, and statements.</p>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6 mt-8" id="newsContainer">
+                    <!-- News items will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <section id="events" class="bg-white">
+                <div class="max-w-6xl mx-auto px-4 py-16">
+                    <div class="text-center mb-12 fade-in">
+                        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Upcoming Events</h2>
+                        <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                            Join us at these community events and town halls.
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-6" id="eventsContainer">
+                        <!-- Events will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <section id="gallery" class="bg-gray-50">
+                <div class="max-w-6xl mx-auto px-4 py-16">
+                    <div class="text-center mb-12 fade-in">
+                        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Gallery</h2>
+                        <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                            Moments from our campaign journey and community engagement.
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="aspect-square bg-gradient-to-br from-blue-400 to-purple-600 rounded-2xl relative overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 flex items-center justify-center text-white">
+                                <div class="text-center">
+                                    <i data-lucide="camera" class="h-12 w-12 mx-auto mb-2"></i>
+                                    <p class="text-sm">Campaign Photo 1</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="aspect-square bg-gradient-to-br from-green-400 to-blue-600 rounded-2xl relative overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 flex items-center justify-center text-white">
+                                <div class="text-center">
+                                    <i data-lucide="camera" class="h-12 w-12 mx-auto mb-2"></i>
+                                    <p class="text-sm">Campaign Photo 2</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="aspect-square bg-gradient-to-br from-yellow-400 to-red-600 rounded-2xl relative overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 flex items-center justify-center text-white">
+                                <div class="text-center">
+                                    <i data-lucide="camera" class="h-12 w-12 mx-auto mb-2"></i>
+                                    <p class="text-sm">Campaign Photo 3</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="bg-white">
+                <div class="max-w-6xl mx-auto px-4 py-16">
+                    <div class="text-center mb-12 fade-in">
+                        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Get In Touch</h2>
+                        <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                            Ready to join the movement? Contact us or make a donation to support our campaign.
+                        </p>
+                    </div>
+                    
+                    <div class="grid lg:grid-cols-2 gap-12">
+                        <div class="fade-in">
+                            <h3 class="text-xl font-bold mb-6">Contact Information</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="phone" class="h-5 w-5 text-blue-600"></i>
+                                    <span>+254 700 000 000</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="mail" class="h-5 w-5 text-blue-600"></i>
+                                    <span>info@karachuonyofirst.com</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="map-pin" class="h-5 w-5 text-blue-600"></i>
+                                    <span>Karachuonyo Constituency, Homa Bay County</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8">
+                                <h4 class="font-bold mb-4">Support Our Campaign</h4>
+                                <button class="btn bg-blue-600 text-white hover:bg-blue-700 mr-4">
+                                    Donate Now
+                                </button>
+                                <button class="btn border border-blue-600 text-blue-600 hover:bg-blue-50">
+                                    Volunteer
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="fade-in">
+                            <form class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                    <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                    <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                    <textarea rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                                </div>
+                                <button type="submit" class="btn bg-blue-600 text-white hover:bg-blue-700 w-full">
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="bg-gray-900 text-white">
+                <div class="max-w-6xl mx-auto px-4 py-12">
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-700 to-green-600 flex items-center justify-center">
+                                    <span class="text-white font-bold">KF</span>
+                                </div>
+                                <span class="font-bold text-lg">Karachuonyo First</span>
+                            </div>
+                            <p class="text-gray-400">
+                                Putting our people ahead through education, development, unity, and progress.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold mb-4">Quick Links</h4>
+                            <div class="space-y-2">
+                                <a href="#home" class="block text-gray-400 hover:text-white transition-colors">Home</a>
+                                <a href="#about" class="block text-gray-400 hover:text-white transition-colors">About</a>
+                                <a href="#agenda" class="block text-gray-400 hover:text-white transition-colors">Agenda</a>
+                                <a href="#contact" class="block text-gray-400 hover:text-white transition-colors">Contact</a>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold mb-4">Follow Us</h4>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-colors">
+                                    <span class="text-sm font-bold">FB</span>
+                                </div>
+                                <div class="w-10 h-10 bg-blue-400 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-500 transition-colors">
+                                    <span class="text-sm font-bold">TW</span>
+                                </div>
+                                <div class="w-10 h-10 bg-pink-600 rounded-lg flex items-center justify-center cursor-pointer hover:bg-pink-700 transition-colors">
+                                    <span class="text-sm font-bold">IG</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                        <p>&copy; 2025 Karachuonyo First. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Data from the original React component
+        const agenda = [
+            { 
+                title: "Education for All", 
+                desc: "Bursaries, ICT labs, and teacher support for every ward.",
+                icon: "graduation-cap",
+                details: "Comprehensive education support including bursary programs, modern ICT laboratories in every school, teacher training and support programs, and infrastructure development for quality learning environments."
+            },
+            { 
+                title: "Healthcare Access", 
+                desc: "Equip dispensaries, NHIF sensitization, maternal care access.",
+                icon: "heart",
+                details: "Fully equipped health dispensaries, NHIF awareness campaigns, improved maternal and child healthcare services, and mobile health clinics for remote areas."
+            },
+            { 
+                title: "Youth Empowerment", 
+                desc: "Skills hubs, startup grants, creative economy catalysts.",
+                icon: "users",
+                details: "Youth skills development centers, startup funding programs, mentorship initiatives, and support for creative industries and digital entrepreneurship."
+            },
+            { 
+                title: "Agriculture & Jobs", 
+                desc: "Irrigation, post-harvest storage, farmer co-ops, value chains.",
+                icon: "briefcase",
+                details: "Modern irrigation systems, post-harvest storage facilities, farmer cooperative support, value addition programs, and market linkage initiatives."
+            },
+            { 
+                title: "Infrastructure & Tech", 
+                desc: "Feeder roads, water projects, market sheds, street lighting.",
+                icon: "hammer",
+                details: "Improved feeder roads, clean water projects, modern market infrastructure, street lighting, and digital connectivity initiatives."
+            },
+            { 
+                title: "Unity & Inclusion", 
+                desc: "Open budgets, ward scorecards, community forums quarterly.",
+                icon: "shield",
+                details: "Transparent governance, regular community forums, inclusive decision-making processes, and accountability mechanisms for all development projects."
+            }
+        ];
+
+        const posts = [
+            { title: "Ward Clean-Up Drive Launched", date: "Aug 24, 2025", excerpt: "We flagged off a community clean-up across trading centers with youth groups and churches.", tag: "Community" },
+            { title: "Bursary Vetting Guidelines", date: "Aug 18, 2025", excerpt: "Transparent criteria and timelines to ensure fairness and inclusion.", tag: "Education" },
+            { title: "Water for Nyadhi – Project Update", date: "Aug 02, 2025", excerpt: "Borehole survey completed; rig mobilization scheduled pending NEMA greenlight.", tag: "Development" }
+        ];
+
+        const events = [
+            { date: "Sep 05, 2025", title: "Town Hall – Kendu Bay", place: "Kendu Bay Market Hall" },
+            { date: "Sep 12, 2025", title: "Youth Skills Clinic", place: "Homa Hills Vocational Center" },
+            { date: "Sep 19, 2025", title: "Health Outreach", place: "Kadel Dispensary Grounds" }
+        ];
+
+        // State management
+        let mobileMenuOpen = false;
+        let expandedCard = null;
+
+        // Utility functions
+        function scrollTo(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                closeMobileMenu();
+            }
+        }
+
+        function toggleMobileMenu() {
+            mobileMenuOpen = !mobileMenuOpen;
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            
+            if (mobileMenuOpen) {
+                sidebar.classList.add('open');
+                menuBtn.innerHTML = '<i data-lucide="x" class="h-6 w-6"></i>';
+            } else {
+                sidebar.classList.remove('open');
+                menuBtn.innerHTML = '<i data-lucide="menu" class="h-6 w-6"></i>';
+            }
+            lucide.createIcons();
+        }
+
+        function closeMobileMenu() {
+            mobileMenuOpen = false;
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            sidebar.classList.remove('open');
+            menuBtn.innerHTML = '<i data-lucide="menu" class="h-6 w-6"></i>';
+            lucide.createIcons();
+        }
+
+        function toggleCard(index) {
+            expandedCard = expandedCard === index ? null : index;
+            renderAgenda();
+        }
+
+        // Render functions
+        function renderAgenda() {
+            const container = document.getElementById('agendaContainer');
+            container.innerHTML = agenda.map((item, index) => {
+                const isExpanded = expandedCard === index;
+                return `
+                    <div class="card p-6 cursor-pointer transition-all duration-300 flex-shrink-0 w-full md:w-80 lg:w-96" onclick="toggleCard(${index})">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl flex items-center justify-center">
+                                    <i data-lucide="${item.icon}" class="h-6 w-6 text-white"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold mb-2 text-gray-900">${item.title}</h3>
+                                <p class="text-gray-600 mb-3">${item.desc}</p>
+                                
+                                ${isExpanded ? `
+                                    <div class="border-t border-gray-200 pt-4 mt-4">
+                                        <p class="text-gray-700 leading-relaxed">${item.details}</p>
+                                    </div>
+                                ` : ''}
+                                
+                                <div class="flex items-center justify-between mt-4">
+                                    <span class="text-sm font-medium text-blue-600">
+                                        ${isExpanded ? 'Click to collapse' : 'Click to expand'}
+                                    </span>
+                                    <i data-lucide="arrow-right" class="h-4 w-4 text-blue-600" style="transform: rotate(${isExpanded ? '180deg' : '0deg'}); transition: transform 0.3s ease;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        function renderNews() {
+            const container = document.getElementById('newsContainer');
+            container.innerHTML = posts.map((post, index) => `
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer">
+                    <div class="h-40 bg-gradient-to-br from-blue-400 to-purple-600 rounded-t-2xl relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300"></div>
+                        <div class="absolute inset-0 flex items-center justify-center text-white">
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-2">
+                                    <span class="text-lg font-bold">${post.title.charAt(0)}</span>
+                                </div>
+                                <span class="text-xs opacity-90">Featured News</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-xs text-blue-600 font-medium">${post.date} • ${post.tag}</div>
+                        <h3 class="font-bold mt-2 group-hover:text-blue-600 transition-colors duration-300">${post.title}</h3>
+                        <p class="text-gray-600 mt-2">${post.excerpt}</p>
+                        <button class="mt-4 btn bg-blue-800 text-white hover:bg-blue-700 flex items-center group-hover:translate-x-1 transition-transform duration-300">
+                            Read More <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function renderEvents() {
+            const container = document.getElementById('eventsContainer');
+            container.innerHTML = events.map((event, index) => `
+                <div class="card p-6 hover:shadow-xl transition-all duration-300">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="calendar" class="h-8 w-8 text-white"></i>
+                        </div>
+                        <div class="text-sm text-blue-600 font-medium mb-2">${event.date}</div>
+                        <h3 class="font-bold text-lg mb-2">${event.title}</h3>
+                        <p class="text-gray-600 flex items-center justify-center gap-1">
+                            <i data-lucide="map-pin" class="h-4 w-4"></i>
+                            ${event.place}
+                        </p>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up mobile menu button
+            document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+            
+            // Render dynamic content
+            renderAgenda();
+            renderNews();
+            renderEvents();
+            
+            // Initialize Lucide icons
+            lucide.createIcons();
+            
+            // Add fade-in animation to elements as they come into view
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
