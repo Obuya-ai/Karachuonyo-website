@@ -225,12 +225,19 @@ export default function Home() {
               className="relative"
             >
               <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-blue-100 via-blue-200 to-green-200 shadow-2xl relative overflow-hidden">
-                {/* Placeholder for candidate photo */}
+                {/* Candidate card */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="w-24 h-24 bg-gradient-to-br from-blue-600 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-white text-2xl font-bold">FO</span>
+                    {/* Circle with candidate image */}
+                    <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden shadow-lg">
+                      <img
+                        src="/candidate_photo.jpg"   // <-- put your image in the public folder
+                        alt="Felix Obuya"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
+
+                    {/* Candidate details */}
                     <p className="text-gray-600 font-medium">Felix Obuya</p>
                     <p className="text-sm text-gray-500">Candidate Photo</p>
                   </div>

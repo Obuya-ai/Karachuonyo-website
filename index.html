@@ -94,6 +94,15 @@
         .lightbox.active {
             display: flex;
         }
+
+        .candidate-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body class="text-center">
@@ -113,28 +122,28 @@
                 
                 <!-- Navigation Menu -->
                 <nav class="flex flex-col space-y-2">
-                    <button onclick="scrollTo('home')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                    <button onclick="scrollToSection('home')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
                         Home
                     </button>
-                    <button onclick="scrollTo('about')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                    <button onclick="scrollToSection('about')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
                         About
                     </button>
-                    <button onclick="scrollTo('agenda')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                    <button onclick="scrollToSection('agenda')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
                         Agenda
                     </button>
-                    <button onclick="scrollTo('news')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                    <button onclick="scrollToSection('news')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
                         News
                     </button>
-                    <button onclick="scrollTo('events')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                    <button onclick="scrollToSection('events')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
                         Events
                     </button>
-                    <button onclick="scrollTo('gallery')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                    <button onclick="scrollToSection('gallery')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
                         Gallery
                     </button>
-                    <button onclick="scrollTo('contact')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                    <button onclick="scrollToSection('contact')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
                         Contact
                     </button>
-                    <button onclick="scrollTo('contact')" class="btn bg-blue-600 text-white hover:bg-blue-700 mt-4 w-full">
+                    <button onclick="scrollToSection('contact')" class="btn bg-blue-600 text-white hover:bg-blue-700 mt-4 w-full">
                         Donate Now
                     </button>
                 </nav>
@@ -181,10 +190,10 @@
                         </p>
                         
                         <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                            <button onclick="scrollTo('agenda')" class="btn bg-yellow-400 text-black hover:bg-yellow-300 text-lg px-8 py-4 font-bold shadow-2xl">
+                            <button onclick="scrollToSection('agenda')" class="btn bg-yellow-400 text-black hover:bg-yellow-300 text-lg px-8 py-4 font-bold shadow-2xl">
                                 Join the Movement
                             </button>
-                            <button onclick="scrollTo('contact')" class="btn border-2 border-white text-white hover:bg-white hover:text-black text-lg px-8 py-4 font-bold" style="background:transparent">
+                            <button onclick="scrollToSection('contact')" class="btn border-2 border-white text-white hover:bg-white hover:text-black text-lg px-8 py-4 font-bold" style="background:transparent">
                                 Donate Today <i data-lucide="arrow-right" class="inline-block ml-2 h-5 w-5"></i>
                             </button>
                         </div>
@@ -211,11 +220,9 @@
                                 <!-- Placeholder for candidate photo -->
                                 <div class="absolute inset-0 flex items-center justify-center">
                                     <div class="text-center">
-                                        <div class="w-24 h-24 bg-gradient-to-br from-blue-600 to-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                                            <span class="text-white text-2xl font-bold">FO</span>
-                                        </div>
+                                        <img src="/candidate_photo.jpg" id="candidate_photo" alt="Felix Obuya" class="w-28 h-28 rounded-full mx-auto mb-4">
                                         <p class="text-gray-600 font-medium">Felix Obuya</p>
-                                        <p class="text-sm text-gray-500">Candidate Photo</p>
+                                        
                                     </div>
                                 </div>
                                 <!-- Decorative elements -->
@@ -536,7 +543,7 @@
         let expandedCard = null;
 
         // Utility functions
-        function scrollTo(id) {
+        function scrollToSection(id) {
             const element = document.getElementById(id);
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'start' });
