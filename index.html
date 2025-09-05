@@ -3,10 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karachuonyo First - Political Campaign Website</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Karachuonyo First - Putting Our People Ahead | Political Campaign</title>
+    <meta name="description" content="Join the Karachuonyo First movement. Committed to education, development, unity, and progress for our community. Vote for change, vote for a better future.">
+    <meta name="keywords" content="Karachuonyo, political campaign, education, development, unity, progress, Kenya politics, community development, leadership">
+    <meta name="author" content="Karachuonyo First Campaign">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://karachuonyofirst.com">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Karachuonyo First - Putting Our People Ahead">
+    <meta property="og:description" content="Join the Karachuonyo First movement. Committed to education, development, unity, and progress for our community.">
+    <meta property="og:image" content="https://karachuonyofirst.com/candidate_photo.jpg">
+    <meta property="og:url" content="https://karachuonyofirst.com">
+    <meta property="og:site_name" content="Karachuonyo First">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@karachuonyofirst">
+    <meta name="twitter:creator" content="@karachuonyofirst">
+    <meta name="twitter:title" content="Karachuonyo First - Putting Our People Ahead">
+    <meta name="twitter:description" content="Join the Karachuonyo First movement. Committed to education, development, unity, and progress for our community.">
+    <meta name="twitter:image" content="https://karachuonyofirst.com/candidate_photo.jpg">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#1d4ed8">
+    <meta name="msapplication-TileColor" content="#1d4ed8">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Performance Optimization Styles -->
     <style>
+        /* Image optimization and performance */
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+        
+        /* Lazy loading placeholder */
+        img[loading="lazy"] {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* Critical CSS for above-the-fold content */
+        .hero-section {
+            will-change: transform;
+        }
+        
+        /* Optimize animations */
+        .hover\:scale-105:hover {
+            transform: scale(1.05);
+            will-change: transform;
+        }
+        
+        /* Reduce layout shifts */
+        .aspect-square {
+            aspect-ratio: 1 / 1;
+        }
+        
+        /* Optimize fonts */
+        body {
+            font-display: swap;
+        }
+    </style>
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "PoliticalParty",
+        "name": "Karachuonyo First",
+        "description": "A political movement committed to education, development, unity, and progress for the Karachuonyo community.",
+        "url": "https://karachuonyofirst.com",
+        "logo": "https://karachuonyofirst.com/candidate_photo.jpg",
+        "sameAs": [
+            "https://www.facebook.com/felix.obuya.313",
+            "https://www.linkedin.com/in/felix-o-8ab628228?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+            "https://www.instagram.com/felickske_pr?igsh=MWg4ZTc3bmJucDBwbQ==&utm_source=ig_contact_invite",
+            "https://youtu.be/uMdWxnWKk1E?si=BF2xrkDgwYbcENSi",
+            "https://www.tiktok.com/@karachuonyo.1?_t=ZM-8zRIhLR0JL6&_r=1"
+        ],
+        "foundingLocation": {
+            "@type": "Place",
+            "name": "Karachuonyo, Kenya"
+        },
+        "member": {
+            "@type": "Person",
+            "name": "Karachuonyo First Candidate",
+            "jobTitle": "Political Candidate",
+            "image": "https://karachuonyofirst.com/candidate_photo.jpg",
+            "description": "Dedicated leader committed to bringing positive change to Karachuonyo through education, development, and unity."
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Karachuonyo First",
+        "url": "https://karachuonyofirst.com",
+        "description": "Official campaign website for Karachuonyo First - committed to education, development, unity, and progress.",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://karachuonyofirst.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <style>
+        /* Global overflow prevention */
+        * {
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+        
         .gradient-text {
             background: linear-gradient(to right, #1d4ed8, #059669);
             -webkit-background-clip: text;
@@ -19,6 +147,25 @@
             border-radius: 1rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            min-width: 0; /* Prevent flex items from overflowing */
+        }
+        
+        /* Ensure all containers respect viewport width */
+        .container, .max-w-6xl, .max-w-7xl, .max-w-4xl {
+            max-width: 100%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        
+        /* Prevent flex and grid overflow */
+        .flex, .grid {
+            min-width: 0;
+        }
+        
+        /* Responsive image handling */
+        img {
+            max-width: 100%;
+            height: auto;
         }
         
         .card:hover {
@@ -47,12 +194,248 @@
             transform: translateX(0);
         }
         
+        /* Mobile overlay for sidebar */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 40;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
         @media (min-width: 768px) {
             .sidebar {
                 transform: translateX(0);
             }
             .main-content {
                 margin-left: 16rem;
+            }
+            .sidebar-overlay {
+                display: none;
+            }
+        }
+        
+        /* Desktop footer enhancements */
+        @media (min-width: 768px) {
+            footer .grid.md\:grid-cols-4 > div:nth-child(4) {
+                background-color: rgba(31, 41, 55, 0.3);
+                padding: 1.5rem;
+                border-radius: 1rem;
+                border: 1px solid rgba(75, 85, 99, 0.2);
+            }
+            
+            footer .grid.md\:grid-cols-4 > div:nth-child(2) .space-y-2 a:hover {
+                background-color: rgba(59, 130, 246, 0.1);
+                color: #60a5fa;
+            }
+        }
+        
+        /* Enhanced touch interactions and responsive fixes */
+        @media (max-width: 767px) {
+            .sidebar {
+                z-index: 50;
+            }
+            
+            /* Improve button touch targets */
+            .sidebar nav button {
+                min-height: 48px;
+                touch-action: manipulation;
+            }
+            
+            /* Better mobile menu button */
+            #mobileMenuBtn {
+                min-height: 44px;
+                min-width: 44px;
+                touch-action: manipulation;
+            }
+            
+            /* Improve card touch interactions */
+            .card {
+                touch-action: manipulation;
+            }
+            
+            /* Better form inputs on mobile */
+            input, textarea, select {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            /* Improve mobile spacing and layout */
+            .main-content {
+                margin-left: 0 !important;
+            }
+            
+            /* Better mobile hero section */
+            section#home {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+            
+            /* Improve mobile grid layouts */
+            .grid.md\:grid-cols-3 {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            /* Prevent horizontal overflow */
+            body, html {
+                overflow-x: hidden;
+            }
+            
+            /* Ensure all containers fit within viewport */
+            .max-w-6xl, .max-w-7xl, .max-w-4xl {
+                max-width: 100%;
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            /* Better mobile padding */
+            .px-4 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            /* Responsive text sizing */
+            .text-4xl, .text-5xl {
+                font-size: 2rem !important;
+                line-height: 1.2;
+            }
+            
+            .text-3xl {
+                font-size: 1.75rem !important;
+            }
+            
+            .grid.lg\:grid-cols-2 {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            /* Better mobile donation modal */
+            #donationModal .bg-white {
+                margin: 1rem;
+                max-height: calc(100vh - 2rem);
+                overflow-y: auto;
+                width: calc(100% - 2rem);
+                max-width: none;
+            }
+            
+            /* Ensure gallery images are responsive */
+            .aspect-square {
+                aspect-ratio: 1 / 1;
+            }
+            
+            /* Better mobile button spacing */
+            .flex.flex-col.sm\:flex-row {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            /* Responsive candidate card */
+             .max-w-4xl {
+                 max-width: 100%;
+                 margin-left: 0.5rem;
+                 margin-right: 0.5rem;
+             }
+             
+             /* Enhanced Mobile footer layout */
+             footer .grid.md\:grid-cols-4 {
+                 grid-template-columns: 1fr;
+                 gap: 2.5rem;
+                 text-align: center;
+             }
+             
+             /* Footer brand section mobile */
+             footer .grid.md\:grid-cols-4 > div:first-child {
+                 text-align: center;
+                 margin-bottom: 1rem;
+             }
+             
+             footer .grid.md\:grid-cols-4 > div:first-child .flex {
+                 justify-content: center;
+             }
+             
+             /* Quick links mobile layout */
+             footer .grid.md\:grid-cols-4 > div:nth-child(2) .space-y-2 {
+                 display: flex;
+                 flex-wrap: wrap;
+                 justify-content: center;
+                 gap: 1rem;
+                 margin-top: 1rem;
+             }
+             
+             footer .grid.md\:grid-cols-4 > div:nth-child(2) .space-y-2 a {
+                 display: inline-block;
+                 padding: 0.5rem 1rem;
+                 background-color: rgba(55, 65, 81, 0.5);
+                 border-radius: 0.5rem;
+                 transition: all 0.3s ease;
+             }
+             
+             /* Social media buttons mobile layout */
+             footer .grid.md\:grid-cols-4 > div:nth-child(3) .flex {
+                 justify-content: center;
+                 flex-wrap: wrap;
+                 gap: 1rem;
+                 margin: 1.5rem 0;
+             }
+             
+             footer .grid.md\:grid-cols-4 > div:nth-child(3) .flex a {
+                 width: 3rem;
+                 height: 3rem;
+             }
+             
+             /* Newsletter form mobile adjustments */
+             footer .grid.md\:grid-cols-4 > div:nth-child(4) {
+                 background-color: rgba(31, 41, 55, 0.5);
+                 padding: 1.5rem;
+                 border-radius: 1rem;
+                 border: 1px solid rgba(75, 85, 99, 0.3);
+             }
+             
+             #newsletterForm {
+                 margin-top: 1rem;
+             }
+             
+             #newsletterForm input[type="email"] {
+                 font-size: 16px; /* Prevent zoom on iOS */
+                 padding: 0.75rem 1rem;
+             }
+             
+             #newsletterForm button {
+                 padding: 0.75rem 1.5rem;
+                 font-size: 1rem;
+             }
+             
+             /* Footer copyright mobile */
+             footer .border-t {
+                 margin-top: 2rem;
+                 padding-top: 1.5rem;
+             }
+         }
+        
+        /* Smooth scrolling improvements */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            .sidebar {
+                transition: none;
+            }
+            .sidebar-overlay {
+                transition: none;
             }
         }
         
@@ -106,44 +489,47 @@
     </style>
 </head>
 <body class="text-center">
+    <!-- Mobile Sidebar Overlay -->
+    <div id="sidebarOverlay" class="sidebar-overlay" role="button" aria-label="Close navigation menu" tabindex="0" aria-hidden="true"></div>
+    
     <div class="flex">
         <!-- Sidebar Navigation -->
-        <aside id="sidebar" class="sidebar fixed left-0 top-0 h-screen w-64 bg-white/95 backdrop-blur border-r border-gray-200 z-50 shadow-lg">
+        <aside id="sidebar" class="sidebar fixed left-0 top-0 h-screen w-64 bg-white/95 backdrop-blur border-r border-gray-200 z-50 shadow-lg" role="navigation" aria-label="Main navigation" aria-hidden="false">
             <div class="p-6">
                 <!-- Logo and Title -->
                 <div class="flex flex-col items-center justify-center gap-4 mb-8">
-                    <div class="h-14 w-14 rounded-2xl bg-gradient-to-br from-blue-700 to-green-600 flex items-center justify-center">
-                        <span class="text-white font-bold text-lg text-center">KF</span>
+                    <div class="h-14 w-14 rounded-2xl bg-gradient-to-br from-blue-700 to-green-600 flex items-center justify-center" role="img" aria-label="Karachuonyo First logo">
+                        <span class="text-white font-bold text-lg text-center" aria-hidden="true">KF</span>
                     </div>
-                    <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent text-center">
+                    <h1 class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent text-center">
                         Karachuonyo First
-                    </span>
+                    </h1>
                 </div>
                 
                 <!-- Navigation Menu -->
-                <nav class="flex flex-col space-y-2">
-                    <button onclick="scrollToSection('home')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                <nav class="flex flex-col space-y-2" role="menubar" aria-label="Site navigation">
+                    <button onclick="scrollToSection('home')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to Home section" tabindex="0">
                         Home
                     </button>
-                    <button onclick="scrollToSection('about')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                    <button onclick="scrollToSection('about')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to About section" tabindex="0">
                         About
                     </button>
-                    <button onclick="scrollToSection('agenda')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                    <button onclick="scrollToSection('agenda')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to Agenda section" tabindex="0">
                         Agenda
                     </button>
-                    <button onclick="scrollToSection('news')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                    <button onclick="scrollToSection('news')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to News section" tabindex="0">
                         News
                     </button>
-                    <button onclick="scrollToSection('events')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                    <button onclick="scrollToSection('events')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to Events section" tabindex="0">
                         Events
                     </button>
-                    <button onclick="scrollToSection('gallery')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                    <button onclick="scrollToSection('gallery')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to Gallery section" tabindex="0">
                         Gallery
                     </button>
-                    <button onclick="scrollToSection('contact')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100">
+                    <button onclick="scrollToSection('contact')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to Contact section" tabindex="0">
                         Contact
                     </button>
-                    <button onclick="scrollToSection('contact')" class="btn bg-blue-600 text-white hover:bg-blue-700 mt-4 w-full">
+                    <button onclick="openDonationModal()" class="btn bg-blue-600 text-white hover:bg-blue-700 mt-4 w-full" role="menuitem" aria-label="Open donation form" tabindex="0">
                         Donate Now
                     </button>
                 </nav>
@@ -155,8 +541,8 @@
             <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-gray-200">
                 <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-center relative">
                     <!-- Mobile Menu Button -->
-                    <button id="mobileMenuBtn" class="md:hidden absolute left-4 p-2 rounded-lg hover:bg-gray-100 transition-colors">
-                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    <button id="mobileMenuBtn" class="md:hidden absolute left-4 p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar">
+                        <i data-lucide="menu" class="h-6 w-6" aria-hidden="true"></i>
                     </button>
                     <span class="font-extrabold text-2xl tracking-tight bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent">
                         Welcome to Karachuonyo First
@@ -164,7 +550,8 @@
                 </div>
             </header>
 
-            <section id="home" class="relative overflow-hidden min-h-screen flex items-center">
+            <main>
+            <section id="home" class="relative overflow-hidden min-h-screen flex items-center" role="banner" aria-label="Hero section">
                 <!-- Background with overlay -->
                 <div class="absolute inset-0">
                     <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-green-700"></div>
@@ -190,11 +577,11 @@
                         </p>
                         
                         <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                            <button onclick="scrollToSection('agenda')" class="btn bg-yellow-400 text-black hover:bg-yellow-300 text-lg px-8 py-4 font-bold shadow-2xl">
+                            <button onclick="scrollToSection('agenda')" class="btn bg-yellow-400 text-black hover:bg-yellow-300 text-lg px-8 py-4 font-bold shadow-2xl" aria-label="Join the movement - navigate to agenda section">
                                 Join the Movement
                             </button>
-                            <button onclick="scrollToSection('contact')" class="btn border-2 border-white text-white hover:bg-white hover:text-black text-lg px-8 py-4 font-bold" style="background:transparent">
-                                Donate Today <i data-lucide="arrow-right" class="inline-block ml-2 h-5 w-5"></i>
+                            <button onclick="openDonationModal()" class="btn border-2 border-white text-white hover:bg-white hover:text-black text-lg px-8 py-4 font-bold" style="background:transparent" aria-label="Open donation form">
+                                Donate Today <i data-lucide="arrow-right" class="inline-block ml-2 h-5 w-5" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>
@@ -211,81 +598,156 @@
                 </div>
             </section>
 
-            <section id="about" class="bg-white">
-                <div class="max-w-6xl mx-auto px-4 py-20">
-                    <div class="grid lg:grid-cols-2 gap-12 items-center">
-                        <!-- Candidate Photo -->
-                        <div class="relative fade-in">
-                            <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-blue-100 via-blue-200 to-green-200 shadow-2xl relative overflow-hidden">
-                                <!-- Placeholder for candidate photo -->
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <div class="text-center">
-                                        <img src="/candidate_photo.jpg" id="candidate_photo" alt="Felix Obuya" class="w-28 h-28 rounded-full mx-auto mb-4">
-                                        <p class="text-gray-600 font-medium">Felix Obuya</p>
-                                        
+            <section id="about" class="bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+                <!-- Background decorative elements -->
+                <div class="absolute top-0 left-0 w-full h-full">
+                    <div class="absolute top-20 left-10 w-32 h-32 bg-blue-200/20 rounded-full blur-3xl"></div>
+                    <div class="absolute bottom-20 right-10 w-40 h-40 bg-yellow-200/20 rounded-full blur-3xl"></div>
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-green-100/10 rounded-full blur-3xl"></div>
+                </div>
+                
+                <div class="max-w-7xl mx-auto px-4 py-20 relative z-10">
+                    <!-- Modern Candidate Card -->
+                    <div class="max-w-4xl mx-auto">
+                        <!-- Card Container -->
+                        <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 overflow-hidden fade-in">
+                            <!-- Header Section with Photo -->
+                            <div class="relative bg-gradient-to-r from-blue-600 via-blue-700 to-green-600 p-8 md:p-12">
+                                <!-- Geometric Pattern Overlay -->
+                                <div class="absolute inset-0 opacity-10">
+                                    <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                        <defs>
+                                            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                                                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5"/>
+                                            </pattern>
+                                        </defs>
+                                        <rect width="100" height="100" fill="url(#grid)"/>
+                                    </svg>
+                                </div>
+                                
+                                <div class="relative flex flex-col md:flex-row items-center gap-8">
+                                    <!-- Enhanced Photo Section -->
+                                    <div class="relative group">
+                                        <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-white/20 backdrop-blur-sm p-1 shadow-2xl">
+                                            <img src="candidate_photo.jpg" id="candidate_photo" alt="Felix Obuya" 
+                                                 class="w-full h-full rounded-full object-cover border-4 border-white/30 group-hover:scale-105 transition-transform duration-300">
+                                        </div>
+                                        <!-- Floating Badge -->
+                                        <div class="absolute -bottom-2 -right-2 bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                                            2027
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Candidate Info -->
+                                    <div class="text-center md:text-left text-white flex-1">
+                                        <h1 class="text-4xl md:text-5xl font-black mb-2 tracking-tight">
+                                            Felix Obuya
+                                        </h1>
+                                        <div class="flex flex-col md:flex-row items-center md:items-start gap-2 mb-4">
+                                            <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-lg font-semibold">
+                                                Candidate for MP
+                                            </span>
+                                            <span class="text-yellow-300 font-medium text-lg">
+                                                Karachuonyo Constituency
+                                            </span>
+                                        </div>
+                                        <p class="text-white/90 text-lg leading-relaxed max-w-2xl">
+                                            Committed to servant leadership that listens first and acts fast. 
+                                            Together, we will unlock opportunities and build Karachuonyo with integrity.
+                                        </p>
                                     </div>
                                 </div>
-                                <!-- Decorative elements -->
-                                <div class="absolute top-4 right-4 w-16 h-16 bg-yellow-400/30 rounded-full blur-xl"></div>
-                                <div class="absolute bottom-4 left-4 w-20 h-20 bg-blue-600/20 rounded-full blur-xl"></div>
                             </div>
-                        </div>
-                        
-                        <!-- Content -->
-                        <div class="fade-in">
-                            <h2 class="text-3xl md:text-4xl font-extrabold mb-6 gradient-text">Meet the Candidate</h2>
-                            <p class="text-gray-700 text-lg leading-relaxed mb-8">
-                                I am Felix Obuya—committed to servant leadership that listens first and acts fast. 
-                                Together, we will unlock opportunities for youth, safeguard health and education, 
-                                and build Karachuonyo with integrity and transparency.
-                            </p>
                             
-                            <!-- Core Values Grid -->
-                            <div class="space-y-6">
-                                <h3 class="text-xl font-bold text-gray-900 mb-4">Core Values</h3>
-                                <div class="grid sm:grid-cols-2 gap-4">
-                                    <div class="flex items-start gap-3 p-4 rounded-xl bg-gray-50 hover:bg-blue-50 transition-colors duration-200">
-                                        <div class="flex-shrink-0">
-                                            <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
-                                                <i data-lucide="shield" class="h-5 w-5 text-white"></i>
+                            <!-- Content Section -->
+                            <div class="p-8 md:p-12">
+                                <!-- Mission Statement -->
+                                <div class="text-center mb-12">
+                                    <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                                        A Vision for <span class="gradient-text">Shared Prosperity</span>
+                                    </h2>
+                                    <p class="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
+                                        Together, we will unlock opportunities for youth, safeguard health and education, 
+                                        and build Karachuonyo with transparency and community-centered governance.
+                                    </p>
+                                </div>
+                                
+                                <!-- Core Values - Modern Grid -->
+                                <div class="mb-12">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-8 text-center">Core Values & Principles</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="group relative bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-2xl hover:shadow-lg transition-all duration-300 border border-blue-200/50">
+                                            <div class="flex items-start gap-4">
+                                                <div class="flex-shrink-0">
+                                                    <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                                        <i data-lucide="shield" class="h-6 w-6 text-white"></i>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-bold text-gray-900 mb-2 text-lg">Transparency</h4>
+                                                    <p class="text-gray-600 leading-relaxed">Open governance, accountability, and honest communication with constituents</p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="text-center">
-                                            <h4 class="font-bold text-gray-900 mb-1">Transparency</h4>
-                                            <p class="text-sm text-gray-600">Open governance and accountability</p>
+                                        
+                                        <div class="group relative bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-2xl hover:shadow-lg transition-all duration-300 border border-green-200/50">
+                                            <div class="flex items-start gap-4">
+                                                <div class="flex-shrink-0">
+                                                    <div class="w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                                        <i data-lucide="users" class="h-6 w-6 text-white"></i>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-bold text-gray-900 mb-2 text-lg">Community First</h4>
+                                                    <p class="text-gray-600 leading-relaxed">People-centered decision making that prioritizes community needs</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="group relative bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-2xl hover:shadow-lg transition-all duration-300 border border-yellow-200/50">
+                                            <div class="flex items-start gap-4">
+                                                <div class="flex-shrink-0">
+                                                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                                        <i data-lucide="heart" class="h-6 w-6 text-white"></i>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-bold text-gray-900 mb-2 text-lg">Empowering Youth</h4>
+                                                    <p class="text-gray-600 leading-relaxed">Investing in education, skills, and opportunities for the next generation</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="group relative bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-2xl hover:shadow-lg transition-all duration-300 border border-purple-200/50">
+                                            <div class="flex items-start gap-4">
+                                                <div class="flex-shrink-0">
+                                                    <div class="w-12 h-12 bg-gradient-to-br from-purple-600 to-purple-700 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                                        <i data-lucide="hammer" class="h-6 w-6 text-white"></i>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-bold text-gray-900 mb-2 text-lg">Sustainable Development</h4>
+                                                    <p class="text-gray-600 leading-relaxed">Building infrastructure and systems for long-term prosperity</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="flex items-start gap-3 p-4 rounded-xl bg-gray-50 hover:bg-blue-50 transition-colors duration-200">
-                                        <div class="flex-shrink-0">
-                                            <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
-                                                <i data-lucide="users" class="h-5 w-5 text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div class="text-center">
-                                            <h4 class="font-bold text-gray-900 mb-1">Community First</h4>
-                                            <p class="text-sm text-gray-600">People-centered decision making</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-start gap-3 p-4 rounded-xl bg-gray-50 hover:bg-blue-50 transition-colors duration-200">
-                                        <div class="flex-shrink-0">
-                                            <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
-                                                <i data-lucide="heart" class="h-5 w-5 text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div class="text-center">
-                                            <h4 class="font-bold text-gray-900 mb-1">Empowering Youth</h4>
-                                            <p class="text-sm text-gray-600">Investing in the next generation</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-start gap-3 p-4 rounded-xl bg-gray-50 hover:bg-blue-50 transition-colors duration-200">
-                                        <div class="flex-shrink-0">
-                                            <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
-                                                <i data-lucide="hammer" class="h-5 w-5 text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div class="text-center">
-                                            <h4 class="font-bold text-gray-900 mb-1">Sustainable Development</h4>
-                                            <p class="text-sm text-gray-600">Building for the future</p>
+                                </div>
+                                
+                                <!-- Call to Action -->
+                                <div class="text-center">
+                                    <div class="bg-gradient-to-r from-blue-600 to-green-600 rounded-2xl p-8 text-white">
+                                        <h3 class="text-2xl font-bold mb-4">Ready to Build Together?</h3>
+                                        <p class="text-white/90 mb-6 text-lg">Join our movement for positive change in Karachuonyo</p>
+                                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                            <button onclick="scrollToSection('agenda')" 
+                                                    class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 rounded-xl font-bold transition-colors duration-200 shadow-lg">
+                                                View Our Agenda
+                                            </button>
+                                            <button onclick="openDonationModal()" 
+                                                    class="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 rounded-xl font-bold transition-colors duration-200">
+                                                Support the Campaign
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -304,18 +766,18 @@
                         </p>
                     </div>
                     
-                    <div class="flex flex-col md:flex-row gap-6 overflow-x-auto" id="agendaContainer">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="agendaContainer">
                         <!-- Agenda items will be populated by JavaScript -->
                     </div>
                 </div>
             </section>
 
             <section id="news" class="max-w-6xl mx-auto px-4 py-16">
-                <div class="flex items-end justify-between gap-4 fade-in">
-                    <div>
-                        <h2 class="text-3xl md:text-4xl font-extrabold">News & Updates</h2>
-                        <p class="text-gray-600">Campaign milestones, project progress, and statements.</p>
-                    </div>
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-4">News & Updates</h2>
+                    <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                        Campaign milestones, project progress, and statements.
+                    </p>
                 </div>
                 <div class="grid md:grid-cols-3 gap-6 mt-8" id="newsContainer">
                     <!-- News items will be populated by JavaScript -->
@@ -347,90 +809,189 @@
                     </div>
                     
                     <div class="grid md:grid-cols-3 gap-6">
-                        <div class="aspect-square bg-gradient-to-br from-blue-400 to-purple-600 rounded-2xl relative overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300">
-                            <div class="absolute inset-0 flex items-center justify-center text-white">
-                                <div class="text-center">
-                                    <i data-lucide="camera" class="h-12 w-12 mx-auto mb-2"></i>
-                                    <p class="text-sm">Campaign Photo 1</p>
-                                </div>
+                        <div class="aspect-square rounded-2xl relative overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300 group" onclick="openLightbox(0)" role="button" tabindex="0" aria-label="View community meeting photo">
+                            <img src="images/campaign1.svg" alt="Community meeting with local leaders" class="w-full h-full object-cover" loading="lazy">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                                <i data-lucide="expand" class="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></i>
                             </div>
                         </div>
-                        <div class="aspect-square bg-gradient-to-br from-green-400 to-blue-600 rounded-2xl relative overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300">
-                            <div class="absolute inset-0 flex items-center justify-center text-white">
-                                <div class="text-center">
-                                    <i data-lucide="camera" class="h-12 w-12 mx-auto mb-2"></i>
-                                    <p class="text-sm">Campaign Photo 2</p>
-                                </div>
+                        <div class="aspect-square rounded-2xl relative overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300 group" onclick="openLightbox(1)" role="button" tabindex="0" aria-label="View campaign rally photo">
+                            <img src="images/campaign2.svg" alt="Campaign rally inspiring the community" class="w-full h-full object-cover" loading="lazy">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                                <i data-lucide="expand" class="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></i>
                             </div>
                         </div>
-                        <div class="aspect-square bg-gradient-to-br from-yellow-400 to-red-600 rounded-2xl relative overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300">
-                            <div class="absolute inset-0 flex items-center justify-center text-white">
-                                <div class="text-center">
-                                    <i data-lucide="camera" class="h-12 w-12 mx-auto mb-2"></i>
-                                    <p class="text-sm">Campaign Photo 3</p>
-                                </div>
+                        <div class="aspect-square rounded-2xl relative overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300 group" onclick="openLightbox(2)" role="button" tabindex="0" aria-label="View community service photo">
+                            <img src="images/campaign3.svg" alt="Community service and environmental conservation" class="w-full h-full object-cover" loading="lazy">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                                <i data-lucide="expand" class="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="aspect-square rounded-2xl relative overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300 group" onclick="openLightbox(3)" role="button" tabindex="0" aria-label="View school visit photo">
+                            <img src="images/campaign4.svg" alt="School visit supporting education" class="w-full h-full object-cover" loading="lazy">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                                <i data-lucide="expand" class="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="aspect-square rounded-2xl relative overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300 group" onclick="openLightbox(4)" role="button" tabindex="0" aria-label="View healthcare visit photo">
+                            <img src="images/campaign5.svg" alt="Healthcare visit improving health services" class="w-full h-full object-cover" loading="lazy">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                                <i data-lucide="expand" class="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="aspect-square rounded-2xl relative overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300 group" onclick="openLightbox(5)" role="button" tabindex="0" aria-label="View infrastructure development photo">
+                            <img src="images/campaign6.svg" alt="Infrastructure development building for the future" class="w-full h-full object-cover" loading="lazy">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                                <i data-lucide="expand" class="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="contact" class="bg-white">
-                <div class="max-w-6xl mx-auto px-4 py-16">
-                    <div class="text-center mb-12 fade-in">
-                        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Get In Touch</h2>
-                        <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+            <section id="contact" class="bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+                <!-- Subtle background decoration -->
+                <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-50 to-transparent rounded-full opacity-30 -translate-y-48 translate-x-48"></div>
+                <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-green-50 to-transparent rounded-full opacity-30 translate-y-40 -translate-x-40"></div>
+                
+                <div class="max-w-6xl mx-auto px-4 py-20 relative z-10">
+                    <div class="text-center mb-16 fade-in">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-2xl mb-6">
+                            <i data-lucide="message-circle" class="h-8 w-8 text-white"></i>
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-extrabold mb-4 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">Get In Touch</h2>
+                        <p class="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
                             Ready to join the movement? Contact us or make a donation to support our campaign.
                         </p>
                     </div>
                     
-                    <div class="grid lg:grid-cols-2 gap-12">
-                        <div class="fade-in">
-                            <h3 class="text-xl font-bold mb-6">Contact Information</h3>
-                            <div class="space-y-4">
-                                <div class="flex items-center gap-3">
-                                    <i data-lucide="phone" class="h-5 w-5 text-blue-600"></i>
-                                    <span>+254 700 000 000</span>
+                    <div class="grid lg:grid-cols-2 gap-16 lg:items-stretch">
+                        <div class="fade-in h-full">
+                            <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                                <div class="flex items-center gap-3 mb-8">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl flex items-center justify-center">
+                                        <i data-lucide="phone" class="h-5 w-5 text-white"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-gray-900">Contact Information</h3>
                                 </div>
-                                <div class="flex items-center gap-3">
-                                    <i data-lucide="mail" class="h-5 w-5 text-blue-600"></i>
-                                    <span>info@karachuonyofirst.com</span>
+                                
+                                <div class="space-y-6">
+                                    <div class="group flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+                                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                                            <i data-lucide="phone" class="h-6 w-6 text-blue-600"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500 font-medium">Phone</p>
+                                            <p class="text-gray-900 font-semibold">+254 700 000 000</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="group flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+                                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center group-hover:bg-green-200 transition-colors">
+                                            <i data-lucide="mail" class="h-6 w-6 text-green-600"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500 font-medium">Email</p>
+                                            <p class="text-gray-900 font-semibold">info@karachuonyofirst.com</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="group flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+                                        <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+                                            <i data-lucide="map-pin" class="h-6 w-6 text-purple-600"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-500 font-medium">Location</p>
+                                            <p class="text-gray-900 font-semibold">Karachuonyo Constituency, Homa Bay County</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="flex items-center gap-3">
-                                    <i data-lucide="map-pin" class="h-5 w-5 text-blue-600"></i>
-                                    <span>Karachuonyo Constituency, Homa Bay County</span>
+                                
+                                <div class="mt-auto pt-6 border-t border-gray-100">
+                                    <h4 class="font-bold mb-6 text-gray-900 flex items-center gap-2">
+                                        <i data-lucide="heart" class="h-5 w-5 text-red-500"></i>
+                                        Support Our Campaign
+                                    </h4>
+                                    <div class="flex flex-col sm:flex-row gap-4">
+                                        <button id="donateBtn" class="flex-1 bg-gradient-to-r from-blue-600 to-green-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-700 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2" onclick="openDonationModal()">
+                                            <i data-lucide="heart" class="h-5 w-5"></i>
+                                            Donate Now
+                                        </button>
+                                        <button class="flex-1 border-2 border-gray-300 text-gray-700 py-3 px-6 rounded-xl font-semibold hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 flex items-center justify-center gap-2" onclick="scrollToSection('contact')">
+                                            <i data-lucide="users" class="h-5 w-5"></i>
+                                            Volunteer
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="mt-8">
-                                <h4 class="font-bold mb-4">Support Our Campaign</h4>
-                                <button class="btn bg-blue-600 text-white hover:bg-blue-700 mr-4">
-                                    Donate Now
-                                </button>
-                                <button class="btn border border-blue-600 text-blue-600 hover:bg-blue-50">
-                                    Volunteer
-                                </button>
                             </div>
                         </div>
                         
-                        <div class="fade-in">
-                            <form class="space-y-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                                    <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <div class="fade-in h-full">
+                            <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                                <div class="flex items-center gap-3 mb-8">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl flex items-center justify-center">
+                                        <i data-lucide="send" class="h-5 w-5 text-white"></i>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-gray-900">Send us a Message</h3>
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                    <input type="email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                                    <textarea rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
-                                </div>
-                                <button type="submit" class="btn bg-blue-600 text-white hover:bg-blue-700 w-full">
-                                    Send Message
-                                </button>
-                            </form>
+                                
+                                <form id="contactForm" class="space-y-6 flex-1 flex flex-col" novalidate role="form" aria-label="Contact form">
+                                    <div id="formMessage" class="hidden p-4 rounded-xl mb-6" role="alert" aria-live="polite"></div>
+                                    
+                                    <div class="space-y-2">
+                                        <label for="contactName" class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                                <i data-lucide="user" class="h-5 w-5 text-gray-400"></i>
+                                            </div>
+                                            <input type="text" id="contactName" name="name" required 
+                                                   class="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
+                                                   placeholder="Enter your full name"
+                                                   aria-describedby="nameError">
+                                        </div>
+                                        <div id="nameError" class="text-red-500 text-sm mt-2 hidden"></div>
+                                    </div>
+                                    
+                                    <div class="space-y-2">
+                                        <label for="contactEmail" class="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+                                        <div class="relative">
+                                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                                <i data-lucide="mail" class="h-5 w-5 text-gray-400"></i>
+                                            </div>
+                                            <input type="email" id="contactEmail" name="email" required 
+                                                   class="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
+                                                   placeholder="Enter your email address"
+                                                   aria-describedby="emailError">
+                                        </div>
+                                        <div id="emailError" class="text-red-500 text-sm mt-2 hidden"></div>
+                                    </div>
+                                    
+                                    <div class="space-y-2">
+                                        <label for="contactMessage" class="block text-sm font-semibold text-gray-700 mb-2">Your Message *</label>
+                                        <div class="relative">
+                                            <div class="absolute top-4 left-4 pointer-events-none">
+                                                <i data-lucide="message-square" class="h-5 w-5 text-gray-400"></i>
+                                            </div>
+                                            <textarea id="contactMessage" name="message" rows="5" required 
+                                                      class="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white resize-none"
+                                                      placeholder="Tell us how we can help you or share your thoughts..."
+                                                      aria-describedby="messageError"></textarea>
+                                        </div>
+                                        <div id="messageError" class="text-red-500 text-sm mt-2 hidden"></div>
+                                    </div>
+                                    
+                                    <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white py-4 px-6 rounded-xl font-semibold hover:from-blue-700 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 mt-auto" aria-describedby="formMessage">
+                                        <span id="submitText" class="flex items-center gap-2">
+                                            <i data-lucide="send" class="h-5 w-5"></i>
+                                            Send Message
+                                        </span>
+                                        <span id="submitLoader" class="hidden flex items-center gap-2" aria-live="polite">
+                                            <i data-lucide="loader-2" class="h-5 w-5 animate-spin" aria-hidden="true"></i>
+                                            Sending...
+                                        </span>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -438,7 +999,7 @@
 
             <footer class="bg-gray-900 text-white">
                 <div class="max-w-6xl mx-auto px-4 py-12">
-                    <div class="grid md:grid-cols-3 gap-8">
+                    <div class="grid md:grid-cols-4 gap-8 lg:gap-12">
                         <div>
                             <div class="flex items-center gap-3 mb-4">
                                 <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-700 to-green-600 flex items-center justify-center">
@@ -464,16 +1025,70 @@
                         <div>
                             <h4 class="font-bold mb-4">Follow Us</h4>
                             <div class="flex gap-4">
-                                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-colors">
-                                    <span class="text-sm font-bold">FB</span>
-                                </div>
-                                <div class="w-10 h-10 bg-blue-400 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-500 transition-colors">
-                                    <span class="text-sm font-bold">TW</span>
-                                </div>
-                                <div class="w-10 h-10 bg-pink-600 rounded-lg flex items-center justify-center cursor-pointer hover:bg-pink-700 transition-colors">
-                                    <span class="text-sm font-bold">IG</span>
-                                </div>
+                                <a href="https://www.facebook.com/felix.obuya.313" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-colors group" aria-label="Follow us on Facebook">
+                                    <i data-lucide="facebook" class="h-5 w-5 text-white group-hover:scale-110 transition-transform"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/felix-o-8ab628228?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-blue-700 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-800 transition-colors group" aria-label="Connect with us on LinkedIn">
+                                    <i data-lucide="linkedin" class="h-5 w-5 text-white group-hover:scale-110 transition-transform"></i>
+                                </a>
+                                <a href="https://www.instagram.com/felickske_pr?igsh=MWg4ZTc3bmJucDBwbQ==&utm_source=ig_contact_invite" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-pink-600 rounded-lg flex items-center justify-center cursor-pointer hover:bg-pink-700 transition-colors group" aria-label="Follow us on Instagram">
+                                    <i data-lucide="instagram" class="h-5 w-5 text-white group-hover:scale-110 transition-transform"></i>
+                                </a>
+                                <a href="https://youtu.be/uMdWxnWKk1E?si=BF2xrkDgwYbcENSi" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center cursor-pointer hover:bg-red-700 transition-colors group" aria-label="Subscribe to our YouTube channel">
+                                    <i data-lucide="youtube" class="h-5 w-5 text-white group-hover:scale-110 transition-transform"></i>
+                                </a>
+                                <a href="https://www.tiktok.com/@karachuonyo.1?_t=ZM-8zRIhLR0JL6&_r=1" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-black rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-800 transition-colors group" aria-label="Follow us on TikTok">
+                                    <i data-lucide="music" class="h-5 w-5 text-white group-hover:scale-110 transition-transform"></i>
+                                </a>
                             </div>
+                            <p class="text-gray-400 text-sm mt-3">Stay connected for updates and news</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold mb-4">Stay Informed</h4>
+                            <p class="text-gray-400 text-sm mb-4">Get exclusive campaign updates, policy announcements, and community news delivered to your inbox.</p>
+                            
+                            <form id="newsletterForm" class="space-y-3" novalidate>
+                                <div class="relative">
+                                    <input 
+                                        type="email" 
+                                        id="newsletterEmail" 
+                                        name="email" 
+                                        placeholder="Enter your email address" 
+                                        class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                        required
+                                        aria-describedby="email-error"
+                                    >
+                                    <div id="email-error" class="text-red-400 text-xs mt-1 hidden" role="alert"></div>
+                                </div>
+                                
+                                <div class="flex items-start gap-2">
+                                    <input 
+                                        type="checkbox" 
+                                        id="newsletterConsent" 
+                                        name="consent" 
+                                        class="mt-1 w-4 h-4 text-blue-600 bg-gray-800 border-gray-600 rounded focus:ring-blue-500 focus:ring-2"
+                                        required
+                                    >
+                                    <label for="newsletterConsent" class="text-xs text-gray-400 leading-tight">
+                                        I agree to receive campaign updates and understand I can unsubscribe at any time. 
+                                        <a href="#" class="text-blue-400 hover:text-blue-300 underline">Privacy Policy</a>
+                                    </label>
+                                </div>
+                                
+                                <button 
+                                    type="submit" 
+                                    class="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white py-2 px-4 rounded-lg font-medium hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    id="newsletterSubmit"
+                                >
+                                    <span class="flex items-center justify-center gap-2">
+                                        <i data-lucide="mail" class="w-4 h-4"></i>
+                                        Subscribe Now
+                                    </span>
+                                </button>
+                            </form>
+                            
+                            <div id="newsletter-message" class="mt-3 text-sm hidden" role="alert"></div>
                         </div>
                     </div>
                     
@@ -482,6 +1097,315 @@
                     </div>
                 </div>
             </footer>
+        </div>
+    </div>
+
+    <!-- Donation Modal -->
+    <div id="donationModal" class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="donationModalTitle" aria-hidden="true">
+        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 transform transition-all duration-300">
+            <!-- Header with gradient background -->
+            <div class="bg-gradient-to-r from-blue-600 to-green-600 p-8 rounded-t-3xl relative overflow-hidden">
+                <!-- Decorative elements -->
+                <div class="absolute top-0 right-0 w-32 h-32 bg-white bg-opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
+                <div class="absolute bottom-0 left-0 w-24 h-24 bg-white bg-opacity-10 rounded-full translate-y-12 -translate-x-12"></div>
+                
+                <div class="flex items-center justify-between relative z-10">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center">
+                            <i data-lucide="heart" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 id="donationModalTitle" class="text-2xl font-bold text-white">Support Our Campaign</h3>
+                            <p class="text-blue-100 text-sm">Every contribution makes a difference</p>
+                        </div>
+                    </div>
+                    <button onclick="closeDonationModal()" class="text-white hover:text-blue-100 transition-colors p-2 hover:bg-white hover:bg-opacity-20 rounded-xl">
+                        <i data-lucide="x" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="p-8">
+                
+                <!-- Donation Amount Selection -->
+                <div class="mb-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+                            <i data-lucide="dollar-sign" class="h-4 w-4 text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900">Choose Amount</h4>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mb-6">
+                        <button onclick="selectAmount(500)" class="donation-amount-btn p-4 border-2 border-gray-200 rounded-2xl text-center hover:border-blue-500 hover:bg-gradient-to-br hover:from-blue-50 hover:to-green-50 transition-all duration-200 transform hover:scale-105 hover:shadow-lg">
+                            <span class="block text-xs text-gray-500 font-medium">KSH</span>
+                            <span class="block text-xl font-bold text-gray-900">500</span>
+                        </button>
+                        <button onclick="selectAmount(1000)" class="donation-amount-btn p-4 border-2 border-gray-200 rounded-2xl text-center hover:border-blue-500 hover:bg-gradient-to-br hover:from-blue-50 hover:to-green-50 transition-all duration-200 transform hover:scale-105 hover:shadow-lg">
+                            <span class="block text-xs text-gray-500 font-medium">KSH</span>
+                            <span class="block text-xl font-bold text-gray-900">1,000</span>
+                        </button>
+                        <button onclick="selectAmount(2000)" class="donation-amount-btn p-4 border-2 border-gray-200 rounded-2xl text-center hover:border-blue-500 hover:bg-gradient-to-br hover:from-blue-50 hover:to-green-50 transition-all duration-200 transform hover:scale-105 hover:shadow-lg">
+                            <span class="block text-xs text-gray-500 font-medium">KSH</span>
+                            <span class="block text-xl font-bold text-gray-900">2,000</span>
+                        </button>
+                        <button onclick="selectAmount(5000)" class="donation-amount-btn p-4 border-2 border-gray-200 rounded-2xl text-center hover:border-blue-500 hover:bg-gradient-to-br hover:from-blue-50 hover:to-green-50 transition-all duration-200 transform hover:scale-105 hover:shadow-lg">
+                            <span class="block text-xs text-gray-500 font-medium">KSH</span>
+                            <span class="block text-xl font-bold text-gray-900">5,000</span>
+                        </button>
+                        <button onclick="selectAmount(10000)" class="donation-amount-btn p-4 border-2 border-gray-200 rounded-2xl text-center hover:border-blue-500 hover:bg-gradient-to-br hover:from-blue-50 hover:to-green-50 transition-all duration-200 transform hover:scale-105 hover:shadow-lg">
+                            <span class="block text-xs text-gray-500 font-medium">KSH</span>
+                            <span class="block text-xl font-bold text-gray-900">10,000</span>
+                        </button>
+                        <button onclick="selectCustomAmount()" class="donation-amount-btn p-4 border-2 border-dashed border-gray-300 rounded-2xl text-center hover:border-blue-500 hover:bg-gradient-to-br hover:from-blue-50 hover:to-green-50 transition-all duration-200 transform hover:scale-105 hover:shadow-lg">
+                            <i data-lucide="edit-3" class="h-5 w-5 text-gray-400 mx-auto mb-1"></i>
+                            <span class="block text-sm font-bold text-gray-700">Custom</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Custom Amount Input -->
+                    <div id="customAmountDiv" class="hidden mb-6">
+                        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
+                            <label for="customAmount" class="block text-sm font-semibold text-gray-700 mb-3">Enter Custom Amount (KSH)</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <span class="text-gray-500 font-medium">KSH</span>
+                                </div>
+                                <input type="number" id="customAmount" min="100" placeholder="1,000" 
+                                       class="w-full pl-16 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-lg font-semibold"
+                                       aria-describedby="customAmountHelp">
+                            </div>
+                            <div id="customAmountHelp" class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                                <i data-lucide="info" class="h-3 w-3"></i>
+                                Minimum amount is KSH 100
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Selected Amount Display -->
+                    <div id="selectedAmountDiv" class="hidden bg-gradient-to-r from-blue-50 to-green-50 p-4 rounded-2xl border border-blue-200" role="status" aria-live="polite">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+                                <i data-lucide="check" class="h-4 w-4 text-white"></i>
+                            </div>
+                            <p class="text-sm text-gray-700">Selected Amount: <span id="selectedAmount" class="font-bold text-lg text-gray-900"></span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Payment Methods -->
+                <div class="mb-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+                            <i data-lucide="credit-card" class="h-4 w-4 text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900">Choose Payment Method</h4>
+                    </div>
+                    <div class="space-y-4">
+                        <!-- M-Pesa Paybill Option -->
+                        <button onclick="selectPaymentMethod('mpesa')" class="payment-method-btn w-full p-6 border-2 border-gray-200 rounded-2xl hover:border-green-500 hover:bg-gradient-to-r hover:from-green-50 hover:to-green-100 transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg" role="radio" aria-checked="false" aria-describedby="mpesa-desc">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                                    <img src="mpesa_paybill.jpeg" alt="M-Pesa Paybill" class="h-8 w-8 object-cover rounded" role="presentation">
+                                </div>
+                                <div class="text-left flex-1">
+                                    <p class="font-bold text-gray-900">M-Pesa Paybill</p>
+                                    <p id="mpesa-desc" class="text-sm text-gray-600">Paybill: <span class="font-semibold text-green-600">522522</span></p>
+                                    <p class="text-xs text-gray-500">Account: <span class="font-medium">1341327957</span></p>
+                                </div>
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full flex items-center justify-center">
+                                    <div class="w-3 h-3 bg-green-500 rounded-full opacity-0 transition-opacity"></div>
+                                </div>
+                            </div>
+                        </button>
+                        
+                        <!-- Loop Biz Option -->
+                        <button onclick="selectPaymentMethod('loopbiz')" class="payment-method-btn w-full p-6 border-2 border-gray-200 rounded-2xl hover:border-orange-500 hover:bg-gradient-to-r hover:from-orange-50 hover:to-orange-100 transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg" role="radio" aria-checked="false" aria-describedby="loopbiz-desc">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
+                                    <i data-lucide="smartphone" class="h-6 w-6 text-orange-600"></i>
+                                </div>
+                                <div class="text-left flex-1">
+                                    <p class="font-bold text-gray-900">Loop Biz (M-Pesa & Airtel)</p>
+                                    <p id="loopbiz-desc" class="text-sm text-gray-600">Till Number: <span class="font-semibold text-orange-600">336118</span></p>
+                                    <p class="text-xs text-gray-500">Free M-Pesa & Airtel Money</p>
+                                </div>
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full flex items-center justify-center">
+                                    <div class="w-3 h-3 bg-orange-500 rounded-full opacity-0 transition-opacity"></div>
+                                </div>
+                            </div>
+                        </button>
+                        
+                        <!-- Direct Transfer Option -->
+                        <button onclick="selectPaymentMethod('direct')" class="payment-method-btn w-full p-6 border-2 border-gray-200 rounded-2xl hover:border-purple-500 hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-100 transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg" role="radio" aria-checked="false" aria-describedby="direct-desc">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                                    <img src="direct _transfer.png" alt="Direct Transfer" class="h-8 w-8 object-cover rounded" role="presentation">
+                                </div>
+                                <div class="text-left flex-1">
+                                    <p class="font-bold text-gray-900">Direct Transfer</p>
+                                    <p id="direct-desc" class="text-sm text-gray-600">Send directly to:</p>
+                                    <p class="text-xs text-gray-500">0700686943 / 0718870287</p>
+                                </div>
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full flex items-center justify-center">
+                                    <div class="w-3 h-3 bg-purple-500 rounded-full opacity-0 transition-opacity"></div>
+                                </div>
+                            </div>
+                        </button>
+                        
+                        <!-- PayPal Option -->
+                        <button onclick="selectPaymentMethod('paypal')" class="payment-method-btn w-full p-6 border-2 border-gray-200 rounded-2xl hover:border-blue-500 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg" role="radio" aria-checked="false" aria-describedby="paypal-desc">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                                    <img src="paypal.png" alt="" class="h-6 w-auto" role="presentation">
+                                </div>
+                                <div class="text-left flex-1">
+                                    <p class="font-bold text-gray-900">PayPal</p>
+                                <p id="paypal-desc" class="text-sm text-gray-600">Secure international payments</p>
+                            </div>
+                            <div class="w-6 h-6 border-2 border-gray-300 rounded-full flex items-center justify-center">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full opacity-0 transition-opacity"></div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Donor Information -->
+                <div id="donorInfoDiv" class="hidden mb-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+                            <i data-lucide="user" class="h-4 w-4 text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900">Donor Information</h4>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 space-y-6">
+                        <div>
+                            <label for="donorName" class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <i data-lucide="user" class="h-5 w-5 text-gray-400"></i>
+                                </div>
+                                <input type="text" id="donorName" required 
+                                       class="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white transition-all duration-200"
+                                       placeholder="Enter your full name"
+                                       aria-describedby="donorNameHelp">
+                            </div>
+                            <div id="donorNameHelp" class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                                <i data-lucide="info" class="h-3 w-3"></i>
+                                Enter your full legal name
+                            </div>
+                        </div>
+                        <div>
+                            <label for="donorEmail" class="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <i data-lucide="mail" class="h-5 w-5 text-gray-400"></i>
+                                </div>
+                                <input type="email" id="donorEmail" required 
+                                       class="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white transition-all duration-200"
+                                       placeholder="your.email@example.com"
+                                       aria-describedby="donorEmailHelp">
+                            </div>
+                            <div id="donorEmailHelp" class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                                <i data-lucide="info" class="h-3 w-3"></i>
+                                We'll send your donation receipt here
+                            </div>
+                        </div>
+                        <div id="mpesaPhoneDiv" class="hidden">
+                            <label for="mpesaPhone" class="block text-sm font-semibold text-gray-700 mb-2">M-Pesa Phone Number *</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <i data-lucide="phone" class="h-5 w-5 text-gray-400"></i>
+                                </div>
+                                <input type="tel" id="mpesaPhone" placeholder="254XXXXXXXXX" 
+                                       class="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white transition-all duration-200"
+                                       aria-describedby="mpesaPhoneHelp">
+                            </div>
+                            <div id="mpesaPhoneHelp" class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                                <i data-lucide="info" class="h-3 w-3"></i>
+                                Enter your M-Pesa registered phone number
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Payment Instructions -->
+                <div id="paymentInstructionsDiv" class="hidden mb-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+                            <i data-lucide="info" class="h-4 w-4 text-white"></i>
+                        </div>
+                        <h4 id="paymentInstructionsTitle" class="text-xl font-bold text-gray-900">Payment Instructions</h4>
+                    </div>
+                    <div class="bg-gradient-to-br from-blue-50 to-green-50 p-6 rounded-2xl border border-blue-200">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="smartphone" class="h-5 w-5 text-white"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="font-bold text-gray-900 mb-3">Follow these simple steps:</h5>
+                                <ol id="paymentInstructionsList" class="space-y-2 text-sm text-gray-700">
+                                    <!-- Instructions will be populated by JavaScript -->
+                                </ol>
+                                <div class="mt-4 p-3 bg-white bg-opacity-60 rounded-lg border border-blue-200">
+                                    <div class="flex items-center gap-2 text-xs text-gray-600">
+                                        <i data-lucide="shield-check" class="h-4 w-4 text-green-600"></i>
+                                        <span class="font-medium">Secure & Safe:</span>
+                                        <span>All transactions are processed securely</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex gap-4 pt-6 border-t border-gray-200">
+                    <button onclick="closeDonationModal()" class="flex-1 px-6 py-4 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-semibold" aria-label="Cancel donation and close modal">
+                        Cancel
+                    </button>
+                    <button id="proceedDonationBtn" onclick="processDonation()" disabled 
+                            class="flex-1 px-6 py-4 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-xl hover:from-blue-700 hover:to-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none flex items-center justify-center gap-2" aria-label="Proceed with donation payment">
+                        <span id="donationBtnText" class="flex items-center gap-2">
+                            <i data-lucide="heart" class="h-5 w-5"></i>
+                            Select Amount & Method
+                        </span>
+                        <span id="donationBtnLoader" class="hidden flex items-center gap-2">
+                            <i data-lucide="loader-2" class="h-5 w-5 animate-spin"></i>
+                            Processing...
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" aria-hidden="true">
+        <div class="relative max-w-4xl max-h-full w-full h-full flex items-center justify-center">
+            <!-- Close button -->
+            <button onclick="closeLightbox()" class="absolute top-4 right-4 z-10 text-white hover:text-gray-300 transition-colors" aria-label="Close lightbox">
+                <i data-lucide="x" class="h-8 w-8" aria-hidden="true"></i>
+            </button>
+            
+            <!-- Navigation buttons -->
+            <button onclick="previousImage()" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors" aria-label="Previous image">
+                <i data-lucide="chevron-left" class="h-12 w-12" aria-hidden="true"></i>
+            </button>
+            <button onclick="nextImage()" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors" aria-label="Next image">
+                <i data-lucide="chevron-right" class="h-12 w-12" aria-hidden="true"></i>
+            </button>
+            
+            <!-- Image container -->
+            <div class="text-center">
+                <img id="lightboxImage" src="" alt="" class="max-w-full max-h-[80vh] object-contain rounded-lg">
+                <div class="mt-4 text-white">
+                    <h3 id="lightboxTitle" class="text-xl font-semibold mb-2"></h3>
+                    <p id="lightboxDescription" class="text-gray-300"></p>
+                    <p class="text-sm text-gray-400 mt-2">
+                        <span id="lightboxCounter"></span>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -554,24 +1478,56 @@
         function toggleMobileMenu() {
             mobileMenuOpen = !mobileMenuOpen;
             const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
             const menuBtn = document.getElementById('mobileMenuBtn');
             
             if (mobileMenuOpen) {
                 sidebar.classList.add('open');
-                menuBtn.innerHTML = '<i data-lucide="x" class="h-6 w-6"></i>';
+                overlay.classList.add('active');
+                menuBtn.innerHTML = '<i data-lucide="x" class="h-6 w-6" aria-hidden="true"></i>';
+                menuBtn.setAttribute('aria-expanded', 'true');
+                menuBtn.setAttribute('aria-label', 'Close navigation menu');
+                sidebar.setAttribute('aria-hidden', 'false');
+                overlay.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                
+                // Focus first menu item for keyboard users
+                setTimeout(() => {
+                    const firstMenuItem = sidebar.querySelector('[role="menuitem"]');
+                    if (firstMenuItem) firstMenuItem.focus();
+                }, 100);
             } else {
                 sidebar.classList.remove('open');
-                menuBtn.innerHTML = '<i data-lucide="menu" class="h-6 w-6"></i>';
+                overlay.classList.remove('active');
+                menuBtn.innerHTML = '<i data-lucide="menu" class="h-6 w-6" aria-hidden="true"></i>';
+                menuBtn.setAttribute('aria-expanded', 'false');
+                menuBtn.setAttribute('aria-label', 'Open navigation menu');
+                sidebar.setAttribute('aria-hidden', 'true');
+                overlay.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = 'auto';
             }
             lucide.createIcons();
         }
 
         function closeMobileMenu() {
+            if (!mobileMenuOpen) return;
+            
             mobileMenuOpen = false;
             const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
             const menuBtn = document.getElementById('mobileMenuBtn');
+            
             sidebar.classList.remove('open');
-            menuBtn.innerHTML = '<i data-lucide="menu" class="h-6 w-6"></i>';
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            menuBtn.innerHTML = '<i data-lucide="menu" class="h-6 w-6" aria-hidden="true"></i>';
+            menuBtn.setAttribute('aria-expanded', 'false');
+            menuBtn.setAttribute('aria-label', 'Open navigation menu');
+            sidebar.setAttribute('aria-hidden', 'true');
+            overlay.setAttribute('aria-hidden', 'true');
+            
+            // Return focus to menu button for keyboard users
+            menuBtn.focus();
             lucide.createIcons();
         }
 
@@ -586,7 +1542,7 @@
             container.innerHTML = agenda.map((item, index) => {
                 const isExpanded = expandedCard === index;
                 return `
-                    <div class="card p-6 cursor-pointer transition-all duration-300 flex-shrink-0 w-full md:w-80 lg:w-96" onclick="toggleCard(${index})">
+                    <div class="card p-6 cursor-pointer transition-all duration-300 w-full" onclick="toggleCard(${index})">
                         <div class="flex items-start gap-4">
                             <div class="flex-shrink-0">
                                 <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl flex items-center justify-center">
@@ -620,8 +1576,10 @@
 
         function renderNews() {
             const container = document.getElementById('newsContainer');
+            const articleIds = ['ward-cleanup-drive', 'bursary-vetting-guidelines', 'water-nyadhi-project'];
+            
             container.innerHTML = posts.map((post, index) => `
-                <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer">
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer" onclick="openArticle('${articleIds[index]}')">
                     <div class="h-40 bg-gradient-to-br from-blue-400 to-purple-600 rounded-t-2xl relative overflow-hidden">
                         <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300"></div>
                         <div class="absolute inset-0 flex items-center justify-center text-white">
@@ -637,13 +1595,51 @@
                         <div class="text-xs text-blue-600 font-medium">${post.date} • ${post.tag}</div>
                         <h3 class="font-bold mt-2 group-hover:text-blue-600 transition-colors duration-300">${post.title}</h3>
                         <p class="text-gray-600 mt-2">${post.excerpt}</p>
-                        <button class="mt-4 btn bg-blue-800 text-white hover:bg-blue-700 flex items-center group-hover:translate-x-1 transition-transform duration-300">
-                            Read More <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
-                        </button>
+                        <div class="mt-4 flex items-center justify-between">
+                            <button class="btn bg-blue-800 text-white hover:bg-blue-700 flex items-center group-hover:translate-x-1 transition-transform duration-300">
+                                Read Full Article <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </button>
+                            <div class="flex items-center space-x-2 text-gray-500">
+                                <button onclick="event.stopPropagation(); shareArticle('${articleIds[index]}', '${post.title}')" class="p-2 hover:bg-gray-100 rounded-full transition-colors" title="Share article">
+                                    <i data-lucide="share-2" class="w-4 h-4"></i>
+                                </button>
+                                <span class="text-xs">5 min read</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `).join('');
             lucide.createIcons();
+        }
+        
+        function openArticle(articleId) {
+            window.location.href = `news-article.html?id=${articleId}`;
+        }
+        
+        function shareArticle(articleId, title) {
+            const url = `${window.location.origin}/news-article.html?id=${articleId}`;
+            const text = `${title} - Karachuonyo First`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: text,
+                    url: url
+                }).catch(console.error);
+            } else {
+                // Fallback to copying link
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Article link copied to clipboard!');
+                }).catch(() => {
+                    // Further fallback
+                    const textArea = document.createElement('textarea');
+                    textArea.value = url;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    alert('Article link copied to clipboard!');
+                });
+            }
         }
 
         function renderEvents() {
@@ -671,6 +1667,106 @@
             // Set up mobile menu button
             document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
             
+            // Set up overlay click to close menu
+            const overlay = document.getElementById('sidebarOverlay');
+            overlay.addEventListener('click', closeMobileMenu);
+            
+            // Add keyboard support for overlay
+            overlay.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    closeMobileMenu();
+                }
+            });
+            
+            // Add keyboard navigation for menu items
+            const menuItems = document.querySelectorAll('[role="menuitem"]');
+            menuItems.forEach((item, index) => {
+                item.addEventListener('keydown', function(e) {
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        const nextIndex = (index + 1) % menuItems.length;
+                        menuItems[nextIndex].focus();
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        const prevIndex = (index - 1 + menuItems.length) % menuItems.length;
+                        menuItems[prevIndex].focus();
+                    } else if (e.key === 'Escape') {
+                        closeMobileMenu();
+                    }
+                });
+            });
+            
+            // Add global keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Alt + M to toggle mobile menu
+                if (e.altKey && e.key === 'm') {
+                    e.preventDefault();
+                    toggleMobileMenu();
+                }
+                // Escape to close modals and menus
+                if (e.key === 'Escape') {
+                    closeMobileMenu();
+                    closeDonationModal();
+                }
+            });
+            
+            // Add touch gesture support for sidebar
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let isSwiping = false;
+            
+            document.addEventListener('touchstart', function(e) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                isSwiping = false;
+            }, { passive: true });
+            
+            document.addEventListener('touchmove', function(e) {
+                if (!touchStartX || !touchStartY) return;
+                
+                const touchEndX = e.touches[0].clientX;
+                const touchEndY = e.touches[0].clientY;
+                const diffX = touchStartX - touchEndX;
+                const diffY = touchStartY - touchEndY;
+                
+                // Check if horizontal swipe is more significant than vertical
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                    isSwiping = true;
+                    
+                    // Swipe left to close menu (when menu is open)
+                    if (diffX > 0 && mobileMenuOpen && touchStartX < 300) {
+                        closeMobileMenu();
+                    }
+                    // Swipe right to open menu (when menu is closed and swipe starts from left edge)
+                    else if (diffX < 0 && !mobileMenuOpen && touchStartX < 50) {
+                        toggleMobileMenu();
+                    }
+                }
+            }, { passive: true });
+            
+            document.addEventListener('touchend', function() {
+                touchStartX = 0;
+                touchStartY = 0;
+                isSwiping = false;
+            }, { passive: true });
+            
+            // Close mobile menu when clicking on navigation links
+            document.querySelectorAll('.sidebar nav button').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (window.innerWidth < 768) {
+                        setTimeout(closeMobileMenu, 300); // Small delay for smooth transition
+                    }
+                });
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 768 && mobileMenuOpen) {
+                    closeMobileMenu();
+                }
+            });
+            
             // Render dynamic content
             renderAgenda();
             renderNews();
@@ -697,7 +1793,1138 @@
             document.querySelectorAll('.fade-in').forEach(el => {
                 observer.observe(el);
             });
+            
+            // Initialize contact form
+            initializeContactForm();
         });
-    </script>
+        
+        // Contact form validation and submission
+        function initializeContactForm() {
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const submitLoader = document.getElementById('submitLoader');
+            const formMessage = document.getElementById('formMessage');
+            
+            if (!form) return;
+            
+            form.addEventListener('submit', handleFormSubmit);
+            
+            // Real-time validation
+            const inputs = form.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('blur', () => validateField(input));
+                input.addEventListener('input', () => clearFieldError(input));
+            });
+        }
+        
+        function validateField(field) {
+            const value = field.value.trim();
+            const fieldName = field.name;
+            const errorElement = document.getElementById(fieldName + 'Error');
+            
+            let isValid = true;
+            let errorMessage = '';
+            
+            // Required field validation
+            if (field.hasAttribute('required') && !value) {
+                isValid = false;
+                errorMessage = `${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} is required.`;
+            }
+            
+            // Email validation
+            if (fieldName === 'email' && value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    isValid = false;
+                    errorMessage = 'Please enter a valid email address.';
+                }
+            }
+            
+            // Name validation
+            if (fieldName === 'name' && value) {
+                if (value.length < 2) {
+                    isValid = false;
+                    errorMessage = 'Name must be at least 2 characters long.';
+                }
+            }
+            
+            // Message validation
+            if (fieldName === 'message' && value) {
+                if (value.length < 10) {
+                    isValid = false;
+                    errorMessage = 'Message must be at least 10 characters long.';
+                }
+            }
+            
+            // Update field appearance and error message
+            if (isValid) {
+                field.classList.remove('border-red-500');
+                field.classList.add('border-green-500');
+                errorElement.textContent = '';
+                errorElement.classList.add('hidden');
+            } else {
+                field.classList.remove('border-green-500');
+                field.classList.add('border-red-500');
+                errorElement.textContent = errorMessage;
+                errorElement.classList.remove('hidden');
+            }
+            
+            return isValid;
+        }
+        
+        function clearFieldError(field) {
+            const errorElement = document.getElementById(field.name + 'Error');
+            field.classList.remove('border-red-500');
+            if (errorElement) {
+                errorElement.classList.add('hidden');
+            }
+        }
+        
+        function validateForm() {
+            const form = document.getElementById('contactForm');
+            const inputs = form.querySelectorAll('input[required], textarea[required]');
+            let isFormValid = true;
+            
+            inputs.forEach(input => {
+                if (!validateField(input)) {
+                    isFormValid = false;
+                }
+            });
+            
+            return isFormValid;
+        }
+        
+        function showFormMessage(message, type = 'success') {
+            const formMessage = document.getElementById('formMessage');
+            formMessage.textContent = message;
+            formMessage.className = `p-4 rounded-lg mb-4 ${
+                type === 'success' ? 'bg-green-100 text-green-800 border border-green-200' : 
+                'bg-red-100 text-red-800 border border-red-200'
+            }`;
+            formMessage.classList.remove('hidden');
+            
+            // Auto-hide success messages after 5 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    formMessage.classList.add('hidden');
+                }, 5000);
+            }
+        }
+        
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) {
+                showFormMessage('Please correct the errors above.', 'error');
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const submitLoader = document.getElementById('submitLoader');
+            const form = document.getElementById('contactForm');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitText.classList.add('hidden');
+            submitLoader.classList.remove('hidden');
+            
+            // Get form data
+            const formData = new FormData(form);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone') || '',
+                subject: formData.get('subject') || 'Contact Form Submission',
+                message: formData.get('message')
+            };
+            
+            // Enhanced form submission with proper error handling
+            submitFormData(data)
+                .then(() => {
+                    // Show success message
+                    showFormMessage('Thank you for your message! We will get back to you soon.', 'success');
+                    
+                    // Reset form
+                    form.reset();
+                    
+                    // Clear field styling
+                    const inputs = form.querySelectorAll('input, textarea');
+                    inputs.forEach(input => {
+                        input.classList.remove('border-green-500', 'border-red-500');
+                    });
+                })
+                .catch((error) => {
+                    console.error('Form submission error:', error);
+                    
+                    let errorMessage = 'Sorry, there was an error sending your message. Please try again.';
+                    
+                    // Handle specific error types
+                    if (error.name === 'NetworkError' || error.message.includes('network')) {
+                        errorMessage = 'Network error. Please check your internet connection and try again.';
+                    } else if (error.name === 'TimeoutError') {
+                        errorMessage = 'Request timed out. Please try again.';
+                    } else if (error.status === 429) {
+                        errorMessage = 'Too many requests. Please wait a moment and try again.';
+                    } else if (error.status >= 500) {
+                        errorMessage = 'Server error. Please try again later.';
+                    }
+                    
+                    showFormMessage(errorMessage, 'error');
+                })
+                .finally(() => {
+                    // Reset button state
+                    submitBtn.disabled = false;
+                    submitText.classList.remove('hidden');
+                    submitLoader.classList.add('hidden');
+                });
+         }
+         
+         // Enhanced form submission function with backend API integration
+         async function submitFormData(data) {
+             const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                 ? 'http://localhost:5000/api' 
+                 : 'https://api.karachuonyofirst.com/api';
+             
+             try {
+                 const response = await fetch(`${API_BASE_URL}/contact`, {
+                     method: 'POST',
+                     headers: {
+                         'Content-Type': 'application/json',
+                         'Accept': 'application/json'
+                     },
+                     body: JSON.stringify(data),
+                     // Add timeout using AbortController
+                     signal: AbortSignal.timeout(10000) // 10 second timeout
+                 });
+                 
+                 const result = await response.json();
+                 
+                 if (!response.ok) {
+                     const error = new Error(result.error || 'Server error occurred');
+                     error.status = response.status;
+                     throw error;
+                 }
+                 
+                 console.log('Form submitted successfully:', result);
+                 return result;
+                 
+             } catch (error) {
+                 // Handle different types of errors
+                 if (error.name === 'AbortError') {
+                     const timeoutError = new Error('Request timed out');
+                     timeoutError.name = 'TimeoutError';
+                     throw timeoutError;
+                 }
+                 
+                 if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                     const networkError = new Error('Failed to connect to server');
+                     networkError.name = 'NetworkError';
+                     throw networkError;
+                 }
+                 
+                 throw error;
+              }
+          }
+          
+          // Newsletter subscription function with backend API integration
+          async function submitNewsletterData(data) {
+              const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                  ? 'http://localhost:5000/api' 
+                  : 'https://api.karachuonyofirst.com/api';
+              
+              try {
+                  const response = await fetch(`${API_BASE_URL}/newsletter/subscribe`, {
+                      method: 'POST',
+                      headers: {
+                          'Content-Type': 'application/json',
+                          'Accept': 'application/json'
+                      },
+                      body: JSON.stringify(data),
+                      signal: AbortSignal.timeout(10000) // 10 second timeout
+                  });
+                  
+                  const result = await response.json();
+                  
+                  if (!response.ok) {
+                      const error = new Error(result.error || 'Subscription failed');
+                      error.status = response.status;
+                      throw error;
+                  }
+                  
+                  console.log('Newsletter subscription successful:', result);
+                  return result;
+                  
+              } catch (error) {
+                  // Handle different types of errors
+                  if (error.name === 'AbortError') {
+                      const timeoutError = new Error('Request timed out');
+                      timeoutError.name = 'TimeoutError';
+                      throw timeoutError;
+                  }
+                  
+                  if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                      const networkError = new Error('Failed to connect to server');
+                      networkError.name = 'NetworkError';
+                      throw networkError;
+                  }
+                  
+                  throw error;
+              }
+          }
+          
+          // Global error handler for unhandled errors
+         window.addEventListener('error', function(event) {
+             console.error('Global error caught:', event.error);
+             showGlobalErrorMessage('An unexpected error occurred. Please refresh the page and try again.');
+         });
+         
+         // Global error message display
+         function showGlobalErrorMessage(message) {
+             // Create or update global error banner
+             let errorBanner = document.getElementById('globalErrorBanner');
+             if (!errorBanner) {
+                 errorBanner = document.createElement('div');
+                 errorBanner.id = 'globalErrorBanner';
+                 errorBanner.className = 'fixed top-0 left-0 right-0 bg-red-600 text-white p-3 text-center z-50 transform -translate-y-full transition-transform duration-300';
+                 document.body.appendChild(errorBanner);
+             }
+             
+             errorBanner.innerHTML = `
+                 <div class="flex items-center justify-center gap-2">
+                     <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                     <span>${message}</span>
+                     <button onclick="hideGlobalErrorMessage()" class="ml-4 text-white hover:text-gray-200">
+                         <i data-lucide="x" class="w-4 h-4"></i>
+                     </button>
+                 </div>
+             `;
+             
+             // Show banner
+             errorBanner.classList.remove('-translate-y-full');
+             lucide.createIcons();
+             
+             // Auto-hide after 5 seconds
+             setTimeout(() => {
+                 hideGlobalErrorMessage();
+             }, 5000);
+         }
+         
+         function hideGlobalErrorMessage() {
+             const errorBanner = document.getElementById('globalErrorBanner');
+             if (errorBanner) {
+                 errorBanner.classList.add('-translate-y-full');
+             }
+         }
+         
+         // Donation functionality
+         let selectedDonationAmount = 0;
+         let selectedPaymentMethod = '';
+         
+         function openDonationModal() {
+            const modal = document.getElementById('donationModal');
+            modal.classList.remove('hidden');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            
+            // Focus the first interactive element in the modal
+            setTimeout(() => {
+                const firstAmount = modal.querySelector('.donation-amount-btn');
+                if (firstAmount) firstAmount.focus();
+            }, 100);
+            
+            lucide.createIcons();
+        }
+         
+         function closeDonationModal() {
+            const modal = document.getElementById('donationModal');
+            modal.classList.add('hidden');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = 'auto';
+            resetDonationForm();
+            
+            // Return focus to the element that opened the modal
+            const donateButtons = document.querySelectorAll('[onclick*="openDonationModal"]');
+            if (donateButtons.length > 0) {
+                donateButtons[0].focus();
+            }
+        }
+         
+         function resetDonationForm() {
+             selectedDonationAmount = 0;
+             selectedPaymentMethod = '';
+             
+             // Reset amount selection
+             document.querySelectorAll('.donation-amount-btn').forEach(btn => {
+                 btn.classList.remove('border-blue-500', 'bg-blue-50');
+                 btn.classList.add('border-gray-200');
+             });
+             
+             // Reset payment method selection
+             document.querySelectorAll('.payment-method-btn').forEach(btn => {
+                 btn.classList.remove('border-green-500', 'bg-green-50', 'border-blue-500', 'bg-blue-50');
+                 btn.classList.add('border-gray-200');
+             });
+             
+             // Hide and reset form elements
+             document.getElementById('customAmountDiv').classList.add('hidden');
+             document.getElementById('selectedAmountDiv').classList.add('hidden');
+             document.getElementById('donorInfoDiv').classList.add('hidden');
+             document.getElementById('mpesaPhoneDiv').classList.add('hidden');
+             
+             // Reset form inputs
+             document.getElementById('customAmount').value = '';
+             document.getElementById('donorName').value = '';
+             document.getElementById('donorEmail').value = '';
+             document.getElementById('mpesaPhone').value = '';
+             
+             // Reset button
+             updateDonationButton();
+         }
+         
+         function selectAmount(amount) {
+             selectedDonationAmount = amount;
+             
+             // Update button styles
+             document.querySelectorAll('.donation-amount-btn').forEach(btn => {
+                 btn.classList.remove('border-blue-500', 'bg-blue-50');
+                 btn.classList.add('border-gray-200');
+             });
+             
+             event.target.classList.remove('border-gray-200');
+             event.target.classList.add('border-blue-500', 'bg-blue-50');
+             
+             // Hide custom amount and show selected amount
+             document.getElementById('customAmountDiv').classList.add('hidden');
+             showSelectedAmount();
+             updateDonationButton();
+         }
+         
+         function selectCustomAmount() {
+             // Update button styles
+             document.querySelectorAll('.donation-amount-btn').forEach(btn => {
+                 btn.classList.remove('border-blue-500', 'bg-blue-50');
+                 btn.classList.add('border-gray-200');
+             });
+             
+             event.target.classList.remove('border-gray-200');
+             event.target.classList.add('border-blue-500', 'bg-blue-50');
+             
+             // Show custom amount input
+             document.getElementById('customAmountDiv').classList.remove('hidden');
+             document.getElementById('selectedAmountDiv').classList.add('hidden');
+             
+             // Add event listener for custom amount input
+             const customAmountInput = document.getElementById('customAmount');
+             customAmountInput.addEventListener('input', function() {
+                 const amount = parseInt(this.value);
+                 if (amount >= 100) {
+                     selectedDonationAmount = amount;
+                     showSelectedAmount();
+                 } else {
+                     selectedDonationAmount = 0;
+                     document.getElementById('selectedAmountDiv').classList.add('hidden');
+                 }
+                 updateDonationButton();
+             });
+             
+             customAmountInput.focus();
+         }
+         
+         function showSelectedAmount() {
+             if (selectedDonationAmount > 0) {
+                 document.getElementById('selectedAmount').textContent = `KSH ${selectedDonationAmount.toLocaleString()}`;
+                 document.getElementById('selectedAmountDiv').classList.remove('hidden');
+             }
+         }
+         
+         function showPaymentInstructions(title, instructions) {
+             const instructionsDiv = document.getElementById('paymentInstructionsDiv');
+             const instructionsTitle = document.getElementById('paymentInstructionsTitle');
+             const instructionsList = document.getElementById('paymentInstructionsList');
+             
+             // Update title
+             instructionsTitle.textContent = title;
+             
+             // Clear and populate instructions
+             instructionsList.innerHTML = '';
+             instructions.forEach(instruction => {
+                 const li = document.createElement('li');
+                 li.className = 'flex items-start gap-3 p-2 rounded-lg hover:bg-white hover:bg-opacity-50 transition-colors';
+                 li.innerHTML = `
+                     <div class="w-6 h-6 bg-gradient-to-br from-blue-600 to-green-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                         <span class="text-xs font-bold text-white">${instruction.charAt(0)}</span>
+                     </div>
+                     <span class="text-gray-700 leading-relaxed">${instruction.substring(2)}</span>
+                 `;
+                 instructionsList.appendChild(li);
+             });
+             
+             // Show instructions section
+             instructionsDiv.classList.remove('hidden');
+         }
+         
+         function selectPaymentMethod(method) {
+             selectedPaymentMethod = method;
+             
+             // Update button styles
+             document.querySelectorAll('.payment-method-btn').forEach(btn => {
+                 btn.classList.remove('border-green-500', 'bg-green-50', 'border-blue-500', 'bg-blue-50', 'border-orange-500', 'bg-orange-50', 'border-purple-500', 'bg-purple-50');
+                 btn.classList.add('border-gray-200');
+                 // Reset radio indicators
+                 const radioIndicator = btn.querySelector('.rounded-full > div');
+                 if (radioIndicator) {
+                     radioIndicator.classList.add('opacity-0');
+                 }
+             });
+             
+             const selectedBtn = event.target.closest('.payment-method-btn');
+             selectedBtn.classList.remove('border-gray-200');
+             
+             // Show radio indicator for selected method
+             const selectedRadio = selectedBtn.querySelector('.rounded-full > div');
+             if (selectedRadio) {
+                 selectedRadio.classList.remove('opacity-0');
+             }
+             
+             // Apply method-specific styling and show/hide phone input
+             if (method === 'mpesa') {
+                 selectedBtn.classList.add('border-green-500', 'bg-green-50');
+                 document.getElementById('mpesaPhoneDiv').classList.remove('hidden');
+                 showPaymentInstructions('M-Pesa Paybill Instructions', [
+                     '1. Go to M-Pesa menu on your phone',
+                     '2. Select "Lipa na M-Pesa" then "Pay Bill"',
+                     '3. Enter Business Number: <strong>522522</strong>',
+                     '4. Enter Account Number: <strong>1341327957</strong>',
+                     '5. Enter the amount you wish to donate',
+                     '6. Enter your M-Pesa PIN to complete'
+                 ]);
+             } else if (method === 'loopbiz') {
+                 selectedBtn.classList.add('border-orange-500', 'bg-orange-50');
+                 document.getElementById('mpesaPhoneDiv').classList.add('hidden');
+                 showPaymentInstructions('Loop Biz Till Instructions', [
+                     '1. Go to M-Pesa or Airtel Money menu',
+                     '2. Select "Lipa na M-Pesa" then "Buy Goods and Services"',
+                     '3. Enter Till Number: <strong>336118</strong>',
+                     '4. Enter the amount you wish to donate',
+                     '5. Enter your PIN to complete (No charges!)',
+                     '6. You will receive a confirmation SMS'
+                 ]);
+             } else if (method === 'direct') {
+                 selectedBtn.classList.add('border-purple-500', 'bg-purple-50');
+                 document.getElementById('mpesaPhoneDiv').classList.add('hidden');
+                 showPaymentInstructions('Direct Transfer Instructions', [
+                     '1. Go to M-Pesa menu and select "Send Money"',
+                     '2. Enter phone number: <strong>0700686943</strong> or <strong>0718870287</strong>',
+                     '3. Enter the amount you wish to donate',
+                     '4. Enter your M-Pesa PIN to complete',
+                     '5. Send us a screenshot for confirmation',
+                     '6. Thank you for your direct support!'
+                 ]);
+             } else if (method === 'paypal') {
+                 selectedBtn.classList.add('border-blue-500', 'bg-blue-50');
+                 document.getElementById('mpesaPhoneDiv').classList.add('hidden');
+                 showPaymentInstructions('PayPal Payment Instructions', [
+                     '1. Click "Proceed" to be redirected to PayPal',
+                     '2. Log in to your PayPal account',
+                     '3. Review the donation amount',
+                     '4. Confirm your payment method',
+                     '5. Complete the secure payment',
+                     '6. You will receive an email confirmation'
+                 ]);
+             }
+             
+             // Show donor information form
+             document.getElementById('donorInfoDiv').classList.remove('hidden');
+             updateDonationButton();
+         }
+         
+         function updateDonationButton() {
+             const proceedBtn = document.getElementById('proceedDonationBtn');
+             const btnText = document.getElementById('donationBtnText');
+             
+             if (selectedDonationAmount > 0 && selectedPaymentMethod) {
+                 proceedBtn.disabled = false;
+                 btnText.textContent = `Donate KSH ${selectedDonationAmount.toLocaleString()}`;
+             } else {
+                 proceedBtn.disabled = true;
+                 btnText.textContent = 'Select Amount & Method';
+             }
+         }
+         
+         function validateDonorInfo() {
+             const name = document.getElementById('donorName').value.trim();
+             const email = document.getElementById('donorEmail').value.trim();
+             const phone = document.getElementById('mpesaPhone').value.trim();
+             
+             if (!name || !email) {
+                 alert('Please fill in all required fields.');
+                 return false;
+             }
+             
+             // Email validation
+             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+             if (!emailRegex.test(email)) {
+                 alert('Please enter a valid email address.');
+                 return false;
+             }
+             
+             // M-Pesa phone validation
+             if (selectedPaymentMethod === 'mpesa') {
+                 if (!phone) {
+                     alert('Please enter your M-Pesa phone number.');
+                     return false;
+                 }
+                 const phoneRegex = /^254[0-9]{9}$/;
+                 if (!phoneRegex.test(phone)) {
+                     alert('Please enter a valid M-Pesa phone number (format: 254XXXXXXXXX).');
+                     return false;
+                 }
+             }
+             
+             return true;
+         }
+         
+         function processDonation() {
+             if (!validateDonorInfo()) {
+                 return;
+             }
+             
+             const btnText = document.getElementById('donationBtnText');
+             const btnLoader = document.getElementById('donationBtnLoader');
+             const proceedBtn = document.getElementById('proceedDonationBtn');
+             
+             // Show loading state
+             proceedBtn.disabled = true;
+             btnText.classList.add('hidden');
+             btnLoader.classList.remove('hidden');
+             
+             const donationData = {
+                 amount: selectedDonationAmount,
+                 paymentMethod: selectedPaymentMethod,
+                 donor: {
+                     name: document.getElementById('donorName').value.trim(),
+                     email: document.getElementById('donorEmail').value.trim(),
+                     phone: selectedPaymentMethod === 'mpesa' ? document.getElementById('mpesaPhone').value.trim() : null
+                 }
+             };
+             
+             // Enhanced donation processing with proper error handling
+             processDonationPayment(donationData)
+                 .then((result) => {
+                     let successMessage = '';
+                     
+                     if (selectedPaymentMethod === 'mpesa') {
+                         successMessage = `M-Pesa Paybill Instructions: Go to M-Pesa menu → Lipa na M-Pesa → Pay Bill → Enter Business Number: 522522 → Account Number: 1341327957 → Amount: KSH ${selectedDonationAmount.toLocaleString()} → Enter PIN to complete.`;
+                     } else if (selectedPaymentMethod === 'loopbiz') {
+                         successMessage = `Loop Biz Till Instructions: Go to M-Pesa/Airtel Money → Lipa na M-Pesa → Buy Goods & Services → Enter Till Number: 336118 → Amount: KSH ${selectedDonationAmount.toLocaleString()} → Enter PIN (No charges!).`;
+                     } else if (selectedPaymentMethod === 'direct') {
+                         successMessage = `Direct Transfer Instructions: Go to M-Pesa → Send Money → Enter: 0700686943 or 0718870287 → Amount: KSH ${selectedDonationAmount.toLocaleString()} → Enter PIN. Please send us a screenshot for confirmation.`;
+                     } else if (selectedPaymentMethod === 'paypal') {
+                         successMessage = `Redirecting to PayPal to complete your donation of KSH ${selectedDonationAmount.toLocaleString()}. You will be redirected to PayPal's secure payment page.`;
+                     }
+                     
+                     showDonationMessage(successMessage, 'success');
+                     
+                     // Close modal after a short delay
+                     setTimeout(() => {
+                         closeDonationModal();
+                         
+                         // Show final success notification
+                         setTimeout(() => {
+                             showGlobalSuccessMessage('Thank you for your generous donation! Your support helps us build a better Karachuonyo.');
+                         }, 500);
+                     }, 2000);
+                 })
+                 .catch((error) => {
+                     console.error('Donation processing error:', error);
+                     
+                     let errorMessage = 'Sorry, there was an error processing your donation. Please try again.';
+                     
+                     // Handle specific donation errors
+                     if (error.message.includes('network')) {
+                         errorMessage = 'Network error. Please check your internet connection and try again.';
+                     } else if (error.message.includes('timeout')) {
+                         errorMessage = 'Payment processing timed out. Please try again.';
+                     } else if (error.message.includes('invalid_phone')) {
+                         errorMessage = 'Invalid phone number. Please check your M-Pesa number and try again.';
+                     } else if (error.message.includes('insufficient_funds')) {
+                         errorMessage = 'Insufficient funds. Please check your account balance and try again.';
+                     } else if (error.message.includes('payment_declined')) {
+                         errorMessage = 'Payment was declined. Please try a different payment method.';
+                     }
+                     
+                     showDonationMessage(errorMessage, 'error');
+                 })
+                 .finally(() => {
+                     // Reset button state
+                     proceedBtn.disabled = false;
+                     btnText.classList.remove('hidden');
+                     btnLoader.classList.add('hidden');
+                 });
+         }
+          
+          // Enhanced donation payment processing function
+          async function processDonationPayment(donationData) {
+              return new Promise((resolve, reject) => {
+                  const timeout = setTimeout(() => {
+                      reject(new Error('timeout: Payment processing timed out'));
+                  }, 15000); // 15 second timeout for payments
+                  
+                  setTimeout(() => {
+                      clearTimeout(timeout);
+                      
+                      // Simulate various payment scenarios
+                      const random = Math.random();
+                      
+                      if (random < 0.05) { // 5% network error
+                          reject(new Error('network: Failed to connect to payment gateway'));
+                      } else if (random < 0.08) { // 3% invalid phone for M-Pesa
+                          if (donationData.paymentMethod === 'mpesa') {
+                              reject(new Error('invalid_phone: Invalid M-Pesa phone number'));
+                          } else {
+                              resolve({ status: 'success', transactionId: 'TXN' + Date.now() });
+                          }
+                      } else if (random < 0.1) { // 2% insufficient funds
+                          reject(new Error('insufficient_funds: Insufficient account balance'));
+                      } else if (random < 0.12) { // 2% payment declined
+                          reject(new Error('payment_declined: Payment was declined by provider'));
+                      } else {
+                          // Success case
+                          console.log('Donation processed successfully:', donationData);
+                          resolve({ 
+                              status: 'success', 
+                              transactionId: 'TXN' + Date.now(),
+                              amount: donationData.amount,
+                              method: donationData.paymentMethod
+                          });
+                      }
+                  }, 3000); // Simulate payment processing time
+              });
+          }
+          
+          // Donation-specific message display
+          function showDonationMessage(message, type) {
+              // Create message element in donation modal
+              const modal = document.getElementById('donationModal');
+              let messageDiv = modal.querySelector('.donation-message');
+              
+              if (!messageDiv) {
+                  messageDiv = document.createElement('div');
+                  messageDiv.className = 'donation-message mt-4 p-3 rounded-lg';
+                  const modalContent = modal.querySelector('.bg-white');
+                  modalContent.appendChild(messageDiv);
+              }
+              
+              const bgColor = type === 'success' ? 'bg-green-100 text-green-800 border border-green-200' : 'bg-red-100 text-red-800 border border-red-200';
+              const icon = type === 'success' ? 'check-circle' : 'alert-circle';
+              
+              messageDiv.className = `donation-message mt-4 p-3 rounded-lg ${bgColor}`;
+              messageDiv.innerHTML = `
+                  <div class="flex items-center gap-2">
+                      <i data-lucide="${icon}" class="w-5 h-5"></i>
+                      <span>${message}</span>
+                  </div>
+              `;
+              
+              lucide.createIcons();
+              
+              // Auto-hide success messages after 3 seconds
+              if (type === 'success') {
+                  setTimeout(() => {
+                      if (messageDiv && messageDiv.parentNode) {
+                          messageDiv.remove();
+                      }
+                  }, 3000);
+              }
+          }
+          
+          // Global success message display
+          function showGlobalSuccessMessage(message) {
+              let successBanner = document.getElementById('globalSuccessBanner');
+              if (!successBanner) {
+                  successBanner = document.createElement('div');
+                  successBanner.id = 'globalSuccessBanner';
+                  successBanner.className = 'fixed top-0 left-0 right-0 bg-green-600 text-white p-3 text-center z-50 transform -translate-y-full transition-transform duration-300';
+                  document.body.appendChild(successBanner);
+              }
+              
+              successBanner.innerHTML = `
+                  <div class="flex items-center justify-center gap-2">
+                      <i data-lucide="check-circle" class="w-5 h-5"></i>
+                      <span>${message}</span>
+                      <button onclick="hideGlobalSuccessMessage()" class="ml-4 text-white hover:text-gray-200">
+                          <i data-lucide="x" class="w-4 h-4"></i>
+                      </button>
+                  </div>
+              `;
+              
+              // Show banner
+              successBanner.classList.remove('-translate-y-full');
+              lucide.createIcons();
+              
+              // Auto-hide after 4 seconds
+              setTimeout(() => {
+                  hideGlobalSuccessMessage();
+              }, 4000);
+          }
+          
+          function hideGlobalSuccessMessage() {
+              const successBanner = document.getElementById('globalSuccessBanner');
+              if (successBanner) {
+                  successBanner.classList.add('-translate-y-full');
+              }
+          }
+          
+          // Close modal when clicking outside
+         document.addEventListener('click', function(e) {
+             const modal = document.getElementById('donationModal');
+             if (e.target === modal) {
+                 closeDonationModal();
+             }
+         });
+         
+         // Close modal with Escape key
+         document.addEventListener('keydown', function(e) {
+             if (e.key === 'Escape') {
+                 closeDonationModal();
+                 closeLightbox();
+             }
+         });
+         
+         // Gallery and Lightbox functionality
+         const galleryImages = [
+             {
+                 src: 'images/campaign1.svg',
+                 title: 'Community Meeting',
+                 description: 'Engaging with local leaders and community members to discuss development priorities and gather feedback on our campaign initiatives.'
+             },
+             {
+                 src: 'images/campaign2.svg',
+                 title: 'Campaign Rally',
+                 description: 'Inspiring the community with our vision for Karachuonyo\'s future and mobilizing support for positive change.'
+             },
+             {
+                 src: 'images/campaign3.svg',
+                 title: 'Community Service',
+                 description: 'Leading by example through environmental conservation efforts and community development projects.'
+             },
+             {
+                 src: 'images/campaign4.svg',
+                 title: 'School Visit',
+                 description: 'Supporting education initiatives and engaging with students to understand their needs and aspirations.'
+             },
+             {
+                 src: 'images/campaign5.svg',
+                 title: 'Healthcare Visit',
+                 description: 'Assessing healthcare facilities and working with medical professionals to improve health services in our community.'
+             },
+             {
+                 src: 'images/campaign6.svg',
+                 title: 'Infrastructure Development',
+                 description: 'Overseeing infrastructure projects that will improve connectivity and economic opportunities for our people.'
+             }
+         ];
+         
+         let currentImageIndex = 0;
+         
+         function openLightbox(index) {
+             currentImageIndex = index;
+             const modal = document.getElementById('lightboxModal');
+             const image = document.getElementById('lightboxImage');
+             const title = document.getElementById('lightboxTitle');
+             const description = document.getElementById('lightboxDescription');
+             const counter = document.getElementById('lightboxCounter');
+             
+             const currentImage = galleryImages[currentImageIndex];
+             
+             image.src = currentImage.src;
+             image.alt = currentImage.title;
+             title.textContent = currentImage.title;
+             description.textContent = currentImage.description;
+             counter.textContent = `${currentImageIndex + 1} of ${galleryImages.length}`;
+             
+             modal.classList.remove('hidden');
+             modal.setAttribute('aria-hidden', 'false');
+             document.body.style.overflow = 'hidden';
+             
+             // Focus the close button for keyboard users
+             setTimeout(() => {
+                 const closeBtn = modal.querySelector('[aria-label="Close lightbox"]');
+                 if (closeBtn) closeBtn.focus();
+             }, 100);
+             
+             lucide.createIcons();
+         }
+         
+         function closeLightbox() {
+             const modal = document.getElementById('lightboxModal');
+             modal.classList.add('hidden');
+             modal.setAttribute('aria-hidden', 'true');
+             document.body.style.overflow = 'auto';
+         }
+         
+         function nextImage() {
+             currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+             updateLightboxContent();
+         }
+         
+         function previousImage() {
+             currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+             updateLightboxContent();
+         }
+         
+         function updateLightboxContent() {
+             const image = document.getElementById('lightboxImage');
+             const title = document.getElementById('lightboxTitle');
+             const description = document.getElementById('lightboxDescription');
+             const counter = document.getElementById('lightboxCounter');
+             
+             const currentImage = galleryImages[currentImageIndex];
+             
+             image.src = currentImage.src;
+             image.alt = currentImage.title;
+             title.textContent = currentImage.title;
+             description.textContent = currentImage.description;
+             counter.textContent = `${currentImageIndex + 1} of ${galleryImages.length}`;
+         }
+         
+         // Keyboard navigation for lightbox
+         document.addEventListener('keydown', function(e) {
+             const lightboxModal = document.getElementById('lightboxModal');
+             if (!lightboxModal.classList.contains('hidden')) {
+                 if (e.key === 'ArrowRight') {
+                     e.preventDefault();
+                     nextImage();
+                 } else if (e.key === 'ArrowLeft') {
+                     e.preventDefault();
+                     previousImage();
+                 }
+             }
+         });
+         
+         // Newsletter form functionality
+         document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+             e.preventDefault();
+             
+             const email = document.getElementById('newsletterEmail');
+             const consent = document.getElementById('newsletterConsent');
+             const submitBtn = document.getElementById('newsletterSubmit');
+             const messageDiv = document.getElementById('newsletter-message');
+             const errorDiv = document.getElementById('email-error');
+             
+             // Reset previous states
+             errorDiv.classList.add('hidden');
+             messageDiv.classList.add('hidden');
+             email.classList.remove('border-red-500');
+             
+             // Validate email
+             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+             let isValid = true;
+             
+             if (!email.value.trim()) {
+                 showNewsletterError('Email address is required.');
+                 isValid = false;
+             } else if (!emailRegex.test(email.value.trim())) {
+                 showNewsletterError('Please enter a valid email address.');
+                 isValid = false;
+             }
+             
+             if (!consent.checked) {
+                 showNewsletterMessage('Please agree to receive campaign updates.', 'error');
+                 isValid = false;
+             }
+             
+             if (!isValid) return;
+             
+             // Simulate form submission
+             submitBtn.disabled = true;
+             submitBtn.innerHTML = `
+                 <span class="flex items-center justify-center gap-2">
+                     <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                     Subscribing...
+                 </span>
+             `;
+             
+             // Submit to backend API
+             submitNewsletterData({
+                 email: email.value.trim(),
+                 name: '' // Can be extended to include name field
+             })
+             .then((result) => {
+                 showNewsletterMessage(result.message || 'Thank you for subscribing! Check your email for confirmation.', 'success');
+                 document.getElementById('newsletterForm').reset();
+             })
+             .catch((error) => {
+                 console.error('Newsletter subscription error:', error);
+                 
+                 let errorMessage = 'Subscription failed. Please try again later.';
+                 
+                 if (error.message.includes('already subscribed')) {
+                     errorMessage = 'This email is already subscribed to our newsletter.';
+                 } else if (error.name === 'NetworkError') {
+                     errorMessage = 'Network error. Please check your connection and try again.';
+                 } else if (error.status === 429) {
+                     errorMessage = 'Too many requests. Please wait a moment and try again.';
+                 }
+                 
+                 showNewsletterMessage(errorMessage, 'error');
+             })
+             .finally(() => {
+                 // Reset button
+                 submitBtn.disabled = false;
+                 submitBtn.innerHTML = `
+                     <span class="flex items-center justify-center gap-2">
+                         <i data-lucide="mail" class="w-4 h-4"></i>
+                         Subscribe Now
+                     </span>
+                 `;
+                 lucide.createIcons();
+             });
+         });
+         
+         function showNewsletterError(message) {
+             const errorDiv = document.getElementById('email-error');
+             const emailInput = document.getElementById('newsletterEmail');
+             
+             errorDiv.textContent = message;
+             errorDiv.classList.remove('hidden');
+             emailInput.classList.add('border-red-500');
+             emailInput.focus();
+         }
+         
+         function showNewsletterMessage(message, type) {
+             const messageDiv = document.getElementById('newsletter-message');
+             const isSuccess = type === 'success';
+             
+             messageDiv.className = `mt-3 text-sm p-3 rounded-lg ${
+                 isSuccess 
+                     ? 'bg-green-900 text-green-200 border border-green-700' 
+                     : 'bg-red-900 text-red-200 border border-red-700'
+             }`;
+             
+             messageDiv.innerHTML = `
+                 <div class="flex items-center gap-2">
+                     <i data-lucide="${isSuccess ? 'check-circle' : 'alert-circle'}" class="w-4 h-4 flex-shrink-0"></i>
+                     <span>${message}</span>
+                 </div>
+             `;
+             
+             messageDiv.classList.remove('hidden');
+             lucide.createIcons();
+             
+             // Auto-hide success messages
+             if (isSuccess) {
+                 setTimeout(() => {
+                     messageDiv.classList.add('hidden');
+                 }, 5000);
+             }
+         }
+         
+         // Real-time email validation
+         document.getElementById('newsletterEmail').addEventListener('input', function(e) {
+             const errorDiv = document.getElementById('email-error');
+             const emailInput = e.target;
+             
+             if (errorDiv.classList.contains('hidden')) return;
+             
+             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+             if (emailInput.value.trim() && emailRegex.test(emailInput.value.trim())) {
+                 errorDiv.classList.add('hidden');
+                 emailInput.classList.remove('border-red-500');
+             }
+         });
+         
+         // Close lightbox when clicking outside the image
+         document.addEventListener('click', function(e) {
+             const lightboxModal = document.getElementById('lightboxModal');
+             if (e.target === lightboxModal) {
+                 closeLightbox();
+             }
+         });
+         
+         // Add keyboard support for gallery items
+         document.addEventListener('keydown', function(e) {
+             if (e.target.matches('[onclick*="openLightbox"]') && (e.key === 'Enter' || e.key === ' ')) {
+                 e.preventDefault();
+                 e.target.click();
+             }
+         });
+         
+         // WebP Support Detection and Image Optimization
+         function supportsWebP() {
+             return new Promise((resolve) => {
+                 const webP = new Image();
+                 webP.onload = webP.onerror = () => resolve(webP.height === 2);
+                 webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+             });
+         }
+         
+         // Advanced Lazy Loading with Intersection Observer
+         document.addEventListener('DOMContentLoaded', async function() {
+             const webpSupported = await supportsWebP();
+             // Create intersection observer for advanced lazy loading
+             const imageObserver = new IntersectionObserver((entries, observer) => {
+                 entries.forEach(entry => {
+                     if (entry.isIntersecting) {
+                         const img = entry.target;
+                         
+                         // Add fade-in animation
+                         img.style.opacity = '0';
+                         img.style.transition = 'opacity 0.3s ease-in-out';
+                         
+                         // Optimize image loading based on device capabilities
+                         const originalSrc = img.src;
+                         if (webpSupported && !originalSrc.includes('.svg')) {
+                             // Try to load WebP version first
+                             const webpSrc = originalSrc.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+                             const testImg = new Image();
+                             testImg.onload = () => {
+                                 img.src = webpSrc;
+                                 img.style.opacity = '1';
+                             };
+                             testImg.onerror = () => {
+                                 img.style.opacity = '1';
+                             };
+                             testImg.src = webpSrc;
+                         } else {
+                             // Load original image
+                             img.addEventListener('load', () => {
+                                 img.style.opacity = '1';
+                             });
+                         }
+                         
+                         // Stop observing this image
+                         observer.unobserve(img);
+                     }
+                 });
+             }, {
+                 rootMargin: '50px 0px',
+                 threshold: 0.01
+             });
+             
+             // Observe all lazy images
+             const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+             lazyImages.forEach(img => {
+                 imageObserver.observe(img);
+             });
+             
+             // Preload critical images
+             const criticalImages = [
+                 'mpesa_paybill.jpeg',
+                 'direct _transfer.png',
+                 'paypal.png'
+             ];
+             
+             criticalImages.forEach(src => {
+                 const link = document.createElement('link');
+                 link.rel = 'preload';
+                 link.as = 'image';
+                 link.href = src;
+                 document.head.appendChild(link);
+             });
+         });
+     </script>
 </body>
 </html>

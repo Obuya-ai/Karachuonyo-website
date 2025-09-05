@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="articleTitle">News Article - Karachuonyo First</title>
+    <meta name="description" content="Read the latest news and updates from Karachuonyo First campaign.">
+    <meta name="keywords" content="Karachuonyo, news, politics, community, development">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" id="ogTitle" content="News Article - Karachuonyo First">
+    <meta property="og:description" id="ogDescription" content="Read the latest news and updates from Karachuonyo First campaign.">
+    <meta property="og:image" content="https://karachuonyofirst.com/candidate_photo.jpg">
+    <meta property="og:url" id="ogUrl" content="https://karachuonyofirst.com/news-article.html">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .article-content {
+            line-height: 1.75;
+            color: #374151;
+        }
+        
+        .article-content h1 {
+            @apply text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6;
+            letter-spacing: -0.025em;
+        }
+        
+        .article-content h2 {
+            @apply text-2xl md:text-3xl font-semibold text-gray-900 mt-12 mb-6;
+            letter-spacing: -0.02em;
+        }
+        
+        .article-content h3 {
+            @apply text-xl md:text-2xl font-semibold text-gray-900 mt-8 mb-4;
+        }
+        
+        .article-content p {
+            @apply text-lg text-gray-700 leading-relaxed mb-6;
+            font-weight: 400;
+        }
+        
+        .article-content ul, .article-content ol {
+            @apply ml-0 mb-6 space-y-2;
+        }
+        
+        .article-content li {
+            @apply text-lg text-gray-700 leading-relaxed pl-6 relative;
+        }
+        
+        .article-content ul li::before {
+            content: '•';
+            @apply absolute left-0 text-blue-600 font-bold;
+        }
+        
+        .article-content ol {
+            counter-reset: list-counter;
+        }
+        
+        .article-content ol li {
+            counter-increment: list-counter;
+        }
+        
+        .article-content ol li::before {
+            content: counter(list-counter) '.';
+            @apply absolute left-0 text-blue-600 font-semibold;
+        }
+        
+        .article-content blockquote {
+            @apply border-l-4 border-blue-500 pl-6 py-4 my-8 bg-blue-50 rounded-r-lg;
+        }
+        
+        .article-content blockquote p {
+            @apply text-xl italic text-gray-800 font-medium mb-0;
+        }
+        
+        .article-content strong {
+            @apply font-semibold text-gray-900;
+        }
+        
+        .article-content img {
+            @apply rounded-lg shadow-md my-6 max-w-full h-auto;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-primary {
+            @apply bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl;
+        }
+        
+        .btn-secondary {
+            @apply bg-white border border-gray-300 hover:border-gray-400 text-gray-700 hover:text-gray-900 font-medium px-6 py-3 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md;
+        }
+        
+        /* Line clamping utilities */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        /* Animation utilities */
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Prose styling for comment content */
+        .prose {
+            max-width: none;
+        }
+        
+        .prose p {
+            margin-bottom: 0;
+        }
+        
+        .share-button {
+            @apply inline-flex items-center px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:scale-105;
+        }
+        
+        .tag {
+            @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors duration-200;
+        }
+        
+        .divider {
+            @apply w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent my-12;
+        }
+        
+        .author-avatar {
+            @apply w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-lg;
+        }
+        
+        .comment-form {
+            @apply bg-gray-50 p-6 rounded-lg border;
+        }
+        
+        .comment-item {
+            @apply bg-white p-4 rounded-lg border border-gray-200 mb-4;
+        }
+        
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+        
+        /* Enhanced shadow utilities */
+        .shadow-3xl {
+            box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Border width utilities */
+        .border-3 {
+            border-width: 3px;
+        }
+        
+        /* Ring utilities */
+        .ring-4 {
+            box-shadow: 0 0 0 4px var(--tw-ring-color);
+        }
+        
+        .ring-blue-100 {
+            --tw-ring-color: rgb(219 234 254);
+        }
+        
+        /* Enhanced pulse animation */
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: .5;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .article-content h1 {
+                @apply text-3xl;
+            }
+            .article-content h2 {
+                @apply text-xl mt-8 mb-4;
+            }
+            .article-content p {
+                @apply text-base;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen">
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress"></div>
+    
+    <!-- Navigation -->
+    <nav class="bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        Karachuonyo First
+                    </a>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <button onclick="toggleBookmark()" class="text-gray-500 hover:text-blue-600 transition-colors" title="Bookmark">
+                        <i data-lucide="bookmark" class="w-5 h-5"></i>
+                    </button>
+                    <button onclick="shareArticle()" class="text-gray-500 hover:text-blue-600 transition-colors" title="Share">
+                        <i data-lucide="share-2" class="w-5 h-5"></i>
+                    </button>
+                    <a href="index.html" class="inline-flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors font-medium">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                        <span class="hidden sm:inline">Back to Home</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Article Header -->
+        <article class="pt-8 pb-16">
+            <header class="mb-12">
+                <!-- Category and Tags -->
+                <div class="mb-6">
+                    <span id="articleCategory" class="tag">Loading...</span>
+                </div>
+                
+                <!-- Article Title -->
+                <h1 id="articleHeading" class="article-content text-4xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+                    Loading Article...
+                </h1>
+                
+                <!-- Article Meta -->
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 pb-8 border-b border-gray-200">
+                    <div class="flex items-center space-x-6 mb-4 sm:mb-0">
+                        <div class="relative group">
+                            <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 via-blue-600 to-purple-700 rounded-full flex items-center justify-center text-white font-black text-xl border-4 border-white shadow-2xl ring-4 ring-blue-100 transition-all duration-300 group-hover:scale-105 group-hover:shadow-3xl">
+                                <span class="tracking-wider">KF</span>
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full border-3 border-white shadow-lg flex items-center justify-center">
+                                <i data-lucide="check" class="w-3 h-3 text-white"></i>
+                            </div>
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400/20 to-purple-600/20 animate-pulse"></div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-1">
+                                <h3 class="font-bold text-xl text-gray-900" id="articleAuthor">Loading...</h3>
+                                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded-full">Verified</span>
+                            </div>
+                            <div class="flex items-center space-x-4 text-sm text-gray-600">
+                                <div class="flex items-center space-x-1">
+                                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                                    <span id="articleDate">Loading...</span>
+                                </div>
+                                <span class="text-gray-400">•</span>
+                                <div class="flex items-center space-x-1">
+                                    <i data-lucide="clock" class="w-4 h-4"></i>
+                                    <span id="readTime">Loading...</span>
+                                </div>
+                                <span class="text-gray-400">•</span>
+                                <div class="flex items-center space-x-1">
+                                    <i data-lucide="eye" class="w-4 h-4"></i>
+                                    <span id="headerViews">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="flex items-center space-x-3">
+                        <button onclick="toggleBookmark()" class="btn-secondary">
+                            <i data-lucide="bookmark" class="w-4 h-4 mr-2"></i>
+                            Save
+                        </button>
+                        <button onclick="shareArticle()" class="btn-primary">
+                            <i data-lucide="share-2" class="w-4 h-4 mr-2"></i>
+                            Share
+                        </button>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Article Content Container -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="p-8">
+                
+            <!-- Article Content -->
+            <div class="article-content mb-16">
+                <!-- Article Lead/Excerpt -->
+                <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 rounded-3xl p-10 mb-12 border-l-8 border-blue-500 shadow-sm">
+                    <div class="flex items-start space-x-4 mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="quote" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Article Summary</h3>
+                            <p class="text-2xl text-gray-800 leading-relaxed font-light italic" id="articleExcerpt">
+                                Loading article summary...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Article Body -->
+                <div class="prose prose-xl max-w-none" id="articleContent">
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-10 mb-8">
+                        <div class="space-y-8">
+                            <!-- Loading State -->
+                            <div class="animate-pulse space-y-6">
+                                <div class="space-y-3">
+                                    <div class="h-6 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg w-3/4"></div>
+                                    <div class="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-full"></div>
+                                    <div class="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-5/6"></div>
+                                    <div class="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-4/5"></div>
+                                </div>
+                                
+                                <div class="space-y-3">
+                                    <div class="h-5 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg w-2/3"></div>
+                                    <div class="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-full"></div>
+                                    <div class="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-3/4"></div>
+                                </div>
+                                
+                                <div class="h-32 bg-gradient-to-r from-gray-200 to-gray-300 rounded-xl"></div>
+                                
+                                <div class="space-y-3">
+                                    <div class="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-full"></div>
+                                    <div class="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-5/6"></div>
+                                    <div class="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded w-2/3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dynamic content will be loaded here by JavaScript -->
+            </div>
+            
+            <div class="divider"></div>
+            
+            <!-- Engagement Section -->
+            <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-10 mb-12 border border-blue-100">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="share-2" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-3">Share this article</h3>
+                    <p class="text-gray-600">Help spread the word about our community initiatives</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4 max-w-md mx-auto mb-6">
+                    <button onclick="shareOnFacebook()" class="group bg-white hover:bg-blue-50 border-2 border-blue-100 hover:border-blue-300 rounded-2xl p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="facebook" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span class="font-semibold text-gray-700 group-hover:text-blue-600">Facebook</span>
+                    </button>
+                    
+                    <button onclick="shareOnTwitter()" class="group bg-white hover:bg-sky-50 border-2 border-sky-100 hover:border-sky-300 rounded-2xl p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <div class="w-12 h-12 bg-sky-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="twitter" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span class="font-semibold text-gray-700 group-hover:text-sky-600">Twitter</span>
+                    </button>
+                    
+                    <button onclick="shareOnWhatsApp()" class="group bg-white hover:bg-green-50 border-2 border-green-100 hover:border-green-300 rounded-2xl p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="message-circle" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span class="font-semibold text-gray-700 group-hover:text-green-600">WhatsApp</span>
+                    </button>
+                    
+                    <button onclick="copyLink()" class="group bg-white hover:bg-gray-50 border-2 border-gray-200 hover:border-gray-400 rounded-2xl p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                        <div class="w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                            <i data-lucide="link" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span class="font-semibold text-gray-700 group-hover:text-gray-600">Copy Link</span>
+                    </button>
+                </div>
+                
+                <div class="flex items-center justify-center space-x-2 text-sm text-gray-500">
+                    <i data-lucide="heart" class="w-4 h-4 text-red-400"></i>
+                    <span>Thank you for sharing our mission</span>
+                </div>
+            </div>
+            
+            </div>
+        </article>
+        
+        <!-- Comments Section -->
+        <section class="mt-16 mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Join the Conversation</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Share your thoughts and engage with fellow community members</p>
+            </div>
+            
+            <!-- Comment Form -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-12 card-shadow">
+                <h3 class="text-xl font-semibold text-gray-900 mb-6">Leave a Comment</h3>
+                <form id="commentForm" onsubmit="submitComment(event)" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="commentName" class="block text-sm font-semibold text-gray-700 mb-2">Name *</label>
+                            <input type="text" id="commentName" name="name" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                        </div>
+                        <div>
+                            <label for="commentEmail" class="block text-sm font-semibold text-gray-700 mb-2">Email *</label>
+                            <input type="email" id="commentEmail" name="email" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="commentMessage" class="block text-sm font-semibold text-gray-700 mb-2">Your Comment *</label>
+                        <textarea id="commentMessage" name="comment" rows="5" required 
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
+                                  placeholder="Share your thoughts and engage with the community..."></textarea>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <p class="text-sm text-gray-500">Your comment will be reviewed before publication.</p>
+                        <button type="submit" class="btn-primary">
+                            <i data-lucide="send" class="w-4 h-4 mr-2"></i>
+                            Post Comment
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Comments List -->
+            <div id="commentsList" class="space-y-6">
+                <!-- Comments will be loaded here -->
+            </div>
+        </section>
+        
+        <div class="divider mt-20"></div>
+        
+        <!-- Related Articles -->
+        <section class="mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Related Articles</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Discover more stories and updates from our community initiatives</p>
+            </div>
+            <div id="relatedArticles" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Related articles will be loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Article data structure
+        const articles = {
+            'ward-cleanup-drive': {
+                title: "Ward Clean-Up Drive Launched",
+                date: "August 24, 2025",
+                category: "Community",
+                excerpt: "We flagged off a community clean-up across trading centers with youth groups and churches.",
+                content: `
+                    <p>In a remarkable display of community spirit, the Karachuonyo First campaign launched a comprehensive ward clean-up drive across all major trading centers in our constituency. This initiative, which began early Saturday morning, brought together youth groups, church organizations, and community volunteers in an unprecedented show of unity.</p>
+                    
+                    <h2>Community Mobilization</h2>
+                    <p>The clean-up drive saw participation from over 200 volunteers, including members from various youth groups such as the Karachuonyo Youth Network, local church congregations, and community-based organizations. The enthusiasm and dedication shown by our young people was particularly inspiring.</p>
+                    
+                    <blockquote>"This is what true leadership looks like - bringing people together for the common good of our community," said Mary Otieno, a local church leader who participated in the drive.</blockquote>
+                    
+                    <h2>Areas Covered</h2>
+                    <p>The clean-up exercise covered major trading centers including:</p>
+                    <ul>
+                        <li>Kendu Bay Market and surrounding areas</li>
+                        <li>Homa Hills Trading Center</li>
+                        <li>Kadel Market Square</li>
+                        <li>Nyadhi Shopping Center</li>
+                    </ul>
+                    
+                    <h2>Environmental Impact</h2>
+                    <p>The initiative resulted in the collection of over 50 bags of waste, clearing of drainage systems, and general beautification of our trading centers. This effort not only improved the aesthetic appeal of our markets but also contributed to better health and sanitation conditions for traders and customers alike.</p>
+                    
+                    <h2>Moving Forward</h2>
+                    <p>This clean-up drive is just the beginning of our comprehensive environmental conservation program. We plan to make this a monthly initiative, with each session focusing on different areas within our ward. Additionally, we are working on establishing permanent waste management systems in all major trading centers.</p>
+                    
+                    <p>The success of this initiative demonstrates what we can achieve when we work together as a community. It reflects our commitment to not just talking about change, but actively implementing solutions that improve the lives of our people.</p>
+                `
+            },
+            'bursary-vetting-guidelines': {
+                title: "Bursary Vetting Guidelines",
+                date: "August 18, 2025",
+                category: "Education",
+                excerpt: "Transparent criteria and timelines to ensure fairness and inclusion.",
+                content: `
+                    <p>Education remains the cornerstone of our development agenda, and we are committed to ensuring that every child in Karachuonyo has access to quality education regardless of their family's financial situation. Today, we are proud to announce the comprehensive bursary vetting guidelines that will govern the distribution of educational support in our constituency.</p>
+                    
+                    <h2>Transparency First</h2>
+                    <p>Our bursary program is built on the principles of transparency, fairness, and inclusivity. We believe that every family deserves to know exactly how bursaries are allocated and what criteria are used in the selection process.</p>
+                    
+                    <h2>Eligibility Criteria</h2>
+                    <p>The following criteria will be used to assess bursary applications:</p>
+                    <ul>
+                        <li><strong>Financial Need:</strong> Family income assessment and economic circumstances</li>
+                        <li><strong>Academic Performance:</strong> Student's academic record and potential</li>
+                        <li><strong>Community Involvement:</strong> Family's participation in community activities</li>
+                        <li><strong>Special Circumstances:</strong> Orphaned students, students with disabilities, and other vulnerable cases</li>
+                    </ul>
+                    
+                    <h2>Application Process</h2>
+                    <p>The application process has been streamlined to make it accessible to all families:</p>
+                    <ol>
+                        <li>Application forms available at all chief's offices and online</li>
+                        <li>Required documents clearly listed and easily obtainable</li>
+                        <li>Community-based vetting committees in each location</li>
+                        <li>Appeals process for disputed decisions</li>
+                    </ol>
+                    
+                    <blockquote>"Education is not a privilege for the few, but a right for all. These guidelines ensure that deserving students get the support they need to achieve their dreams," emphasized our Education Coordinator.</blockquote>
+                    
+                    <h2>Timeline and Deadlines</h2>
+                    <p>Applications will be accepted twice a year:</p>
+                    <ul>
+                        <li><strong>First Term:</strong> Applications due by December 15th</li>
+                        <li><strong>Second Term:</strong> Applications due by April 15th</li>
+                    </ul>
+                    
+                    <h2>Accountability Measures</h2>
+                    <p>To ensure accountability and proper use of funds:</p>
+                    <ul>
+                        <li>Regular monitoring of beneficiaries' academic progress</li>
+                        <li>Direct payment to educational institutions</li>
+                        <li>Annual public reporting on bursary distribution</li>
+                        <li>Community feedback mechanisms</li>
+                    </ul>
+                    
+                    <p>We encourage all families with school-going children to familiarize themselves with these guidelines and to apply when the application windows open. Together, we can ensure that no child in Karachuonyo is denied education due to financial constraints.</p>
+                `
+            },
+            'water-nyadhi-project': {
+                title: "Water for Nyadhi – Project Update",
+                date: "August 2, 2025",
+                category: "Development",
+                excerpt: "Borehole survey completed; rig mobilization scheduled pending NEMA greenlight.",
+                content: `
+                    <p>Access to clean, safe water is a fundamental human right, and we are making significant progress in ensuring that the people of Nyadhi have reliable access to this precious resource. Today, we provide a comprehensive update on the Water for Nyadhi project, which represents a major milestone in our infrastructure development agenda.</p>
+                    
+                    <h2>Project Background</h2>
+                    <p>The Nyadhi community has faced water scarcity challenges for decades, with residents often walking long distances to access clean water. This project aims to drill a high-capacity borehole that will serve over 500 households and several institutions including schools and health facilities.</p>
+                    
+                    <h2>Survey Completion</h2>
+                    <p>We are pleased to report that the comprehensive borehole survey has been successfully completed by certified hydrogeologists. The survey results are highly encouraging:</p>
+                    <ul>
+                        <li><strong>Water Table Depth:</strong> 45 meters - well within drilling capacity</li>
+                        <li><strong>Estimated Yield:</strong> 15,000 liters per hour - sufficient for community needs</li>
+                        <li><strong>Water Quality:</strong> Preliminary tests indicate excellent quality</li>
+                        <li><strong>Sustainability:</strong> Aquifer shows signs of good recharge potential</li>
+                    </ul>
+                    
+                    <h2>Environmental Compliance</h2>
+                    <p>As responsible stewards of our environment, we have submitted all required documentation to the National Environment Management Authority (NEMA) for environmental impact assessment. This includes:</p>
+                    <ul>
+                        <li>Environmental Impact Assessment (EIA) report</li>
+                        <li>Community consultation reports</li>
+                        <li>Hydrogeological survey findings</li>
+                        <li>Waste management and site restoration plans</li>
+                    </ul>
+                    
+                    <blockquote>"We are committed to ensuring that this project not only provides water but also protects our environment for future generations," stated our Project Coordinator.</blockquote>
+                    
+                    <h2>Next Steps</h2>
+                    <p>Upon receiving NEMA clearance, which we expect within the next two weeks, we will immediately proceed with:</p>
+                    <ol>
+                        <li>Drilling rig mobilization to site</li>
+                        <li>Commencement of drilling operations</li>
+                        <li>Installation of pumping equipment</li>
+                        <li>Construction of distribution network</li>
+                        <li>Community training on maintenance</li>
+                    </ol>
+                    
+                    <h2>Community Involvement</h2>
+                    <p>This project has been a true community effort from the beginning. Local residents have contributed through:</p>
+                    <ul>
+                        <li>Site identification and access provision</li>
+                        <li>Local labor and materials where possible</li>
+                        <li>Formation of a water management committee</li>
+                        <li>Commitment to ongoing maintenance and sustainability</li>
+                    </ul>
+                    
+                    <h2>Expected Timeline</h2>
+                    <p>Based on current progress and pending approvals:</p>
+                    <ul>
+                        <li><strong>NEMA Approval:</strong> Expected by August 15, 2025</li>
+                        <li><strong>Drilling Commencement:</strong> August 20, 2025</li>
+                        <li><strong>Project Completion:</strong> September 30, 2025</li>
+                        <li><strong>Community Handover:</strong> October 5, 2025</li>
+                    </ul>
+                    
+                    <p>The Water for Nyadhi project exemplifies our commitment to addressing the real, everyday challenges facing our people. Clean water access will not only improve health outcomes but also free up time for productive activities, particularly for women and children who currently bear the burden of water collection.</p>
+                    
+                    <p>We will continue to provide regular updates on this project and welcome community feedback and involvement at every stage.</p>
+                `
+            }
+        };
+
+        // Get article ID from URL parameters
+        function getArticleId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id') || 'ward-cleanup-drive';
+        }
+
+        // Load article content
+        async function loadArticle() {
+            try {
+                // Get article ID from URL or use default
+                const urlParams = new URLSearchParams(window.location.search);
+                const articleId = urlParams.get('id') || 'ward-cleanup-drive';
+                
+                // Fetch article from backend API
+                const response = await fetch(`http://localhost:5000/api/news/${articleId}`);
+                const data = await response.json();
+                
+                if (!data.success) {
+                    throw new Error(data.error || 'Failed to load article');
+                }
+                
+                const article = data.article;
+                
+                // Update page title and meta tags
+                document.title = article.title + ' - Karachuonyo First';
+                document.getElementById('articleTitle').textContent = article.title + ' - Karachuonyo First';
+                document.getElementById('ogTitle').setAttribute('content', article.title + ' - Karachuonyo First');
+                document.getElementById('ogDescription').setAttribute('content', article.excerpt);
+                document.getElementById('ogUrl').setAttribute('content', window.location.href);
+                
+                // Update article content
+                document.getElementById('articleHeading').textContent = article.title;
+                document.getElementById('articleDate').textContent = article.date;
+                document.getElementById('articleCategory').textContent = article.category;
+                document.getElementById('articleAuthor').textContent = article.author || 'Karachuonyo First Team';
+                document.getElementById('readTime').textContent = article.read_time || '5 min read';
+            
+                // Update article excerpt
+                document.getElementById('articleExcerpt').innerHTML = article.excerpt;
+                
+                // Add article statistics section with real data
+                const statsSection = `
+                    <div class="grid md:grid-cols-3 gap-3 mb-6">
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-3 rounded-lg border border-blue-200">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-blue-500 p-1.5 rounded-lg mr-2">
+                                    <i data-lucide="eye" class="w-3 h-3 text-white"></i>
+                                </div>
+                                <h3 class="text-xs font-semibold text-blue-800">Views</h3>
+                            </div>
+                            <p class="text-sm font-bold text-blue-700" id="article-views">Loading...</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-green-50 to-green-100 p-3 rounded-lg border border-green-200">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-green-500 p-1.5 rounded-lg mr-2">
+                                    <i data-lucide="heart" class="w-3 h-3 text-white"></i>
+                                </div>
+                                <h3 class="text-xs font-semibold text-green-800">Likes</h3>
+                            </div>
+                            <p class="text-sm font-bold text-green-700" id="article-likes">Loading...</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-3 rounded-lg border border-purple-200">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-purple-500 p-1.5 rounded-lg mr-2">
+                                    <i data-lucide="share-2" class="w-3 h-3 text-white"></i>
+                                </div>
+                                <h3 class="text-xs font-semibold text-purple-800">Shares</h3>
+                            </div>
+                            <p class="text-sm font-bold text-purple-700" id="article-shares">Loading...</p>
+                        </div>
+                    </div>
+                `;
+                
+                // Enhanced article content with smaller dimensions
+                const enhancedContent = `
+                    ${statsSection}
+                    <div class="space-y-6">
+                        <div class="prose-section">
+                            <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                                <div class="w-6 h-6 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
+                                    <i data-lucide="users" class="w-4 h-4 text-white"></i>
+                                </div>
+                                ${article.title}
+                            </h2>
+                            <div class="text-sm text-gray-700 leading-relaxed space-y-4">
+                                ${article.content}
+                            </div>
+                        </div>
+                    
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border-l-4 border-blue-500">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                <i data-lucide="target" class="w-4 h-4 text-blue-500 mr-2"></i>
+                                Key Highlights
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="bg-white rounded-lg p-4 shadow-sm border border-blue-100">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-6 h-6 bg-blue-500 rounded-lg flex items-center justify-center mr-2">
+                                            <i data-lucide="building" class="w-3 h-3 text-white"></i>
+                                        </div>
+                                        <h4 class="text-sm font-semibold text-gray-900">Infrastructure Development</h4>
+                                    </div>
+                                    <p class="text-xs text-gray-600">Modernizing roads, bridges, and public facilities to improve connectivity and quality of life.</p>
+                                </div>
+                                <div class="bg-white rounded-lg p-4 shadow-sm border border-green-100">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-6 h-6 bg-green-500 rounded-lg flex items-center justify-center mr-2">
+                                            <i data-lucide="book-open" class="w-3 h-3 text-white"></i>
+                                        </div>
+                                        <h4 class="text-sm font-semibold text-gray-900">Educational Support</h4>
+                                    </div>
+                                    <p class="text-xs text-gray-600">Providing scholarships, learning materials, and educational infrastructure for our youth.</p>
+                                </div>
+                                <div class="bg-white rounded-lg p-4 shadow-sm border border-red-100">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-6 h-6 bg-red-500 rounded-lg flex items-center justify-center mr-2">
+                                            <i data-lucide="heart" class="w-3 h-3 text-white"></i>
+                                        </div>
+                                        <h4 class="text-sm font-semibold text-gray-900">Healthcare Access</h4>
+                                    </div>
+                                    <p class="text-xs text-gray-600">Improving medical facilities and ensuring affordable healthcare for all community members.</p>
+                                </div>
+                                <div class="bg-white rounded-lg p-4 shadow-sm border border-purple-100">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-6 h-6 bg-purple-500 rounded-lg flex items-center justify-center mr-2">
+                                            <i data-lucide="trending-up" class="w-3 h-3 text-white"></i>
+                                        </div>
+                                        <h4 class="text-sm font-semibold text-gray-900">Economic Empowerment</h4>
+                                    </div>
+                                    <p class="text-xs text-gray-600">Creating job opportunities and supporting local businesses to boost economic growth.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-gray-900 to-blue-900 rounded-2xl p-8 text-white">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="quote" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <blockquote class="text-xl font-light italic leading-relaxed mb-4">
+                                    "Together, we can achieve what seems impossible when we stand divided. Our strength lies not in our individual capabilities, but in our collective determination to build a better tomorrow."
+                                </blockquote>
+                                <cite class="text-blue-200 font-medium">— Karachuonyo First Team</cite>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 rounded-2xl p-8 border-l-4 border-green-500">
+                        <h3 class="text-xl font-semibold text-green-900 mb-4 flex items-center">
+                            <i data-lucide="users" class="w-5 h-5 text-green-600 mr-2"></i>
+                            Get Involved
+                        </h3>
+                        <p class="text-green-800 mb-4">
+                            Your participation is crucial to our success. Here are ways you can contribute to our community's growth:
+                        </p>
+                        <ul class="space-y-2 text-green-700">
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-green-600"></i>Attend monthly community meetings</li>
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-green-600"></i>Volunteer for local development projects</li>
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-green-600"></i>Share your skills and expertise</li>
+                            <li class="flex items-center"><i data-lucide="check-circle" class="w-4 h-4 mr-2 text-green-600"></i>Support local businesses and initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('articleContent').innerHTML = enhancedContent;
+            
+            // Re-initialize Lucide icons for the new content
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+            
+            // Load metrics data from backend
+            loadMetrics(articleId);
+            
+            // Add like button functionality
+            addLikeButtonFunctionality(articleId);
+            
+            // Load comments
+            loadComments(articleId);
+            
+            // Load related articles
+            loadRelatedArticles(articleId);
+        } catch (error) {
+            console.error('Error loading article:', error);
+            // Show error message to user
+            document.getElementById('articleContent').innerHTML = `
+                <div class="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+                    <i data-lucide="alert-circle" class="w-12 h-12 text-red-500 mx-auto mb-4"></i>
+                    <h3 class="text-lg font-semibold text-red-800 mb-2">Error Loading Article</h3>
+                    <p class="text-red-600">Unable to load the article content. Please try refreshing the page.</p>
+                </div>
+            `;
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+    }
+
+        // Share functions
+        function shareOnFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.getElementById('articleHeading').textContent);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+        }
+
+        function shareOnTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.getElementById('articleHeading').textContent);
+            const text = encodeURIComponent(`${title} - Karachuonyo First`);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'width=600,height=400');
+        }
+
+        function shareOnWhatsApp() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.getElementById('articleHeading').textContent);
+            const text = encodeURIComponent(`${title} - Karachuonyo First: ${url}`);
+            window.open(`https://wa.me/?text=${text}`, '_blank');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('Link copied to clipboard!');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = window.location.href;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('Link copied to clipboard!');
+            });
+        }
+
+        // Metrics functions
+        async function loadMetrics(articleId) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/news/${articleId}/metrics`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const views = data.metrics.views;
+                    const likes = data.metrics.likes;
+                    const shares = data.metrics.shares;
+                    
+                    // Update metrics section
+                    document.getElementById('article-views').textContent = views.toLocaleString();
+                    document.getElementById('article-likes').textContent = likes.toLocaleString();
+                    document.getElementById('article-shares').textContent = shares.toLocaleString();
+                    
+                    // Update header views with formatted display
+                    const headerViews = views >= 1000 ? (views / 1000).toFixed(1) + 'k views' : views + ' views';
+                    document.getElementById('headerViews').textContent = headerViews;
+                } else {
+                    document.getElementById('article-views').textContent = '0';
+                    document.getElementById('article-likes').textContent = '0';
+                    document.getElementById('article-shares').textContent = '0';
+                    document.getElementById('headerViews').textContent = '0 views';
+                }
+            } catch (error) {
+                console.error('Error loading metrics:', error);
+                document.getElementById('article-views').textContent = '0';
+                document.getElementById('article-likes').textContent = '0';
+                document.getElementById('article-shares').textContent = '0';
+                document.getElementById('headerViews').textContent = '0 views';
+            }
+        }
+
+        async function likeArticle(articleId) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/news/${articleId}/like`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('article-likes').textContent = data.likes.toLocaleString();
+                    
+                    const likeButton = document.getElementById('like-button');
+                    const originalContent = likeButton.innerHTML;
+                    likeButton.innerHTML = '<i data-lucide="heart" class="w-4 h-4 mr-2 text-red-500 fill-current"></i>Liked!';
+                    likeButton.classList.add('bg-red-50', 'border-red-200', 'text-red-700');
+                    
+                    setTimeout(() => {
+                        likeButton.innerHTML = originalContent;
+                        likeButton.classList.remove('bg-red-50', 'border-red-200', 'text-red-700');
+                        lucide.createIcons();
+                    }, 2000);
+                    
+                    lucide.createIcons();
+                } else {
+                    alert('Failed to like article. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error liking article:', error);
+                alert('Failed to like article. Please try again.');
+            }
+        }
+
+        function addLikeButtonFunctionality(articleId) {
+            const likesSection = document.getElementById('article-likes').parentElement;
+            const likeButton = document.createElement('button');
+            likeButton.id = 'like-button';
+            likeButton.className = 'mt-2 w-full bg-green-500 hover:bg-green-600 text-white text-xs font-medium py-1.5 px-3 rounded-lg transition-colors duration-200 flex items-center justify-center';
+            likeButton.innerHTML = '<i data-lucide="heart" class="w-4 h-4 mr-2"></i>Like Article';
+            
+            likeButton.addEventListener('click', () => {
+                likeArticle(articleId);
+            });
+            
+            likesSection.appendChild(likeButton);
+            
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        // Comment functions
+        async function submitComment(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+            
+            // Show loading state
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 mr-2 animate-spin"></i>Posting...';
+            lucide.createIcons();
+            
+            const name = document.getElementById('commentName').value;
+            const email = document.getElementById('commentEmail').value;
+            const message = document.getElementById('commentMessage').value;
+            const articleId = getArticleId();
+            
+            const commentData = {
+                name: name,
+                email: email,
+                comment: message
+            };
+            
+            try {
+                const response = await fetch(`http://localhost:5000/api/news/${articleId}/comments`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(commentData)
+                });
+                
+                if (response.ok) {
+                    // Show success message
+                    showNotification('Comment submitted successfully! It will be reviewed before publication.', 'success');
+                    form.reset();
+                } else {
+                    const error = await response.json();
+                    showNotification('Error submitting comment: ' + (error.message || 'Unknown error'), 'error');
+                }
+            } catch (error) {
+                console.error('Error submitting comment:', error);
+                // Fallback to localStorage for offline functionality
+                const comment = {
+                    id: Date.now(),
+                    name: name,
+                    email: email,
+                    message: message,
+                    date: new Date().toLocaleDateString(),
+                    articleId: articleId
+                };
+                
+                const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+                comments.push(comment);
+                localStorage.setItem('comments', JSON.stringify(comments));
+                
+                form.reset();
+                loadComments(articleId);
+                showNotification('Comment posted locally. It will sync when connection is restored.', 'success');
+            } finally {
+                // Reset button state
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+                lucide.createIcons();
+            }
+        }
+        
+        // Show notification
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform transition-all duration-300 translate-x-full ${
+                type === 'success' ? 'bg-green-500 text-white' : 
+                type === 'error' ? 'bg-red-500 text-white' : 
+                'bg-blue-500 text-white'
+            }`;
+            notification.innerHTML = `
+                <div class="flex items-center">
+                    <i data-lucide="${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info'}" class="w-5 h-5 mr-2"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            lucide.createIcons();
+            
+            // Animate in
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 5000);
+        }
+
+        // Load comments
+        async function loadComments(articleId) {
+            const commentsList = document.getElementById('commentsList');
+            
+            try {
+                const response = await fetch(`http://localhost:5000/api/news/${articleId}/comments`);
+                if (response.ok) {
+                    const comments = await response.json();
+                    displayComments(comments);
+                } else {
+                    console.error('Failed to load comments');
+                    // Fallback to localStorage
+                    loadLocalComments(articleId);
+                }
+            } catch (error) {
+                console.error('Error loading comments:', error);
+                // Fallback to localStorage
+                loadLocalComments(articleId);
+            }
+        }
+        
+        function loadLocalComments(articleId) {
+            const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+            const articleComments = comments.filter(comment => comment.articleId === articleId);
+            displayComments(articleComments);
+        }
+        
+        function displayComments(comments) {
+            const commentsList = document.getElementById('commentsList');
+            
+            if (comments.length === 0) {
+                commentsList.innerHTML = `
+                    <div class="text-center py-16">
+                        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="message-circle" class="w-8 h-8 text-gray-400"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">No comments yet</h3>
+                        <p class="text-gray-500">Be the first to share your thoughts on this article!</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+            
+            commentsList.innerHTML = `
+                <div class="mb-8">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-6">${comments.length} Comment${comments.length !== 1 ? 's' : ''}</h3>
+                </div>
+                ${comments.map(comment => `
+                    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6 card-shadow hover:shadow-xl transition-shadow duration-300">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                                ${comment.name.charAt(0).toUpperCase()}
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center space-x-3 mb-3">
+                                    <h4 class="font-bold text-gray-900 text-lg">${comment.name}</h4>
+                                    <div class="flex items-center space-x-2 text-sm text-gray-500">
+                                        <i data-lucide="clock" class="w-4 h-4"></i>
+                                        <span>${comment.date || new Date(comment.created_at).toLocaleDateString('en-US', { 
+                                            month: 'short', 
+                                            day: 'numeric', 
+                                            year: 'numeric',
+                                            hour: '2-digit',
+                                            minute: '2-digit'
+                                        })}</span>
+                                    </div>
+                                </div>
+                                <div class="prose prose-gray max-w-none">
+                                    <p class="text-gray-700 leading-relaxed">${(comment.message || comment.comment).replace(/\n/g, '<br>')}</p>
+                                </div>
+                                <div class="flex items-center space-x-4 mt-4 pt-4 border-t border-gray-100">
+                                    <button class="flex items-center space-x-2 text-gray-500 hover:text-blue-600 transition-colors text-sm font-medium">
+                                        <i data-lucide="thumbs-up" class="w-4 h-4"></i>
+                                        <span>Helpful</span>
+                                    </button>
+                                    <button class="flex items-center space-x-2 text-gray-500 hover:text-blue-600 transition-colors text-sm font-medium">
+                                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                                        <span>Reply</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            `;
+            
+            // Re-initialize Lucide icons
+            lucide.createIcons();
+        }
+
+        function loadRelatedArticles(currentArticleId) {
+            const relatedContainer = document.getElementById('relatedArticles');
+            const otherArticles = Object.entries(articles).filter(([id]) => id !== currentArticleId).slice(0, 3);
+            
+            if (otherArticles.length === 0) {
+                relatedContainer.innerHTML = '<p class="text-gray-500 text-center col-span-3">No related articles available.</p>';
+                return;
+            }
+            
+            relatedContainer.innerHTML = otherArticles.map(([id, article]) => `
+                <article class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 card-shadow cursor-pointer" onclick="window.location.href='news-article.html?id=${id}'">
+                    <div class="relative overflow-hidden">
+                        <div class="w-full h-56 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                            <div class="text-white text-center">
+                                <i data-lucide="${article.category === 'Community' ? 'users' : article.category === 'Education' ? 'graduation-cap' : 'wrench'}" class="w-12 h-12 mx-auto mb-2"></i>
+                                <p class="text-sm font-medium">${article.category}</p>
+                            </div>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">${article.category}</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 hover:text-blue-600 transition-colors">
+                            ${article.title}
+                        </h3>
+                        <p class="text-gray-600 mb-4 line-clamp-3">${article.excerpt}</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <div class="flex items-center space-x-4 text-sm text-gray-500">
+                                <span>${new Date(article.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                                <span>•</span>
+                                <span>5 min read</span>
+                            </div>
+                            <div class="text-blue-600 font-semibold hover:text-blue-700 transition-colors flex items-center">
+                                Read More
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+            
+            // Re-initialize Lucide icons for the new content
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+
+        function goBack() {
+            if (document.referrer && document.referrer.includes(window.location.hostname)) {
+                window.history.back();
+            } else {
+                window.location.href = 'index.html#news';
+            }
+        }
+
+        // Bookmark functionality
+        function toggleBookmark() {
+            const articleId = getArticleId();
+            const bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+            const isBookmarked = bookmarks.includes(articleId);
+            
+            if (isBookmarked) {
+                const index = bookmarks.indexOf(articleId);
+                bookmarks.splice(index, 1);
+                alert('Article removed from bookmarks');
+            } else {
+                bookmarks.push(articleId);
+                alert('Article bookmarked!');
+            }
+            
+            localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+        }
+
+        // Share article function
+        function shareArticle() {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.getElementById('articleHeading').textContent,
+                    text: articles[getArticleId()].excerpt,
+                    url: window.location.href
+                });
+            } else {
+                copyLink();
+            }
+        }
+
+        // Reading progress bar
+        function updateReadingProgress() {
+            const article = document.querySelector('.article-content');
+            if (!article) return;
+            
+            const articleTop = article.offsetTop;
+            const articleHeight = article.offsetHeight;
+            const windowHeight = window.innerHeight;
+            const scrollTop = window.pageYOffset;
+            
+            const progress = Math.min(100, Math.max(0, 
+                ((scrollTop - articleTop + windowHeight) / articleHeight) * 100
+            ));
+            
+            document.querySelector('.reading-progress').style.width = progress + '%';
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadArticle();
+            lucide.createIcons();
+            
+            // Add scroll listener for reading progress
+            window.addEventListener('scroll', updateReadingProgress);
+            window.addEventListener('resize', updateReadingProgress);
+        });
+    </script>
+</body>
+</html>

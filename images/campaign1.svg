@@ -1,0 +1,46 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E40AF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bg1)"/>
+  
+  <!-- Community Meeting Scene -->
+  <g transform="translate(50, 80)">
+    <!-- Table -->
+    <rect x="50" y="180" width="200" height="80" rx="10" fill="#8B4513" opacity="0.8"/>
+    
+    <!-- People silhouettes -->
+    <g fill="#FFFFFF" opacity="0.9">
+      <!-- Person 1 -->
+      <circle cx="80" cy="150" r="20"/>
+      <rect x="65" y="170" width="30" height="40" rx="15"/>
+      
+      <!-- Person 2 -->
+      <circle cx="150" cy="140" r="22"/>
+      <rect x="133" y="162" width="34" height="45" rx="17"/>
+      
+      <!-- Person 3 -->
+      <circle cx="220" cy="150" r="20"/>
+      <rect x="205" y="170" width="30" height="40" rx="15"/>
+      
+      <!-- Person 4 -->
+      <circle cx="280" cy="145" r="21"/>
+      <rect x="264" y="166" width="32" height="42" rx="16"/>
+    </g>
+    
+    <!-- Speech bubbles -->
+    <g fill="#FFFFFF" opacity="0.7">
+      <ellipse cx="120" cy="100" rx="25" ry="15"/>
+      <ellipse cx="250" cy="95" rx="30" ry="18"/>
+    </g>
+  </g>
+  
+  <!-- Title -->
+  <text x="200" y="50" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Community Meeting</text>
+  <text x="200" y="350" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="16" opacity="0.8">Engaging with local leaders</text>
+</svg>

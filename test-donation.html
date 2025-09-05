@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donation Button Test</title>
+</head>
+<body>
+    <h1>Testing Donation Modal</h1>
+    <button onclick="testDonationModal()">Test Donation Modal</button>
+    <button onclick="console.log('openDonationModal:', typeof openDonationModal)">Check Function</button>
+    
+    <script src="main.js"></script>
+    <script>
+        function testDonationModal() {
+            console.log('=== TESTING DONATION MODAL ===');
+            console.log('openDonationModal function:', typeof openDonationModal);
+            console.log('window.openDonationModal:', typeof window.openDonationModal);
+            
+            // Check if modal element exists
+            const modal = document.getElementById('donationModal');
+            console.log('Modal element exists:', !!modal);
+            
+            if (typeof openDonationModal === 'function') {
+                console.log('Function exists, calling it...');
+                try {
+                    openDonationModal();
+                    console.log('Function called successfully');
+                } catch (error) {
+                    console.error('Error calling openDonationModal:', error);
+                }
+            } else {
+                console.error('openDonationModal function not found!');
+                console.log('Available window functions:', Object.keys(window).filter(key => key.includes('Donation')));
+            }
+        }
+        
+        // Check if function is available after DOM loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('=== DOM LOADED ===');
+            console.log('openDonationModal:', typeof openDonationModal);
+            console.log('window.openDonationModal:', typeof window.openDonationModal);
+        });
+        
+        // Check after a delay
+        setTimeout(function() {
+            console.log('=== AFTER 2S DELAY ===');
+            console.log('openDonationModal:', typeof openDonationModal);
+            console.log('window.openDonationModal:', typeof window.openDonationModal);
+        }, 2000);
+    </script>
+</body>
+</html>
