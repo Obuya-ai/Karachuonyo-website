@@ -1,0 +1,75 @@
+# Render Blueprint Configuration for Karachuonyo Website
+# This file defines the deployment configuration for both frontend and backend
+
+services:
+  # Backend API Service
+  - type: web
+    name: karachuonyo-backend
+    env: python
+    plan: free
+    buildCommand: |
+      cd backend
+      pip install -r requirements.txt
+    startCommand: |
+      cd backend
+      gunicorn --bind 0.0.0.0:$PORT app:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PORT
+        value: 10000
+      - key: MAIL_SERVER
+        value: smtp.gmail.com
+      - key: MAIL_PORT
+        value: 587
+      - key: MAIL_USERNAME
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: MAIL_DEFAULT_SENDER
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: karachuonyo-db
+          property: connectionString
+      - key: CORS_ORIGINS
+        value: https://karachuonyo-frontend.onrender.com,https://karachuonyofirst.com
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+    healthCheckPath: /health
+
+  # Frontend Static Site Service
+  - type: static
+    name: karachuonyo-frontend
+    buildCommand: |
+      # Update API endpoints to production URLs
+      sed -i 's|http://localhost:5000|https://karachuonyo-backend.onrender.com|g' *.html
+      # No additional build needed for static HTML
+      echo "Frontend build complete"
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+# Database
+databases:
+  - name: karachuonyo-db
+    databaseName: karachuonyo
+    user: karachuonyo_user
+    plan: free

@@ -13,21 +13,15 @@ import os
 import re
 import logging
 from werkzeug.security import generate_password_hash
+from config import get_config
 
 # Initialize Flask app
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'karachuonyo-dev-key-2024')
+config_class = get_config()
+app.config.from_object(config_class)
 
 # CORS configuration
-CORS(app, origins=['http://localhost:8000', 'http://127.0.0.1:8000', 'https://karachuonyofirst.com'])
-
-# Email configuration
-app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER', 'smtp.gmail.com')
-app.config['MAIL_PORT'] = int(os.environ.get('MAIL_PORT', 587))
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME', 'contact@karachuonyofirst.com')
-app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD', 'your-app-password')
-app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER', 'contact@karachuonyofirst.com')
+CORS(app, origins=app.config['CORS_ORIGINS'])
 
 mail = Mail(app)
 
@@ -246,14 +240,30 @@ def validate_phone(phone):
     
     return any(re.match(pattern, clean_phone) for pattern in patterns)
 
-@app.route('/')
+@app.route('/health', methods=['GET'])
 def health_check():
-    """Health check endpoint"""
-    return jsonify({
-        'status': 'healthy',
-        'service': 'Karachuonyo Backend',
-        'timestamp': datetime.now().isoformat()
-    })
+    """Health check endpoint for deployment monitoring"""
+    try:
+        # Test database connection
+        conn = sqlite3.connect(DATABASE)
+        cursor = conn.cursor()
+        cursor.execute('SELECT 1')
+        conn.close()
+        
+        return jsonify({
+            'status': 'healthy',
+            'timestamp': datetime.now().isoformat(),
+            'service': 'karachuonyo-backend',
+            'database': 'connected'
+        }), 200
+    except Exception as e:
+        logger.error(f"Health check failed: {e}")
+        return jsonify({
+            'status': 'unhealthy',
+            'timestamp': datetime.now().isoformat(),
+            'service': 'karachuonyo-backend',
+            'error': str(e)
+        }), 503
 
 @app.route('/api/contact', methods=['POST'])
 def handle_contact_form():
@@ -1403,6 +1413,8 @@ def get_article_metrics(article_id):
             'success': False,
             'error': 'Failed to fetch article metrics'
         }), 500
+
+
 
 if __name__ == '__main__':
     # Initialize database
