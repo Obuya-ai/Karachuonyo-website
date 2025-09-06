@@ -42,9 +42,10 @@ services:
         sync: false
     healthCheckPath: /health
 
-  # Frontend Static Site Service
-  - type: static
+  # Frontend Web Service (serving static files)
+  - type: web
     name: karachuonyo-frontend
+    env: static
     buildCommand: |
       # Update API endpoints to production URLs
       sed -i 's|http://localhost:5000|https://karachuonyo-backend.onrender.com|g' *.html
