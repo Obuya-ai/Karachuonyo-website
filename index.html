@@ -35,7 +35,7 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="./dist/output.css" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     
     <!-- Performance Optimization Styles -->
@@ -162,9 +162,110 @@
             min-width: 0;
         }
         
-        /* Responsive image handling */
+        /* Enhanced Responsive Media System */
+        
+        /* Base responsive images */
         img {
             max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Responsive image containers */
+        .responsive-img-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: inherit;
+        }
+        
+        .responsive-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        /* Aspect ratio containers */
+        .aspect-16-9 {
+            aspect-ratio: 16 / 9;
+        }
+        
+        .aspect-4-3 {
+            aspect-ratio: 4 / 3;
+        }
+        
+        .aspect-square {
+            aspect-ratio: 1 / 1;
+        }
+        
+        .aspect-3-2 {
+            aspect-ratio: 3 / 2;
+        }
+        
+        /* Responsive video and iframe */
+        video, iframe, embed, object {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Video container for responsive embeds */
+        .video-responsive {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-responsive iframe,
+        .video-responsive object,
+        .video-responsive embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Flexible media queries for images */
+        @media (max-width: 480px) {
+            .aspect-16-9 {
+                aspect-ratio: 4 / 3; /* More square on mobile */
+            }
+        }
+        
+        /* Image optimization for different screen densities */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .high-dpi-img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
+        
+        /* Lazy loading optimization */
+        img[loading="lazy"] {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        img[loading="lazy"].loaded {
+            opacity: 1;
+        }
+        
+        /* SVG responsiveness */
+        svg {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Picture element responsiveness */
+        picture {
+            display: block;
+            width: 100%;
+        }
+        
+        picture img {
+            width: 100%;
             height: auto;
         }
         
@@ -240,128 +341,385 @@
             }
         }
         
-        /* Enhanced touch interactions and responsive fixes */
-        @media (max-width: 767px) {
+        /* Enhanced Fluid Grid System and Responsive Design */
+        
+        /* Base responsive grid system */
+        .responsive-grid {
+            display: grid;
+            gap: clamp(1rem, 2.5vw, 2rem);
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+        }
+        
+        .responsive-grid-2 {
+            display: grid;
+            gap: clamp(1rem, 2.5vw, 2rem);
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+        }
+        
+        .responsive-grid-3 {
+            display: grid;
+            gap: clamp(1rem, 2.5vw, 2rem);
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+        }
+        
+        /* Flexible container system */
+        .fluid-container {
+            width: 100%;
+            max-width: min(90vw, 1200px);
+            margin: 0 auto;
+            padding: 0 clamp(1rem, 4vw, 2rem);
+        }
+        
+        /* Responsive typography with clamp() */
+        .responsive-text-xl {
+            font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+            line-height: 1.4;
+        }
+        
+        .responsive-text-2xl {
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            line-height: 1.3;
+        }
+        
+        .responsive-text-3xl {
+            font-size: clamp(1.5rem, 4vw, 1.875rem);
+            line-height: 1.2;
+        }
+        
+        .responsive-text-4xl {
+            font-size: clamp(1.875rem, 5vw, 2.25rem);
+            line-height: 1.1;
+        }
+        
+        .responsive-text-5xl {
+            font-size: clamp(2.25rem, 6vw, 3rem);
+            line-height: 1;
+        }
+        
+        /* Responsive spacing system */
+        .responsive-padding {
+            padding: clamp(1rem, 4vw, 2rem);
+        }
+        
+        .responsive-margin {
+            margin: clamp(1rem, 4vw, 2rem);
+        }
+        
+        .responsive-gap {
+            gap: clamp(0.5rem, 2vw, 1.5rem);
+        }
+        
+        /* Mobile-first media queries */
+        
+        /* Small mobile devices (320px and up) */
+        @media (min-width: 320px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .grid-responsive-sm {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+        
+        /* Large mobile devices (480px and up) */
+        @media (min-width: 480px) {
+            .grid-responsive-sm {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.25rem;
+            }
+        }
+        
+        /* Tablet devices (768px and up) */
+        @media (min-width: 768px) {
+            .container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+            
+            .grid-responsive-md {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .grid-2-cols-md {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .grid-3-cols-md {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Desktop devices (1024px and up) */
+        @media (min-width: 1024px) {
+            .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+            
+            .grid-responsive-lg {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+            
+            .grid-4-cols-lg {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        /* Large desktop (1440px and up) */
+        @media (min-width: 1440px) {
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+        }
+        
+        /* Mobile-specific optimizations (max-width: 1279px) */
+        @media (max-width: 1279px) {
             .sidebar {
                 z-index: 50;
             }
             
-            /* Improve button touch targets */
-            .sidebar nav button {
-                min-height: 48px;
-                touch-action: manipulation;
+            /* Enhanced touch targets - 44px minimum for accessibility */
+             .sidebar nav button,
+             #mobileMenuBtn,
+             button,
+             .btn,
+             a,
+             input[type="button"],
+             input[type="submit"],
+             input[type="reset"],
+             .clickable,
+             .card,
+             details summary {
+                 min-height: 44px;
+                 min-width: 44px;
+                 touch-action: manipulation;
+                 cursor: pointer;
+             }
+             
+             /* Enhanced mobile navigation */
+             .sidebar {
+                 width: min(80vw, 320px);
+                 transform: translateX(-100%);
+                 transition: transform 0.3s ease-in-out;
+             }
+             
+             .sidebar.open {
+                 transform: translateX(0);
+             }
+             
+             /* Mobile menu button improvements */
+             #mobileMenuBtn {
+                 position: relative;
+                 z-index: 60;
+                 background: rgba(255, 255, 255, 0.9);
+                 backdrop-filter: blur(10px);
+                 border: 1px solid rgba(0, 0, 0, 0.1);
+                 border-radius: 8px;
+                 padding: 12px;
+                 transition: all 0.2s ease;
+             }
+             
+             #mobileMenuBtn:hover {
+                 background: rgba(255, 255, 255, 1);
+                 transform: scale(1.05);
+             }
+             
+             /* Navigation links touch optimization */
+             .sidebar nav a,
+             .sidebar nav button {
+                 display: flex;
+                 align-items: center;
+                 gap: 12px;
+                 padding: 16px 20px;
+                 margin: 4px 8px;
+                 border-radius: 12px;
+                 font-weight: 500;
+                 transition: all 0.2s ease;
+                 text-decoration: none;
+                 color: inherit;
+             }
+             
+             .sidebar nav a:hover,
+             .sidebar nav button:hover {
+                 background: rgba(59, 130, 246, 0.1);
+                 color: #3b82f6;
+                 transform: translateX(4px);
+             }
+             
+             /* Mobile overlay */
+             .mobile-overlay {
+                 position: fixed;
+                 inset: 0;
+                 background: rgba(0, 0, 0, 0.5);
+                 z-index: 40;
+                 opacity: 0;
+                 visibility: hidden;
+                 transition: all 0.3s ease;
+             }
+             
+             .mobile-overlay.active {
+                 opacity: 1;
+                 visibility: visible;
+             }
+             
+             /* Enhanced button touch feedback */
+             button:active,
+             .btn:active {
+                 transform: scale(0.98);
+             }
+             
+             /* Improved form controls */
+             input, textarea, select {
+                 min-height: 44px;
+                 padding: 12px 16px;
+                 border-radius: 8px;
+                 border: 2px solid #e5e7eb;
+                 transition: border-color 0.2s ease;
+             }
+             
+             input:focus, textarea:focus, select:focus {
+                 outline: none;
+                 border-color: #3b82f6;
+                 box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+             }
+            
+            /* Sidebar optimizations */
+            .sidebar {
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
             }
             
-            /* Better mobile menu button */
-            #mobileMenuBtn {
-                min-height: 44px;
-                min-width: 44px;
-                touch-action: manipulation;
-            }
-            
-            /* Improve card touch interactions */
+            /* Card touch interactions */
             .card {
                 touch-action: manipulation;
             }
             
-            /* Better form inputs on mobile */
+            /* Form input optimizations */
             input, textarea, select {
                 font-size: 16px; /* Prevents zoom on iOS */
+                padding: 0.75rem;
             }
             
-            /* Improve mobile spacing and layout */
+            /* Layout adjustments */
             .main-content {
                 margin-left: 0 !important;
             }
             
-            /* Better mobile hero section */
+            /* Hero section mobile */
             section#home {
-                padding-top: 2rem;
-                padding-bottom: 2rem;
+                padding-top: clamp(1rem, 4vw, 2rem);
+                padding-bottom: clamp(1rem, 4vw, 2rem);
             }
             
-            /* Improve mobile grid layouts */
-            .grid.md\:grid-cols-3 {
+            /* Mobile grid layouts - enhanced fluid system */
+            .grid.md\:grid-cols-3,
+            .grid.md\:grid-cols-2,
+            .grid.lg\:grid-cols-2,
+            .grid.lg\:grid-cols-3 {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: clamp(1rem, 3vw, 1.5rem);
             }
             
             /* Prevent horizontal overflow */
             body, html {
                 overflow-x: hidden;
+                width: 100%;
             }
             
-            /* Ensure all containers fit within viewport */
-            .max-w-6xl, .max-w-7xl, .max-w-4xl {
+            /* Container responsiveness */
+            .max-w-6xl, .max-w-7xl, .max-w-4xl, .max-w-3xl {
                 max-width: 100%;
-                margin-left: 1rem;
-                margin-right: 1rem;
+                margin-left: clamp(0.5rem, 2vw, 1rem);
+                margin-right: clamp(0.5rem, 2vw, 1rem);
             }
             
-            /* Better mobile padding */
+            /* Responsive padding */
             .px-4 {
-                padding-left: 1rem;
-                padding-right: 1rem;
+                padding-left: clamp(0.75rem, 3vw, 1rem);
+                padding-right: clamp(0.75rem, 3vw, 1rem);
             }
             
-            /* Responsive text sizing */
+            .py-16 {
+                padding-top: clamp(2rem, 8vw, 4rem);
+                padding-bottom: clamp(2rem, 8vw, 4rem);
+            }
+            
+            .py-20 {
+                padding-top: clamp(2.5rem, 10vw, 5rem);
+                padding-bottom: clamp(2.5rem, 10vw, 5rem);
+            }
+            
+            /* Typography scaling */
             .text-4xl, .text-5xl {
-                font-size: 2rem !important;
+                font-size: clamp(1.75rem, 6vw, 2rem) !important;
                 line-height: 1.2;
             }
             
             .text-3xl {
-                font-size: 1.75rem !important;
+                font-size: clamp(1.5rem, 5vw, 1.75rem) !important;
+                line-height: 1.3;
             }
             
-            .grid.lg\:grid-cols-2 {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+            .text-2xl {
+                font-size: clamp(1.25rem, 4vw, 1.5rem) !important;
             }
             
-            /* Better mobile donation modal */
-            #donationModal .bg-white {
-                margin: 1rem;
-                max-height: calc(100vh - 2rem);
+            .text-xl {
+                font-size: clamp(1.125rem, 3vw, 1.25rem) !important;
+            }
+            
+            /* Modal responsiveness */
+            #donationModal .bg-white,
+            #volunteerModal .bg-white,
+            #eventRegistrationModal .bg-white {
+                margin: clamp(0.5rem, 2vw, 1rem);
+                max-height: calc(100vh - clamp(1rem, 4vw, 2rem));
                 overflow-y: auto;
-                width: calc(100% - 2rem);
+                width: calc(100% - clamp(1rem, 4vw, 2rem));
                 max-width: none;
+                border-radius: clamp(0.5rem, 2vw, 1rem);
             }
             
-            /* Ensure gallery images are responsive */
+            /* Gallery and image responsiveness */
             .aspect-square {
                 aspect-ratio: 1 / 1;
+                width: 100%;
             }
             
-            /* Better mobile button spacing */
+            /* Button layout improvements */
             .flex.flex-col.sm\:flex-row {
                 flex-direction: column;
-                gap: 0.75rem;
+                gap: clamp(0.5rem, 2vw, 0.75rem);
             }
             
-            /* Responsive candidate card */
-             .max-w-4xl {
-                 max-width: 100%;
-                 margin-left: 0.5rem;
-                 margin-right: 0.5rem;
-             }
-             
-             /* Enhanced Mobile footer layout */
-             footer .grid.md\:grid-cols-4 {
-                 grid-template-columns: 1fr;
-                 gap: 2.5rem;
-                 text-align: center;
-             }
-             
-             /* Footer brand section mobile */
-             footer .grid.md\:grid-cols-4 > div:first-child {
-                 text-align: center;
-                 margin-bottom: 1rem;
-             }
-             
-             footer .grid.md\:grid-cols-4 > div:first-child .flex {
-                 justify-content: center;
-             }
+            /* Candidate card mobile */
+            .max-w-4xl {
+                max-width: 100%;
+                margin-left: clamp(0.5rem, 2vw, 1rem);
+                margin-right: clamp(0.5rem, 2vw, 1rem);
+            }
+            
+            /* Footer mobile layout */
+            footer .grid.md\:grid-cols-4 {
+                grid-template-columns: 1fr;
+                gap: clamp(1.5rem, 4vw, 2.5rem);
+                text-align: center;
+            }
+            
+            footer .grid.md\:grid-cols-4 > div:first-child {
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+            
+            footer .grid.md\:grid-cols-4 > div:first-child .flex {
+                justify-content: center;
+            }
              
              /* Quick links mobile layout */
              footer .grid.md\:grid-cols-4 > div:nth-child(2) .space-y-2 {
@@ -494,42 +852,48 @@
     
     <div class="flex">
         <!-- Sidebar Navigation -->
-        <aside id="sidebar" class="sidebar fixed left-0 top-0 h-screen w-64 bg-white/95 backdrop-blur border-r border-gray-200 z-50 shadow-lg" role="navigation" aria-label="Main navigation" aria-hidden="false">
-            <div class="p-6">
+        <aside id="sidebar" class="sidebar fixed left-0 top-0 h-screen w-64 bg-white/95 backdrop-blur border-r border-gray-200 z-50 shadow-lg flex flex-col" role="navigation" aria-label="Main navigation" aria-hidden="false">
+            <div class="flex-shrink-0 p-6 pb-4">
                 <!-- Logo and Title -->
-                <div class="flex flex-col items-center justify-center gap-4 mb-8">
-                    <div class="h-14 w-14 rounded-2xl bg-gradient-to-br from-blue-700 to-green-600 flex items-center justify-center" role="img" aria-label="Karachuonyo First logo">
-                        <span class="text-white font-bold text-lg text-center" aria-hidden="true">KF</span>
+                <div class="flex flex-col items-center justify-center gap-3">
+                    <div class="h-12 w-12 rounded-2xl bg-gradient-to-br from-blue-700 to-green-600 flex items-center justify-center" role="img" aria-label="Karachuonyo First logo">
+                        <span class="text-white font-bold text-base text-center" aria-hidden="true">KF</span>
                     </div>
-                    <h1 class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent text-center">
+                    <h1 class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent text-center leading-tight">
                         Karachuonyo First
                     </h1>
                 </div>
-                
+            </div>
+            
+            <!-- Scrollable Navigation Container -->
+            <div class="flex-1 overflow-y-auto px-6 pb-6">
                 <!-- Navigation Menu -->
-                <nav class="flex flex-col space-y-2" role="menubar" aria-label="Site navigation">
-                    <button onclick="scrollToSection('home')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to Home section" tabindex="0">
+                <nav class="flex flex-col space-y-1" role="menubar" aria-label="Site navigation">
+                    <button onclick="scrollToSection('home')" class="text-left text-sm font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-2.5 px-3 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to Home section" tabindex="0">
                         Home
                     </button>
-                    <button onclick="scrollToSection('about')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to About section" tabindex="0">
+                    <button onclick="scrollToSection('about')" class="text-left text-sm font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-2.5 px-3 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to About section" tabindex="0">
                         About
                     </button>
-                    <button onclick="scrollToSection('agenda')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to Agenda section" tabindex="0">
+                    <button onclick="scrollToSection('agenda')" class="text-left text-sm font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-2.5 px-3 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to Agenda section" tabindex="0">
                         Agenda
                     </button>
-                    <button onclick="scrollToSection('news')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to News section" tabindex="0">
+                    <button onclick="scrollToSection('news')" class="text-left text-sm font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-2.5 px-3 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to News section" tabindex="0">
                         News
                     </button>
-                    <button onclick="scrollToSection('events')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to Events section" tabindex="0">
+                    <button onclick="scrollToSection('events')" class="text-left text-sm font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-2.5 px-3 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to Events section" tabindex="0">
                         Events
                     </button>
-                    <button onclick="scrollToSection('gallery')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to Gallery section" tabindex="0">
+                    <button onclick="scrollToSection('social-feeds')" class="text-left text-sm font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-2.5 px-3 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to Social Media section" tabindex="0">
+                        Social Media
+                    </button>
+                    <button onclick="scrollToSection('gallery')" class="text-left text-sm font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-2.5 px-3 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to Gallery section" tabindex="0">
                         Gallery
                     </button>
-                    <button onclick="scrollToSection('contact')" class="text-left text-base font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-3 px-4 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to Contact section" tabindex="0">
+                    <button onclick="scrollToSection('contact')" class="text-left text-sm font-medium hover:text-blue-700 hover:bg-blue-50 transition-all duration-200 py-2.5 px-3 rounded-lg border-b border-gray-100" role="menuitem" aria-label="Navigate to Contact section" tabindex="0">
                         Contact
                     </button>
-                    <button onclick="openDonationModal()" class="btn bg-blue-600 text-white hover:bg-blue-700 mt-4 w-full" role="menuitem" aria-label="Open donation form" tabindex="0">
+                    <button onclick="openDonationModal()" class="btn bg-blue-600 text-white hover:bg-blue-700 mt-3 w-full text-sm py-2.5" role="menuitem" aria-label="Open donation form" tabindex="0">
                         Donate Now
                     </button>
                 </nav>
@@ -537,16 +901,21 @@
         </aside>
         
         <!-- Main Content -->
-        <div class="main-content flex-1 ml-0 md:ml-64">
+        <div class="main-content flex-1 ml-0 xl:ml-64">
             <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-gray-200">
-                <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-center relative">
-                    <!-- Mobile Menu Button -->
-                    <button id="mobileMenuBtn" class="md:hidden absolute left-4 p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar">
+                <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
+                    <!-- Mobile Menu Button - Far Left -->
+                    <button id="mobileMenuBtn" class="xl:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar">
                         <i data-lucide="menu" class="h-6 w-6" aria-hidden="true"></i>
                     </button>
-                    <span class="font-extrabold text-2xl tracking-tight bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent">
+                    
+                    <!-- Header Text - Centered -->
+                    <span class="font-extrabold text-2xl tracking-tight bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent xl:mx-auto">
                         Welcome to Karachuonyo First
                     </span>
+                    
+                    <!-- Spacer for balance when hamburger is visible -->
+                    <div class="xl:hidden w-10"></div>
                 </div>
             </header>
 
@@ -821,7 +1190,7 @@
 
                         <details class="card p-6 transition-all duration-300 w-full group bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 border border-blue-200/50">
                             <summary class="flex items-start gap-4 cursor-pointer list-none">
-                                <i data-lucide="road" class="h-8 w-8 text-blue-600"></i>
+                                <i data-lucide="construction" class="h-8 w-8 text-blue-600"></i>
                                 <div>
                                     <h3 class="text-xl font-bold mb-2">Infrastructure that Connects Us</h3>
                                     <p class="text-gray-600">Better roads, clean water, electricity, and transport links.</p>
@@ -847,7 +1216,7 @@
 
                         <details class="card p-6 transition-all duration-300 w-full group bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 border border-blue-200/50">
                             <summary class="flex items-start gap-4 cursor-pointer list-none">
-                                <i data-lucide="users-2" class="h-8 w-8 text-blue-600"></i>
+                                <i data-lucide="users-round" class="h-8 w-8 text-blue-600"></i>
                                 <div>
                                     <h3 class="text-xl font-bold mb-2">Women Empowerment & Inclusion</h3>
                                     <p class="text-gray-600">Supporting entrepreneurs, protecting Mama Samaki, ensuring representation.</p>
@@ -885,6 +1254,51 @@
                     
                     <div class="grid md:grid-cols-3 gap-6" id="eventsContainer">
                         <!-- Events will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <section id="social-feeds" class="bg-gradient-to-br from-blue-50 to-green-50">
+                <div class="max-w-6xl mx-auto px-4 py-16">
+                    <div class="text-center mb-12 fade-in">
+                        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Social Media Updates</h2>
+                        <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                            Stay connected with our latest posts and community engagement across social platforms.
+                        </p>
+                    </div>
+                    
+                    <!-- Platform Filter Buttons -->
+                    <div class="flex flex-wrap justify-center gap-4 mb-8">
+                        <button onclick="filterSocialFeeds('all')" class="social-filter-btn active bg-gradient-to-r from-blue-600 to-green-600 text-white px-6 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-green-700 transition-all duration-200 shadow-lg" data-platform="all">
+                            All Posts
+                        </button>
+                        <button onclick="filterSocialFeeds('twitter')" class="social-filter-btn bg-white border-2 border-sky-200 text-sky-600 px-6 py-3 rounded-full font-semibold hover:bg-sky-50 hover:border-sky-300 transition-all duration-200" data-platform="twitter">
+                            <i data-lucide="twitter" class="w-4 h-4 inline mr-2"></i>Twitter
+                        </button>
+                        <button onclick="filterSocialFeeds('facebook')" class="social-filter-btn bg-white border-2 border-blue-200 text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 hover:border-blue-300 transition-all duration-200" data-platform="facebook">
+                            <i data-lucide="facebook" class="w-4 h-4 inline mr-2"></i>Facebook
+                        </button>
+                        <button onclick="filterSocialFeeds('instagram')" class="social-filter-btn bg-white border-2 border-pink-200 text-pink-600 px-6 py-3 rounded-full font-semibold hover:bg-pink-50 hover:border-pink-300 transition-all duration-200" data-platform="instagram">
+                            <i data-lucide="instagram" class="w-4 h-4 inline mr-2"></i>Instagram
+                        </button>
+                    </div>
+                    
+                    <!-- Social Feeds Container -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="socialFeedsContainer">
+                        <!-- Loading state -->
+                        <div class="col-span-full text-center py-12" id="socialFeedsLoading">
+                            <div class="inline-flex items-center gap-3 text-gray-500">
+                                <i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i>
+                                <span class="text-lg">Loading social media feeds...</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Load More Button -->
+                    <div class="text-center mt-8">
+                        <button onclick="loadMoreSocialFeeds()" id="loadMoreSocialBtn" class="bg-white border-2 border-gray-200 text-gray-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 shadow-sm hidden">
+                            Load More Posts
+                        </button>
                     </div>
                 </div>
             </section>
@@ -1085,7 +1499,7 @@
                                             <i data-lucide="heart" class="h-5 w-5"></i>
                                             Donate Now
                                         </button>
-                                        <button class="flex-1 border-2 border-gray-300 text-gray-700 py-3 px-6 rounded-xl font-semibold hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 flex items-center justify-center gap-2" onclick="scrollToSection('contact')">
+                                        <button class="flex-1 border-2 border-gray-300 text-gray-700 py-3 px-6 rounded-xl font-semibold hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 flex items-center justify-center gap-2" onclick="openVolunteerModal()">
                                             <i data-lucide="users" class="h-5 w-5"></i>
                                             Volunteer
                                         </button>
@@ -1547,6 +1961,237 @@
         </div>
     </div>
 
+    <!-- Event Registration Modal -->
+    <div id="eventRegistrationModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4" role="dialog" aria-labelledby="eventRegistrationTitle" aria-modal="true">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-95 opacity-0" id="eventRegistrationContent">
+            <div class="p-8">
+                <!-- Header -->
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="calendar-plus" class="h-8 w-8 text-white"></i>
+                    </div>
+                    <h3 id="eventRegistrationTitle" class="text-2xl font-bold text-gray-900 mb-2">Event Registration</h3>
+                    <p id="eventRegistrationSubtitle" class="text-gray-600">Register for this event</p>
+                </div>
+                
+                <!-- Registration Form -->
+                <form id="eventRegistrationForm" class="space-y-6">
+                    <input type="hidden" id="eventId" name="eventId">
+                    
+                    <div>
+                        <label for="eventRegName" class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i data-lucide="user" class="h-5 w-5 text-gray-400"></i>
+                            </div>
+                            <input type="text" id="eventRegName" name="name" required 
+                                   class="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white transition-all duration-200"
+                                   placeholder="Enter your full name">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="eventRegEmail" class="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i data-lucide="mail" class="h-5 w-5 text-gray-400"></i>
+                            </div>
+                            <input type="email" id="eventRegEmail" name="email" required 
+                                   class="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white transition-all duration-200"
+                                   placeholder="your.email@example.com">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="eventRegPhone" class="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i data-lucide="phone" class="h-5 w-5 text-gray-400"></i>
+                            </div>
+                            <input type="tel" id="eventRegPhone" name="phone" 
+                                   class="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white transition-all duration-200"
+                                   placeholder="254XXXXXXXXX">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="eventRegNotes" class="block text-sm font-semibold text-gray-700 mb-2">Additional Notes</label>
+                        <textarea id="eventRegNotes" name="notes" rows="3" 
+                                  class="w-full px-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white transition-all duration-200 resize-none"
+                                  placeholder="Any special requirements or questions?"></textarea>
+                    </div>
+                </form>
+                
+                <!-- Action Buttons -->
+                <div class="flex gap-4 pt-6 border-t border-gray-200 mt-8">
+                    <button onclick="closeEventRegistrationModal()" class="flex-1 px-6 py-4 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-semibold">
+                        Cancel
+                    </button>
+                    <button id="submitEventRegistrationBtn" onclick="submitEventRegistration()" 
+                            class="flex-1 px-6 py-4 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-xl hover:from-blue-700 hover:to-green-700 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                        <span id="eventRegBtnText" class="flex items-center gap-2">
+                            <i data-lucide="user-plus" class="h-5 w-5"></i>
+                            Register
+                        </span>
+                        <span id="eventRegBtnLoader" class="hidden flex items-center gap-2">
+                            <i data-lucide="loader-2" class="h-5 w-5 animate-spin"></i>
+                            Registering...
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Volunteer Registration Modal -->
+    <div id="volunteerModal" class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="volunteerModalTitle" aria-hidden="true">
+        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 transform transition-all duration-300">
+            <!-- Header with gradient background -->
+            <div class="bg-gradient-to-r from-blue-600 to-green-600 p-8 rounded-t-3xl relative overflow-hidden">
+                <!-- Decorative elements -->
+                <div class="absolute top-0 right-0 w-32 h-32 bg-white bg-opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
+                <div class="absolute bottom-0 left-0 w-24 h-24 bg-white bg-opacity-10 rounded-full translate-y-12 -translate-x-12"></div>
+                
+                <div class="flex items-center justify-between relative z-10">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center">
+                            <i data-lucide="users" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 id="volunteerModalTitle" class="text-2xl font-bold text-white">Join Our Team</h3>
+                            <p class="text-blue-100 text-sm">Make a difference in Karachuonyo</p>
+                        </div>
+                    </div>
+                    <button onclick="closeVolunteerModal()" class="text-white hover:text-blue-100 transition-colors p-2 hover:bg-white hover:bg-opacity-20 rounded-xl">
+                        <i data-lucide="x" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="p-8">
+                <!-- Volunteer Registration Form -->
+                <form id="volunteerForm" class="space-y-6">
+                    <div id="volunteerMessage" class="hidden p-4 rounded-xl mb-6" role="alert" aria-live="polite"></div>
+                    
+                    <div class="space-y-2">
+                        <label for="volunteerName" class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i data-lucide="user" class="h-5 w-5 text-gray-400"></i>
+                            </div>
+                            <input type="text" id="volunteerName" name="name" required 
+                                   class="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
+                                   placeholder="Enter your full name"
+                                   aria-describedby="volunteerNameError">
+                        </div>
+                        <div id="volunteerNameError" class="text-red-500 text-sm mt-2 hidden"></div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <label for="volunteerEmail" class="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i data-lucide="mail" class="h-5 w-5 text-gray-400"></i>
+                            </div>
+                            <input type="email" id="volunteerEmail" name="email" required 
+                                   class="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
+                                   placeholder="your.email@example.com"
+                                   aria-describedby="volunteerEmailError">
+                        </div>
+                        <div id="volunteerEmailError" class="text-red-500 text-sm mt-2 hidden"></div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <label for="volunteerPhone" class="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i data-lucide="phone" class="h-5 w-5 text-gray-400"></i>
+                            </div>
+                            <input type="tel" id="volunteerPhone" name="phone" required 
+                                   class="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
+                                   placeholder="254XXXXXXXXX"
+                                   aria-describedby="volunteerPhoneError">
+                        </div>
+                        <div id="volunteerPhoneError" class="text-red-500 text-sm mt-2 hidden"></div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <label for="volunteerSkills" class="block text-sm font-semibold text-gray-700 mb-2">Skills & Interests</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-all duration-200 cursor-pointer">
+                                <input type="checkbox" name="skills" value="community_outreach" class="text-blue-600 focus:ring-blue-500 rounded">
+                                <span class="text-sm font-medium text-gray-700">Community Outreach</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-all duration-200 cursor-pointer">
+                                <input type="checkbox" name="skills" value="event_planning" class="text-blue-600 focus:ring-blue-500 rounded">
+                                <span class="text-sm font-medium text-gray-700">Event Planning</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-all duration-200 cursor-pointer">
+                                <input type="checkbox" name="skills" value="education" class="text-blue-600 focus:ring-blue-500 rounded">
+                                <span class="text-sm font-medium text-gray-700">Education</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-all duration-200 cursor-pointer">
+                                <input type="checkbox" name="skills" value="healthcare" class="text-blue-600 focus:ring-blue-500 rounded">
+                                <span class="text-sm font-medium text-gray-700">Healthcare</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-all duration-200 cursor-pointer">
+                                <input type="checkbox" name="skills" value="technology" class="text-blue-600 focus:ring-blue-500 rounded">
+                                <span class="text-sm font-medium text-gray-700">Technology</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-all duration-200 cursor-pointer">
+                                <input type="checkbox" name="skills" value="agriculture" class="text-blue-600 focus:ring-blue-500 rounded">
+                                <span class="text-sm font-medium text-gray-700">Agriculture</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <label for="volunteerAvailability" class="block text-sm font-semibold text-gray-700 mb-2">Availability</label>
+                        <select id="volunteerAvailability" name="availability" required 
+                                class="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white">
+                            <option value="">Select your availability</option>
+                            <option value="weekdays">Weekdays</option>
+                            <option value="weekends">Weekends</option>
+                            <option value="both">Both Weekdays & Weekends</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                        <div id="volunteerAvailabilityError" class="text-red-500 text-sm mt-2 hidden"></div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <label for="volunteerMessage" class="block text-sm font-semibold text-gray-700 mb-2">Why do you want to volunteer?</label>
+                        <div class="relative">
+                            <div class="absolute top-4 left-4 pointer-events-none">
+                                <i data-lucide="message-square" class="h-5 w-5 text-gray-400"></i>
+                            </div>
+                            <textarea id="volunteerMessage" name="message" rows="4" 
+                                      class="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white resize-none"
+                                      placeholder="Tell us about your motivation and how you'd like to contribute..."></textarea>
+                        </div>
+                    </div>
+                </form>
+                
+                <!-- Action Buttons -->
+                <div class="flex gap-4 pt-6 border-t border-gray-200 mt-8">
+                    <button onclick="closeVolunteerModal()" class="flex-1 px-6 py-4 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-semibold" aria-label="Cancel volunteer registration and close modal">
+                        Cancel
+                    </button>
+                    <button id="submitVolunteerBtn" onclick="submitVolunteerRegistration()" 
+                            class="flex-1 px-6 py-4 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-xl hover:from-blue-700 hover:to-green-700 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                        <span id="volunteerBtnText" class="flex items-center gap-2">
+                            <i data-lucide="user-plus" class="h-5 w-5"></i>
+                            Join Our Team
+                        </span>
+                        <span id="volunteerBtnLoader" class="hidden flex items-center gap-2">
+                            <i data-lucide="loader-2" class="h-5 w-5 animate-spin"></i>
+                            Registering...
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Gallery images use CSS-only lightbox with <details> elements -->
 
     <script>
@@ -1558,11 +2203,52 @@
             { title: "Water for Nyadhi – Project Update", date: "Aug 02, 2025", excerpt: "Borehole survey completed; rig mobilization scheduled pending NEMA greenlight.", tag: "Development" }
         ];
 
-        const events = [
-            { date: "Sep 05, 2025", title: "Town Hall – Kendu Bay", place: "Kendu Bay Market Hall" },
-            { date: "Sep 12, 2025", title: "Youth Skills Clinic", place: "Homa Hills Vocational Center" },
-            { date: "Sep 19, 2025", title: "Health Outreach", place: "Kadel Dispensary Grounds" }
-        ];
+        let events = [];
+        
+        // Fetch events from API
+        async function fetchEvents() {
+            try {
+                const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                    ? 'http://localhost:5000/api' 
+                    : 'https://api.karachuonyofirst.com/api';
+                
+                const response = await fetch(`${API_BASE_URL}/events`);
+                const data = await response.json();
+                
+                if (data.success && data.events) {
+                    events = data.events.map(event => ({
+                        id: event.id,
+                        date: new Date(event.event_date).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: '2-digit',
+                            year: 'numeric'
+                        }),
+                        title: event.title,
+                        place: event.location,
+                        description: event.description,
+                        registration_required: event.registration_required,
+                        spots_available: event.spots_available
+                    }));
+                } else {
+                    // Fallback to static events if API fails
+                    events = [
+                        { date: "Sep 05, 2025", title: "Town Hall – Kendu Bay", place: "Kendu Bay Market Hall" },
+                        { date: "Sep 12, 2025", title: "Youth Skills Clinic", place: "Homa Hills Vocational Center" },
+                        { date: "Sep 19, 2025", title: "Health Outreach", place: "Kadel Dispensary Grounds" }
+                    ];
+                }
+                renderEvents();
+            } catch (error) {
+                console.error('Error fetching events:', error);
+                // Fallback to static events
+                events = [
+                    { date: "Sep 05, 2025", title: "Town Hall – Kendu Bay", place: "Kendu Bay Market Hall" },
+                    { date: "Sep 12, 2025", title: "Youth Skills Clinic", place: "Homa Hills Vocational Center" },
+                    { date: "Sep 19, 2025", title: "Health Outreach", place: "Kadel Dispensary Grounds" }
+                ];
+                renderEvents();
+            }
+        }
 
         // State management
         let mobileMenuOpen = false;
@@ -1710,10 +2396,26 @@
                         </div>
                         <div class="text-sm text-blue-600 font-medium mb-2">${event.date}</div>
                         <h3 class="font-bold text-lg mb-2">${event.title}</h3>
-                        <p class="text-gray-600 flex items-center justify-center gap-1">
+                        <p class="text-gray-600 flex items-center justify-center gap-1 mb-3">
                             <i data-lucide="map-pin" class="h-4 w-4"></i>
                             ${event.place}
                         </p>
+                        ${event.description ? `<p class="text-gray-500 text-sm mb-4">${event.description}</p>` : ''}
+                        ${event.registration_required ? `
+                            <div class="mt-4">
+                                ${event.spots_available !== null ? `
+                                    <div class="text-xs text-gray-500 mb-2">
+                                        ${event.spots_available > 0 ? `${event.spots_available} spots available` : 'Event full'}
+                                    </div>
+                                ` : ''}
+                                <button onclick="openEventRegistration(${event.id}, '${event.title}')" 
+                                        class="btn bg-blue-600 text-white hover:bg-blue-700 text-sm px-4 py-2"
+                                        ${event.spots_available === 0 ? 'disabled' : ''}>
+                                    <i data-lucide="user-plus" class="h-4 w-4 mr-1"></i>
+                                    ${event.spots_available === 0 ? 'Event Full' : 'Register'}
+                                </button>
+                            </div>
+                        ` : ''}
                     </div>
                 </div>
             `).join('');
@@ -1812,7 +2514,7 @@
             // Close mobile menu when clicking on navigation links
             document.querySelectorAll('.sidebar nav button').forEach(button => {
                 button.addEventListener('click', function() {
-                    if (window.innerWidth < 768) {
+                    if (window.innerWidth < 1280) {
                         setTimeout(closeMobileMenu, 300); // Small delay for smooth transition
                     }
                 });
@@ -1820,14 +2522,14 @@
             
             // Handle window resize
             window.addEventListener('resize', function() {
-                if (window.innerWidth >= 768 && mobileMenuOpen) {
+                if (window.innerWidth >= 1280 && mobileMenuOpen) {
                     closeMobileMenu();
                 }
             });
             
             // Render dynamic content
             renderNews();
-            renderEvents();
+            fetchEvents();
             
             // Initialize Lucide icons
             lucide.createIcons();
@@ -2041,8 +2743,8 @@
          // Enhanced form submission function with backend API integration
          async function submitFormData(data) {
              const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-                 ? 'https://karachuonyo-backend.onrender.com/api' 
-                 : 'https://api.karachuonyofirst.com/api';
+                ? 'http://localhost:5000/api' 
+                : 'https://api.karachuonyofirst.com/api';
              
              try {
                  const response = await fetch(`${API_BASE_URL}/contact`, {
@@ -2087,9 +2789,9 @@
           
           // Newsletter subscription function with backend API integration
           async function submitNewsletterData(data) {
-              const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-                  ? 'https://karachuonyo-backend.onrender.com/api' 
-                  : 'https://api.karachuonyofirst.com/api';
+              const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:5000/api'
+            : 'https://api.karachuonyofirst.com/api';
               
               try {
                   const response = await fetch(`${API_BASE_URL}/newsletter/subscribe`, {
@@ -2858,6 +3560,483 @@
                  link.href = src;
                  document.head.appendChild(link);
              });
+         });
+         
+         // Event Registration Modal Functions
+         function openEventRegistration(eventId, eventTitle) {
+             const modal = document.getElementById('eventRegistrationModal');
+             const content = document.getElementById('eventRegistrationContent');
+             const titleElement = document.getElementById('eventRegistrationTitle');
+             const subtitleElement = document.getElementById('eventRegistrationSubtitle');
+             const eventIdInput = document.getElementById('eventId');
+             
+             // Set event details
+             titleElement.textContent = 'Event Registration';
+             subtitleElement.textContent = `Register for: ${eventTitle}`;
+             eventIdInput.value = eventId;
+             
+             // Show modal with animation
+             modal.classList.remove('hidden');
+             modal.setAttribute('aria-hidden', 'false');
+             document.body.style.overflow = 'hidden';
+             
+             // Trigger animation
+             setTimeout(() => {
+                 content.style.transform = 'scale(1)';
+                 content.style.opacity = '1';
+             }, 10);
+             
+             // Focus first input
+             document.getElementById('eventRegName').focus();
+         }
+         
+         function closeEventRegistrationModal() {
+             const modal = document.getElementById('eventRegistrationModal');
+             const content = document.getElementById('eventRegistrationContent');
+             
+             // Animate out
+             content.style.transform = 'scale(0.95)';
+             content.style.opacity = '0';
+             
+             setTimeout(() => {
+                 modal.classList.add('hidden');
+                 modal.setAttribute('aria-hidden', 'true');
+                 document.body.style.overflow = 'auto';
+                 
+                 // Reset form
+                 document.getElementById('eventRegistrationForm').reset();
+             }, 200);
+         }
+         
+         async function submitEventRegistration() {
+             const form = document.getElementById('eventRegistrationForm');
+             const submitBtn = document.getElementById('submitEventRegistrationBtn');
+             const btnText = document.getElementById('eventRegBtnText');
+             const btnLoader = document.getElementById('eventRegBtnLoader');
+             
+             // Get form data
+             const formData = new FormData(form);
+             const eventId = formData.get('eventId');
+             const data = {
+                 name: formData.get('name'),
+                 email: formData.get('email'),
+                 phone: formData.get('phone'),
+                 notes: formData.get('notes')
+             };
+             
+             // Validate required fields
+             if (!data.name || !data.email) {
+                 alert('Please fill in all required fields');
+                 return;
+             }
+             
+             // Show loading state
+             submitBtn.disabled = true;
+             btnText.classList.add('hidden');
+             btnLoader.classList.remove('hidden');
+             
+             try {
+                 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                     ? 'http://localhost:5000/api' 
+                     : 'https://karachuonyo-backend.onrender.com/api';
+                 
+                 const response = await fetch(`${API_BASE_URL}/events/${eventId}/register`, {
+                     method: 'POST',
+                     headers: {
+                         'Content-Type': 'application/json',
+                     },
+                     body: JSON.stringify(data)
+                 });
+                 
+                 const result = await response.json();
+                 
+                 if (response.ok) {
+                     showGlobalSuccessMessage('Registration successful! Check your email for confirmation.');
+                     closeEventRegistrationModal();
+                 } else {
+                     alert(result.error || 'Registration failed. Please try again.');
+                 }
+             } catch (error) {
+                 console.error('Registration error:', error);
+                 alert('Registration failed. Please check your connection and try again.');
+             } finally {
+                 // Reset button state
+                 submitBtn.disabled = false;
+                 btnText.classList.remove('hidden');
+                 btnLoader.classList.add('hidden');
+             }
+         }
+         
+         // Volunteer Registration Modal Functions
+         function openVolunteerModal() {
+             const modal = document.getElementById('volunteerModal');
+             const content = document.getElementById('volunteerModalContent');
+             
+             // Show modal with animation
+             modal.classList.remove('hidden');
+             modal.setAttribute('aria-hidden', 'false');
+             document.body.style.overflow = 'hidden';
+             
+             // Trigger animation
+             setTimeout(() => {
+                 content.style.transform = 'scale(1)';
+                 content.style.opacity = '1';
+             }, 10);
+             
+             // Focus first input
+             document.getElementById('volunteerName').focus();
+         }
+         
+         function closeVolunteerModal() {
+             const modal = document.getElementById('volunteerModal');
+             const content = document.getElementById('volunteerModalContent');
+             
+             // Animate out
+             content.style.transform = 'scale(0.95)';
+             content.style.opacity = '0';
+             
+             setTimeout(() => {
+                 modal.classList.add('hidden');
+                 modal.setAttribute('aria-hidden', 'true');
+                 document.body.style.overflow = 'auto';
+                 
+                 // Reset form
+                 document.getElementById('volunteerForm').reset();
+                 // Hide any error messages
+                 document.getElementById('volunteerMessage').classList.add('hidden');
+                 document.querySelectorAll('[id$="Error"]').forEach(el => el.classList.add('hidden'));
+             }, 200);
+         }
+         
+         function showVolunteerMessage(message, type) {
+             const messageDiv = document.getElementById('volunteerMessage');
+             const isSuccess = type === 'success';
+             
+             messageDiv.className = `p-4 rounded-xl mb-6 ${
+                 isSuccess 
+                     ? 'bg-green-50 text-green-800 border border-green-200' 
+                     : 'bg-red-50 text-red-800 border border-red-200'
+             }`;
+             
+             messageDiv.innerHTML = `
+                 <div class="flex items-center gap-2">
+                     <i data-lucide="${isSuccess ? 'check-circle' : 'alert-circle'}" class="w-5 h-5 flex-shrink-0"></i>
+                     <span>${message}</span>
+                 </div>
+             `;
+             
+             messageDiv.classList.remove('hidden');
+             lucide.createIcons();
+         }
+         
+         async function submitVolunteerRegistration() {
+             const form = document.getElementById('volunteerForm');
+             const submitBtn = document.getElementById('submitVolunteerBtn');
+             const btnText = document.getElementById('volunteerBtnText');
+             const btnLoader = document.getElementById('volunteerBtnLoader');
+             
+             // Get form data
+             const formData = new FormData(form);
+             
+             // Get selected skills
+             const skills = [];
+             document.querySelectorAll('input[name="skills"]:checked').forEach(checkbox => {
+                 skills.push(checkbox.value);
+             });
+             
+             const data = {
+                 name: formData.get('name'),
+                 email: formData.get('email'),
+                 phone: formData.get('phone'),
+                 skills: skills,
+                 availability: formData.get('availability'),
+                 message: formData.get('message')
+             };
+             
+             // Validate required fields
+             if (!data.name || !data.email) {
+                 showVolunteerMessage('Please fill in all required fields', 'error');
+                 return;
+             }
+             
+             if (skills.length === 0) {
+                 showVolunteerMessage('Please select at least one skill or area of interest', 'error');
+                 return;
+             }
+             
+             // Show loading state
+             submitBtn.disabled = true;
+             btnText.classList.add('hidden');
+             btnLoader.classList.remove('hidden');
+             
+             try {
+                 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                     ? 'http://localhost:5000/api' 
+                     : 'https://karachuonyo-backend.onrender.com/api';
+                 
+                 const response = await fetch(`${API_BASE_URL}/volunteer/register`, {
+                     method: 'POST',
+                     headers: {
+                         'Content-Type': 'application/json',
+                     },
+                     body: JSON.stringify(data)
+                 });
+                 
+                 const result = await response.json();
+                 
+                 if (response.ok) {
+                     showVolunteerMessage('Thank you for volunteering! We will contact you soon with opportunities.', 'success');
+                     setTimeout(() => {
+                         closeVolunteerModal();
+                     }, 2000);
+                 } else {
+                     showVolunteerMessage(result.error || 'Registration failed. Please try again.', 'error');
+                 }
+             } catch (error) {
+                 console.error('Volunteer registration error:', error);
+                 showVolunteerMessage('Registration failed. Please check your connection and try again.', 'error');
+             } finally {
+                 // Reset button state
+                 submitBtn.disabled = false;
+                 btnText.classList.remove('hidden');
+                 btnLoader.classList.add('hidden');
+             }
+         }
+         
+         // Close modals when clicking outside
+         document.addEventListener('click', function(e) {
+             const eventModal = document.getElementById('eventRegistrationModal');
+             const volunteerModal = document.getElementById('volunteerModal');
+             const donationModal = document.getElementById('donationModal');
+             
+             if (e.target === eventModal) {
+                 closeEventRegistrationModal();
+             }
+             if (e.target === volunteerModal) {
+                 closeVolunteerModal();
+             }
+             if (e.target === donationModal) {
+                 closeDonationModal();
+             }
+         });
+         
+         // Close modals with Escape key
+         document.addEventListener('keydown', function(e) {
+             if (e.key === 'Escape') {
+                 const eventModal = document.getElementById('eventRegistrationModal');
+                 const volunteerModal = document.getElementById('volunteerModal');
+                 const donationModal = document.getElementById('donationModal');
+                 
+                 if (!eventModal.classList.contains('hidden')) {
+                     closeEventRegistrationModal();
+                 }
+                 if (!volunteerModal.classList.contains('hidden')) {
+                     closeVolunteerModal();
+                 }
+                 if (!donationModal.classList.contains('hidden')) {
+                     closeDonationModal();
+                 }
+             }
+         });
+         
+         // Social Media Feeds Functionality
+         let currentSocialFeeds = [];
+         let currentPlatformFilter = 'all';
+         let socialFeedsOffset = 0;
+         const socialFeedsLimit = 6;
+         
+         async function loadSocialFeeds(platform = 'all', offset = 0, limit = 6) {
+             try {
+                 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                     ? 'http://localhost:5000/api' 
+                     : 'https://karachuonyo-backend.onrender.com/api';
+                 
+                 const response = await fetch(`${API_BASE_URL}/social/feeds?platform=${platform}&limit=${limit}&offset=${offset}`);
+                 const data = await response.json();
+                 
+                 if (response.ok) {
+                     return data.feeds || [];
+                 } else {
+                     console.error('Failed to load social feeds:', data.error);
+                     return [];
+                 }
+             } catch (error) {
+                 console.error('Error loading social feeds:', error);
+                 return [];
+             }
+         }
+         
+         function renderSocialFeeds(feeds, append = false) {
+             const container = document.getElementById('socialFeedsContainer');
+             const loading = document.getElementById('socialFeedsLoading');
+             const loadMoreBtn = document.getElementById('loadMoreSocialBtn');
+             
+             // Hide loading state
+             if (loading) loading.style.display = 'none';
+             
+             if (!append) {
+                 container.innerHTML = '';
+             }
+             
+             if (feeds.length === 0 && !append) {
+                 container.innerHTML = `
+                     <div class="col-span-full text-center py-12">
+                         <div class="text-gray-500">
+                             <i data-lucide="wifi-off" class="w-12 h-12 mx-auto mb-4 opacity-50"></i>
+                             <p class="text-lg">No social media posts available at the moment.</p>
+                             <p class="text-sm mt-2">Check back later for updates!</p>
+                         </div>
+                     </div>
+                 `;
+                 loadMoreBtn.classList.add('hidden');
+                 return;
+             }
+             
+             feeds.forEach(feed => {
+                 const feedCard = createSocialFeedCard(feed);
+                 container.appendChild(feedCard);
+             });
+             
+             // Show/hide load more button
+             if (feeds.length === socialFeedsLimit) {
+                 loadMoreBtn.classList.remove('hidden');
+             } else {
+                 loadMoreBtn.classList.add('hidden');
+             }
+             
+             // Re-initialize Lucide icons
+             if (typeof lucide !== 'undefined') {
+                 lucide.createIcons();
+             }
+         }
+         
+         function createSocialFeedCard(feed) {
+             const card = document.createElement('div');
+             card.className = `social-feed-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 ${feed.platform}`;
+             
+             const platformColors = {
+                 twitter: 'text-sky-600 bg-sky-50',
+                 facebook: 'text-blue-600 bg-blue-50',
+                 instagram: 'text-pink-600 bg-pink-50'
+             };
+             
+             const platformIcons = {
+                 twitter: 'twitter',
+                 facebook: 'facebook',
+                 instagram: 'instagram'
+             };
+             
+             const timeAgo = getTimeAgo(feed.timestamp);
+             
+             card.innerHTML = `
+                 <div class="flex items-start gap-4 mb-4">
+                     <div class="w-12 h-12 rounded-full ${platformColors[feed.platform] || 'bg-gray-100'} flex items-center justify-center flex-shrink-0">
+                         <i data-lucide="${platformIcons[feed.platform] || 'message-circle'}" class="w-6 h-6"></i>
+                     </div>
+                     <div class="flex-1 min-w-0">
+                         <div class="flex items-center gap-2 mb-1">
+                             <h3 class="font-bold text-gray-900 truncate">${feed.author}</h3>
+                             <span class="text-sm text-gray-500 capitalize">${feed.platform}</span>
+                         </div>
+                         <p class="text-sm text-gray-500">${timeAgo}</p>
+                     </div>
+                 </div>
+                 
+                 <div class="mb-4">
+                     <p class="text-gray-800 leading-relaxed">${feed.content}</p>
+                 </div>
+                 
+                 <div class="flex items-center justify-between text-sm text-gray-500">
+                     <div class="flex items-center gap-4">
+                         <span class="flex items-center gap-1">
+                             <i data-lucide="heart" class="w-4 h-4"></i>
+                             ${feed.likes || 0}
+                         </span>
+                         <span class="flex items-center gap-1">
+                             <i data-lucide="message-circle" class="w-4 h-4"></i>
+                             ${feed.comments || 0}
+                         </span>
+                         <span class="flex items-center gap-1">
+                             <i data-lucide="share" class="w-4 h-4"></i>
+                             ${feed.shares || 0}
+                         </span>
+                     </div>
+                     <a href="${feed.url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 font-medium">
+                         View Post <i data-lucide="external-link" class="w-3 h-3 inline ml-1"></i>
+                     </a>
+                 </div>
+             `;
+             
+             return card;
+         }
+         
+         function getTimeAgo(timestamp) {
+             const now = new Date();
+             const postTime = new Date(timestamp);
+             const diffInSeconds = Math.floor((now - postTime) / 1000);
+             
+             if (diffInSeconds < 60) return 'Just now';
+             if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}m ago`;
+             if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}h ago`;
+             if (diffInSeconds < 604800) return `${Math.floor(diffInSeconds / 86400)}d ago`;
+             return postTime.toLocaleDateString();
+         }
+         
+         async function filterSocialFeeds(platform) {
+             currentPlatformFilter = platform;
+             socialFeedsOffset = 0;
+             
+             // Update filter button states
+             document.querySelectorAll('.social-filter-btn').forEach(btn => {
+                 btn.classList.remove('active', 'bg-gradient-to-r', 'from-blue-600', 'to-green-600', 'text-white');
+                 btn.classList.add('bg-white', 'border-2', 'border-gray-200', 'text-gray-700');
+             });
+             
+             const activeBtn = document.querySelector(`[data-platform="${platform}"]`);
+             if (activeBtn) {
+                 activeBtn.classList.remove('bg-white', 'border-2', 'border-gray-200', 'text-gray-700');
+                 activeBtn.classList.add('active', 'bg-gradient-to-r', 'from-blue-600', 'to-green-600', 'text-white');
+             }
+             
+             // Show loading state
+             const loading = document.getElementById('socialFeedsLoading');
+             if (loading) {
+                 loading.style.display = 'block';
+             }
+             
+             const feeds = await loadSocialFeeds(platform, 0, socialFeedsLimit);
+             currentSocialFeeds = feeds;
+             renderSocialFeeds(feeds);
+         }
+         
+         async function loadMoreSocialFeeds() {
+             socialFeedsOffset += socialFeedsLimit;
+             const feeds = await loadSocialFeeds(currentPlatformFilter, socialFeedsOffset, socialFeedsLimit);
+             renderSocialFeeds(feeds, true);
+         }
+         
+         // Initialize social feeds when page loads
+         document.addEventListener('DOMContentLoaded', async function() {
+             // Load initial social feeds
+             setTimeout(async () => {
+                 const feeds = await loadSocialFeeds('all', 0, socialFeedsLimit);
+                 currentSocialFeeds = feeds;
+                 renderSocialFeeds(feeds);
+             }, 1000); // Small delay to let other content load first
+             
+             // Add event listeners for social media filter buttons
+             document.querySelectorAll('.social-filter-btn').forEach(btn => {
+                 btn.addEventListener('click', () => {
+                     const platform = btn.getAttribute('data-platform');
+                     filterSocialFeeds(platform);
+                 });
+             });
+             
+             // Add event listener for load more button
+             const loadMoreBtn = document.getElementById('loadMoreSocialBtn');
+             if (loadMoreBtn) {
+                 loadMoreBtn.addEventListener('click', loadMoreSocialFeeds);
+             }
          });
      </script>
 </body>

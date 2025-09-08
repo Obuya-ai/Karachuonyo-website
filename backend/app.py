@@ -32,6 +32,28 @@ DATABASE = 'karachuonyo.db'
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+def send_email_safe(message):
+    """Send email safely - in development mode, just log the email content"""
+    try:
+        # Check if we're in development mode with test email configuration
+        is_dev_mode = (os.environ.get('FLASK_ENV') == 'development' and 
+                      os.environ.get('MAIL_USERNAME') == 'test@example.com')
+        
+        if is_dev_mode:
+            # Development mode - just log the email
+            logger.info(f"[DEV MODE] Email would be sent:")
+            logger.info(f"  To: {message.recipients}")
+            logger.info(f"  Subject: {message.subject}")
+            logger.info(f"  Body: {message.body[:200]}...")
+            return True
+        else:
+            # Production mode - actually send the email
+            mail.send(message)
+            return True
+    except Exception as e:
+        logger.error(f"Failed to send email: {str(e)}")
+        return False
+
 def init_database():
     """Initialize SQLite database with required tables"""
     conn = sqlite3.connect(DATABASE)
@@ -240,6 +262,73 @@ def validate_phone(phone):
     
     return any(re.match(pattern, clean_phone) for pattern in patterns)
 
+def sanitize_input(text, max_length=None):
+    """Sanitize user input by removing potentially harmful content"""
+    if not text:
+        return ''
+    
+    # Remove HTML tags and scripts
+    text = re.sub(r'<[^>]*>', '', str(text))
+    
+    # Remove potentially harmful characters
+    text = re.sub(r'[<>"\'\\\/]', '', text)
+    
+    # Limit length if specified
+    if max_length and len(text) > max_length:
+        text = text[:max_length]
+    
+    return text.strip()
+
+def detect_spam_content(text):
+    """Basic spam detection for form submissions"""
+    if not text:
+        return False
+    
+    text_lower = text.lower()
+    
+    # Common spam indicators
+    spam_keywords = [
+        'viagra', 'cialis', 'casino', 'lottery', 'winner', 'congratulations',
+        'click here', 'free money', 'make money fast', 'work from home',
+        'buy now', 'limited time', 'act now', 'urgent', 'bitcoin',
+        'cryptocurrency', 'investment opportunity'
+    ]
+    
+    # Check for excessive URLs
+    url_count = len(re.findall(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', text))
+    if url_count > 2:
+        return True
+    
+    # Check for spam keywords
+    spam_score = sum(1 for keyword in spam_keywords if keyword in text_lower)
+    if spam_score >= 2:
+        return True
+    
+    # Check for excessive repetition
+    words = text_lower.split()
+    if len(words) > 10:
+        unique_words = set(words)
+        if len(unique_words) / len(words) < 0.3:  # Less than 30% unique words
+            return True
+    
+    return False
+
+def validate_field_lengths(data):
+    """Validate field lengths for security and database constraints"""
+    field_limits = {
+        'name': 100,
+        'email': 254,  # RFC 5321 limit
+        'phone': 20,
+        'subject': 200,
+        'message': 2000
+    }
+    
+    for field, limit in field_limits.items():
+        if field in data and len(str(data[field])) > limit:
+            return False, f'{field.title()} must be less than {limit} characters'
+    
+    return True, None
+
 @app.route('/health', methods=['GET'])
 def health_check():
     """Health check endpoint for deployment monitoring"""
@@ -267,9 +356,23 @@ def health_check():
 
 @app.route('/api/contact', methods=['POST'])
 def handle_contact_form():
-    """Handle contact form submissions"""
+    """Handle contact form submissions with enhanced validation"""
     try:
         data = request.get_json()
+        
+        if not data:
+            return jsonify({
+                'success': False,
+                'error': 'Invalid JSON data'
+            }), 400
+        
+        # Validate field lengths first
+        length_valid, length_error = validate_field_lengths(data)
+        if not length_valid:
+            return jsonify({
+                'success': False,
+                'error': length_error
+            }), 400
         
         # Validate required fields
         required_fields = ['name', 'email', 'subject', 'message']
@@ -279,6 +382,14 @@ def handle_contact_form():
                     'success': False,
                     'error': f'{field.title()} is required'
                 }), 400
+        
+        # Sanitize inputs
+        data['name'] = sanitize_input(data['name'], 100)
+        data['email'] = sanitize_input(data['email'], 254)
+        data['subject'] = sanitize_input(data['subject'], 200)
+        data['message'] = sanitize_input(data['message'], 2000)
+        if data.get('phone'):
+            data['phone'] = sanitize_input(data['phone'], 20)
         
         # Validate email format
         if not validate_email(data['email']):
@@ -292,6 +403,26 @@ def handle_contact_form():
             return jsonify({
                 'success': False,
                 'error': 'Please enter a valid Kenyan phone number'
+            }), 400
+        
+        # Check for spam content
+        spam_fields = [data['subject'], data['message']]
+        if data.get('name'):
+            spam_fields.append(data['name'])
+        
+        for field_content in spam_fields:
+            if detect_spam_content(field_content):
+                logger.warning(f"Spam detected in contact form from {request.remote_addr}")
+                return jsonify({
+                    'success': False,
+                    'error': 'Your message appears to contain spam content. Please revise and try again.'
+                }), 400
+        
+        # Additional validation: minimum message length
+        if len(data['message'].strip()) < 10:
+            return jsonify({
+                'success': False,
+                'error': 'Message must be at least 10 characters long'
             }), 400
         
         # Get client information
@@ -382,8 +513,8 @@ def handle_contact_form():
                 )
             )
             
-            mail.send(admin_msg)
-            mail.send(user_msg)
+            send_email_safe(admin_msg)
+            send_email_safe(user_msg)
             
         except Exception as e:
             logger.error(f"Failed to send email: {e}")
@@ -480,7 +611,7 @@ def handle_newsletter_subscription():
                 )
             )
             
-            mail.send(welcome_msg)
+            send_email_safe(welcome_msg)
             
         except Exception as e:
             logger.error(f"Failed to send welcome email: {e}")
@@ -497,6 +628,177 @@ def handle_newsletter_subscription():
         return jsonify({
             'success': False,
             'error': 'An error occurred while processing your subscription. Please try again.'
+        }), 500
+
+@app.route('/api/volunteer/register', methods=['POST'])
+def handle_volunteer_registration():
+    """Handle volunteer registration submissions"""
+    try:
+        data = request.get_json()
+        
+        # Validate required fields
+        required_fields = ['name', 'email', 'phone']
+        for field in required_fields:
+            if not data.get(field, '').strip():
+                return jsonify({
+                    'success': False,
+                    'error': f'{field.title()} is required'
+                }), 400
+        
+        # Validate email format
+        if not validate_email(data['email']):
+            return jsonify({
+                'success': False,
+                'error': 'Please enter a valid email address'
+            }), 400
+        
+        # Validate phone number
+        if not validate_phone(data['phone']):
+            return jsonify({
+                'success': False,
+                'error': 'Please enter a valid Kenyan phone number'
+            }), 400
+        
+        # Get client information
+        ip_address = request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr)
+        user_agent = request.headers.get('User-Agent', '')
+        
+        # Check if already registered
+        conn = sqlite3.connect(DATABASE)
+        cursor = conn.cursor()
+        
+        cursor.execute('SELECT id FROM volunteer_registrations WHERE email = ?', (data['email'].strip().lower(),))
+        existing = cursor.fetchone()
+        
+        if existing:
+            conn.close()
+            return jsonify({
+                'success': False,
+                'error': 'This email is already registered as a volunteer'
+            }), 400
+        
+        # Process skills array
+        skills_list = data.get('skills', [])
+        skills_str = ', '.join(skills_list) if isinstance(skills_list, list) else str(skills_list).strip()
+        
+        # Save to database
+        cursor.execute('''
+            INSERT INTO volunteer_registrations 
+            (name, email, phone, location, skills, availability, experience, motivation, ip_address, user_agent)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (
+            data['name'].strip(),
+            data['email'].strip().lower(),
+            data['phone'].strip(),
+            data.get('location', '').strip(),
+            skills_str,
+            data.get('availability', '').strip(),
+            data.get('experience', '').strip(),
+            data.get('message', '').strip(),  # Changed from 'motivation' to 'message' to match frontend
+            ip_address,
+            user_agent
+        ))
+        
+        registration_id = cursor.lastrowid
+        conn.commit()
+        conn.close()
+        
+        # Send email notifications
+        try:
+            # Email to admin
+            admin_msg = Message(
+                subject="New Volunteer Registration",
+                recipients=['volunteers@karachuonyofirst.com'],
+                html=render_template_string('''
+                <h2>New Volunteer Registration</h2>
+                <p><strong>Registration ID:</strong> {{ registration_id }}</p>
+                <p><strong>Name:</strong> {{ name }}</p>
+                <p><strong>Email:</strong> {{ email }}</p>
+                <p><strong>Phone:</strong> {{ phone }}</p>
+                <p><strong>Location:</strong> {{ location or 'Not specified' }}</p>
+                <p><strong>Skills:</strong> {{ skills or 'Not specified' }}</p>
+                <p><strong>Availability:</strong> {{ availability or 'Not specified' }}</p>
+                <p><strong>Experience:</strong> {{ experience or 'Not specified' }}</p>
+                <p><strong>Message:</strong></p>
+                <div style="background: #f5f5f5; padding: 15px; border-radius: 5px;">
+                    {{ message or 'Not provided' | replace('\n', '<br>') | safe }}
+                </div>
+                <p><strong>Registered:</strong> {{ timestamp }}</p>
+                <p><strong>IP Address:</strong> {{ ip_address }}</p>
+                ''', 
+                registration_id=registration_id,
+                name=data['name'],
+                email=data['email'],
+                phone=data['phone'],
+                location=data.get('location'),
+                skills=skills_str,
+                availability=data.get('availability'),
+                experience=data.get('experience'),
+                message=data.get('message'),
+                timestamp=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                ip_address=ip_address
+                )
+            )
+            
+            # Welcome email to volunteer
+            volunteer_msg = Message(
+                subject="Welcome to Karachuonyo First Volunteer Team!",
+                recipients=[data['email']],
+                html=render_template_string('''
+                <h2>Welcome to the Team!</h2>
+                <p>Dear {{ name }},</p>
+                <p>Thank you for volunteering with the Karachuonyo First campaign! Your commitment to positive change in our community is truly appreciated.</p>
+                
+                <h3>What's Next?</h3>
+                <ul>
+                    <li>Our volunteer coordinator will contact you within 48 hours</li>
+                    <li>You'll receive information about upcoming volunteer opportunities</li>
+                    <li>Training sessions and orientation details will be shared</li>
+                    <li>You'll be added to our volunteer WhatsApp group</li>
+                </ul>
+                
+                <h3>Your Registration Details:</h3>
+                <p><strong>Name:</strong> {{ name }}</p>
+                <p><strong>Phone:</strong> {{ phone }}</p>
+                <p><strong>Location:</strong> {{ location or 'Not specified' }}</p>
+                
+                <p>Together, we're building a better future for Karachuonyo!</p>
+                
+                <p>Best regards,<br>
+                <strong>Karachuonyo First Volunteer Coordination Team</strong></p>
+                
+                <hr>
+                <p style="font-size: 12px; color: #666;">
+                For questions about volunteering, contact: volunteers@karachuonyofirst.com<br>
+                WhatsApp: +254 700 686 943
+                </p>
+                ''',
+                name=data['name'],
+                phone=data['phone'],
+                location=data.get('location')
+                )
+            )
+            
+            send_email_safe(admin_msg)
+            send_email_safe(volunteer_msg)
+            
+        except Exception as e:
+            logger.error(f"Failed to send volunteer registration email: {e}")
+            # Don't fail the request if email fails
+        
+        logger.info(f"Volunteer registration submitted successfully: ID {registration_id}")
+        
+        return jsonify({
+            'success': True,
+            'message': 'Thank you for volunteering! We will contact you soon with more details.',
+            'registration_id': registration_id
+        })
+        
+    except Exception as e:
+        logger.error(f"Volunteer registration error: {e}")
+        return jsonify({
+            'success': False,
+            'error': 'An error occurred while processing your registration. Please try again.'
         }), 500
 
 @app.route('/api/admin/contacts', methods=['GET'])
@@ -887,6 +1189,266 @@ def admin_event_item(event_id):
             
         except Exception as e:
             return jsonify({'error': str(e)}), 500
+
+@app.route('/api/events/<int:event_id>/register', methods=['POST'])
+def register_for_event(event_id):
+    """Handle public event registration/RSVP"""
+    try:
+        data = request.get_json()
+        
+        # Validate required fields
+        required_fields = ['name', 'email']
+        for field in required_fields:
+            if not data.get(field, '').strip():
+                return jsonify({
+                    'success': False,
+                    'error': f'{field.title()} is required'
+                }), 400
+        
+        # Validate email format
+        if not validate_email(data['email']):
+            return jsonify({
+                'success': False,
+                'error': 'Please enter a valid email address'
+            }), 400
+        
+        # Validate phone if provided
+        if data.get('phone') and not validate_phone(data['phone']):
+            return jsonify({
+                'success': False,
+                'error': 'Please enter a valid Kenyan phone number'
+            }), 400
+        
+        conn = sqlite3.connect(DATABASE)
+        cursor = conn.cursor()
+        
+        # Check if event exists and is open for registration
+        cursor.execute('''
+            SELECT title, event_date, location, max_attendees, registration_required, status
+            FROM events WHERE id = ?
+        ''', (event_id,))
+        
+        event = cursor.fetchone()
+        if not event:
+            conn.close()
+            return jsonify({
+                'success': False,
+                'error': 'Event not found'
+            }), 404
+        
+        event_title, event_date, location, max_attendees, registration_required, status = event
+        
+        # Check if registration is required and event is active
+        if not registration_required:
+            conn.close()
+            return jsonify({
+                'success': False,
+                'error': 'This event does not require registration'
+            }), 400
+        
+        if status != 'upcoming':
+            conn.close()
+            return jsonify({
+                'success': False,
+                'error': 'Registration is not available for this event'
+            }), 400
+        
+        # Check if already registered
+        cursor.execute('''
+            SELECT id FROM event_registrations 
+            WHERE event_id = ? AND email = ?
+        ''', (event_id, data['email'].strip().lower()))
+        
+        existing = cursor.fetchone()
+        if existing:
+            conn.close()
+            return jsonify({
+                'success': False,
+                'error': 'You are already registered for this event'
+            }), 400
+        
+        # Check capacity if max_attendees is set
+        if max_attendees:
+            cursor.execute('''
+                SELECT COUNT(*) FROM event_registrations 
+                WHERE event_id = ? AND status = 'confirmed'
+            ''', (event_id,))
+            
+            current_count = cursor.fetchone()[0]
+            if current_count >= max_attendees:
+                conn.close()
+                return jsonify({
+                    'success': False,
+                    'error': 'This event is fully booked'
+                }), 400
+        
+        # Register for event
+        cursor.execute('''
+            INSERT INTO event_registrations 
+            (event_id, name, email, phone, notes)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (
+            event_id,
+            data['name'].strip(),
+            data['email'].strip().lower(),
+            data.get('phone', '').strip(),
+            data.get('notes', '').strip()
+        ))
+        
+        registration_id = cursor.lastrowid
+        conn.commit()
+        conn.close()
+        
+        # Send confirmation emails
+        try:
+            # Email to admin
+            admin_msg = Message(
+                subject=f"New Event Registration: {event_title}",
+                recipients=['events@karachuonyofirst.com'],
+                html=render_template_string('''
+                <h2>New Event Registration</h2>
+                <p><strong>Event:</strong> {{ event_title }}</p>
+                <p><strong>Registration ID:</strong> {{ registration_id }}</p>
+                <p><strong>Name:</strong> {{ name }}</p>
+                <p><strong>Email:</strong> {{ email }}</p>
+                <p><strong>Phone:</strong> {{ phone or 'Not provided' }}</p>
+                <p><strong>Event Date:</strong> {{ event_date }}</p>
+                <p><strong>Location:</strong> {{ location }}</p>
+                <p><strong>Notes:</strong> {{ notes or 'None' }}</p>
+                <p><strong>Registered:</strong> {{ timestamp }}</p>
+                ''', 
+                event_title=event_title,
+                registration_id=registration_id,
+                name=data['name'],
+                email=data['email'],
+                phone=data.get('phone'),
+                event_date=event_date,
+                location=location,
+                notes=data.get('notes'),
+                timestamp=datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                )
+            )
+            
+            # Confirmation email to attendee
+            attendee_msg = Message(
+                subject=f"Event Registration Confirmed: {event_title}",
+                recipients=[data['email']],
+                html=render_template_string('''
+                <h2>Registration Confirmed!</h2>
+                <p>Dear {{ name }},</p>
+                <p>Thank you for registering for our event. Your registration has been confirmed!</p>
+                
+                <h3>Event Details:</h3>
+                <p><strong>Event:</strong> {{ event_title }}</p>
+                <p><strong>Date:</strong> {{ event_date }}</p>
+                <p><strong>Location:</strong> {{ location }}</p>
+                <p><strong>Registration ID:</strong> {{ registration_id }}</p>
+                
+                <h3>Important Information:</h3>
+                <ul>
+                    <li>Please arrive 15 minutes before the event starts</li>
+                    <li>Bring a valid ID for verification</li>
+                    <li>Contact us if you need to cancel your registration</li>
+                </ul>
+                
+                <p>We look forward to seeing you at the event!</p>
+                
+                <p>Best regards,<br>
+                <strong>Karachuonyo First Events Team</strong></p>
+                
+                <hr>
+                <p style="font-size: 12px; color: #666;">
+                For event inquiries, contact: events@karachuonyofirst.com<br>
+                Phone: +254 700 686 943
+                </p>
+                ''',
+                name=data['name'],
+                event_title=event_title,
+                event_date=event_date,
+                location=location,
+                registration_id=registration_id
+                )
+            )
+            
+            send_email_safe(admin_msg)
+            send_email_safe(attendee_msg)
+            
+        except Exception as e:
+            logger.error(f"Failed to send event registration email: {e}")
+            # Don't fail the request if email fails
+        
+        logger.info(f"Event registration successful: Event {event_id}, Registration {registration_id}")
+        
+        return jsonify({
+            'success': True,
+            'message': 'Successfully registered for the event! Check your email for confirmation.',
+            'registration_id': registration_id,
+            'event_title': event_title
+        })
+        
+    except Exception as e:
+        logger.error(f"Event registration error: {e}")
+        return jsonify({
+            'success': False,
+            'error': 'An error occurred while processing your registration. Please try again.'
+        }), 500
+
+@app.route('/api/events', methods=['GET'])
+def get_public_events():
+    """Get public events list"""
+    try:
+        conn = sqlite3.connect(DATABASE)
+        cursor = conn.cursor()
+        
+        cursor.execute('''
+            SELECT id, title, slug, description, location, event_date, end_date, 
+                   featured_image, max_attendees, registration_required
+            FROM events 
+            WHERE status = 'upcoming'
+            ORDER BY event_date ASC
+        ''')
+        
+        events = []
+        for row in cursor.fetchall():
+            event_id = row[0]
+            
+            # Get registration count if registration is required
+            registration_count = 0
+            if row[9]:  # registration_required
+                cursor.execute('''
+                    SELECT COUNT(*) FROM event_registrations 
+                    WHERE event_id = ? AND status = 'confirmed'
+                ''', (event_id,))
+                registration_count = cursor.fetchone()[0]
+            
+            events.append({
+                'id': event_id,
+                'title': row[1],
+                'slug': row[2],
+                'description': row[3],
+                'location': row[4],
+                'event_date': row[5],
+                'end_date': row[6],
+                'featured_image': row[7],
+                'max_attendees': row[8],
+                'registration_required': bool(row[9]),
+                'registration_count': registration_count,
+                'spots_available': (row[8] - registration_count) if row[8] else None
+            })
+        
+        conn.close()
+        
+        return jsonify({
+            'success': True,
+            'events': events
+        })
+        
+    except Exception as e:
+        logger.error(f"Error fetching public events: {e}")
+        return jsonify({
+            'success': False,
+            'error': 'Failed to fetch events'
+        }), 500
 
 # Agenda Items Management
 @app.route('/api/admin/agenda', methods=['GET', 'POST'])
@@ -1414,6 +1976,204 @@ def get_article_metrics(article_id):
             'error': 'Failed to fetch article metrics'
         }), 500
 
+
+# Social Media Feed Integration Endpoints
+@app.route('/api/social/feeds', methods=['GET'])
+def get_social_feeds():
+    """
+    Get aggregated social media feeds
+    Optional endpoint for displaying live social media content
+    """
+    try:
+        # This is a placeholder implementation
+        # In production, you would integrate with actual social media APIs
+        # like Twitter API, Facebook Graph API, Instagram Basic Display API, etc.
+        
+        platform = request.args.get('platform', 'all')  # all, twitter, facebook, instagram
+        limit = min(int(request.args.get('limit', 10)), 50)  # Max 50 posts
+        
+        # Mock data structure - replace with actual API calls
+        mock_feeds = {
+            'twitter': [
+                {
+                    'id': 'tw_001',
+                    'platform': 'twitter',
+                    'content': 'Excited to announce our latest community development project in Karachuonyo! #CommunityFirst #Development',
+                    'author': '@KarachuyoLeader',
+                    'timestamp': '2024-01-15T10:30:00Z',
+                    'engagement': {'likes': 45, 'retweets': 12, 'replies': 8},
+                    'media_url': None
+                },
+                {
+                    'id': 'tw_002',
+                    'platform': 'twitter',
+                    'content': 'Thank you to all volunteers who participated in our clean-up drive yesterday! Together we make a difference.',
+                    'author': '@KarachuyoLeader',
+                    'timestamp': '2024-01-14T16:45:00Z',
+                    'engagement': {'likes': 78, 'retweets': 23, 'replies': 15},
+                    'media_url': '/images/cleanup_drive.jpg'
+                }
+            ],
+            'facebook': [
+                {
+                    'id': 'fb_001',
+                    'platform': 'facebook',
+                    'content': 'Join us this Saturday for our monthly community meeting. Your voice matters in shaping our future!',
+                    'author': 'Karachuonyo Community Page',
+                    'timestamp': '2024-01-13T09:15:00Z',
+                    'engagement': {'likes': 156, 'shares': 34, 'comments': 28},
+                    'media_url': '/images/community_meeting.jpg'
+                }
+            ],
+            'instagram': [
+                {
+                    'id': 'ig_001',
+                    'platform': 'instagram',
+                    'content': 'Beautiful sunset over Lake Victoria from Karachuonyo. This is why we fight to preserve our natural heritage! 🌅',
+                    'author': '@karachuonyo_official',
+                    'timestamp': '2024-01-12T18:20:00Z',
+                    'engagement': {'likes': 234, 'comments': 45},
+                    'media_url': '/images/lake_sunset.jpg'
+                }
+            ]
+        }
+        
+        # Filter by platform if specified
+        if platform != 'all' and platform in mock_feeds:
+            feeds = mock_feeds[platform][:limit]
+        else:
+            # Combine all feeds and sort by timestamp
+            all_feeds = []
+            for platform_feeds in mock_feeds.values():
+                all_feeds.extend(platform_feeds)
+            
+            # Sort by timestamp (newest first)
+            all_feeds.sort(key=lambda x: x['timestamp'], reverse=True)
+            feeds = all_feeds[:limit]
+        
+        return jsonify({
+            'success': True,
+            'feeds': feeds,
+            'total_count': len(feeds),
+            'note': 'This is a mock implementation. In production, integrate with actual social media APIs.'
+        })
+        
+    except Exception as e:
+        logger.error(f"Error fetching social media feeds: {e}")
+        return jsonify({
+            'success': False,
+            'error': 'Failed to fetch social media feeds'
+        }), 500
+
+
+@app.route('/api/social/platforms', methods=['GET'])
+def get_social_platforms():
+    """
+    Get available social media platforms and their configuration
+    """
+    try:
+        platforms = {
+            'twitter': {
+                'name': 'Twitter',
+                'handle': '@KarachuyoLeader',
+                'url': 'https://twitter.com/KarachuyoLeader',
+                'enabled': True,
+                'description': 'Follow for real-time updates and community news'
+            },
+            'facebook': {
+                'name': 'Facebook',
+                'handle': 'Karachuonyo Community',
+                'url': 'https://facebook.com/karachuonyo',
+                'enabled': True,
+                'description': 'Join our community discussions and events'
+            },
+            'instagram': {
+                'name': 'Instagram',
+                'handle': '@karachuonyo_official',
+                'url': 'https://instagram.com/karachuonyo_official',
+                'enabled': True,
+                'description': 'See the beauty of our community through photos'
+            },
+            'youtube': {
+                'name': 'YouTube',
+                'handle': 'Karachuonyo Channel',
+                'url': 'https://youtube.com/@karachuonyo',
+                'enabled': False,
+                'description': 'Watch community events and speeches'
+            }
+        }
+        
+        return jsonify({
+            'success': True,
+            'platforms': platforms
+        })
+        
+    except Exception as e:
+        logger.error(f"Error fetching social platforms: {e}")
+        return jsonify({
+            'success': False,
+            'error': 'Failed to fetch social platforms'
+        }), 500
+
+
+@app.route('/api/social/engagement', methods=['POST'])
+def track_social_engagement():
+    """
+    Track social media engagement from the website
+    This can be used to track clicks to social media links
+    """
+    try:
+        data = request.get_json()
+        
+        if not data:
+            return jsonify({
+                'success': False,
+                'error': 'No data provided'
+            }), 400
+        
+        required_fields = ['platform', 'action']
+        for field in required_fields:
+            if field not in data:
+                return jsonify({
+                    'success': False,
+                    'error': f'Missing required field: {field}'
+                }), 400
+        
+        # Validate platform
+        valid_platforms = ['twitter', 'facebook', 'instagram', 'youtube']
+        if data['platform'] not in valid_platforms:
+            return jsonify({
+                'success': False,
+                'error': 'Invalid platform'
+            }), 400
+        
+        # Validate action
+        valid_actions = ['click', 'share', 'follow']
+        if data['action'] not in valid_actions:
+            return jsonify({
+                'success': False,
+                'error': 'Invalid action'
+            }), 400
+        
+        # Get client information
+        ip_address = request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr)
+        user_agent = request.headers.get('User-Agent', '')
+        
+        # In a production environment, you would save this to a database
+        # For now, we'll just log it
+        logger.info(f"Social engagement tracked: {data['platform']} - {data['action']} from {ip_address}")
+        
+        return jsonify({
+            'success': True,
+            'message': 'Engagement tracked successfully'
+        })
+        
+    except Exception as e:
+        logger.error(f"Error tracking social engagement: {e}")
+        return jsonify({
+            'success': False,
+            'error': 'Failed to track engagement'
+        }), 500
 
 
 if __name__ == '__main__':

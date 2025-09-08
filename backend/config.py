@@ -26,7 +26,7 @@ class Config:
     MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER') or os.environ.get('MAIL_USERNAME')
     
     # CORS Configuration
-    CORS_ORIGINS = os.environ.get('CORS_ORIGINS', 'http://localhost:8000').split(',')
+    CORS_ORIGINS = os.environ.get('CORS_ORIGINS', 'http://localhost:8000,http://localhost:5500,http://127.0.0.1:5500,http://localhost:3000').split(',')
     
     # Admin Configuration
     ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL') or 'admin@karachuonyofirst.com'
