@@ -830,10 +830,7 @@ def get_contact_submissions():
         
         conn.close()
         
-        return jsonify({
-            'success': True,
-            'submissions': submissions
-        })
+        return jsonify(submissions)
         
     except Exception as e:
         logger.error(f"Error fetching submissions: {e}")
@@ -841,6 +838,123 @@ def get_contact_submissions():
             'success': False,
             'error': 'Failed to fetch submissions'
         }), 500
+
+@app.route('/api/admin/contacts/<int:contact_id>', methods=['GET', 'PUT', 'DELETE'])
+def manage_contact_submission(contact_id):
+    """Get, update, or delete a specific contact submission"""
+    # TODO: Add authentication
+    
+    if request.method == 'GET':
+        try:
+            conn = sqlite3.connect(DATABASE)
+            cursor = conn.cursor()
+            
+            cursor.execute('''
+                SELECT id, name, email, phone, subject, message, submitted_at, status
+                FROM contact_submissions
+                WHERE id = ?
+            ''', (contact_id,))
+            
+            row = cursor.fetchone()
+            if not row:
+                conn.close()
+                return jsonify({'error': 'Contact submission not found'}), 404
+            
+            submission = {
+                'id': row[0],
+                'name': row[1],
+                'email': row[2],
+                'phone': row[3],
+                'subject': row[4],
+                'message': row[5],
+                'submitted_at': row[6],
+                'status': row[7]
+            }
+            
+            conn.close()
+            return jsonify(submission)
+            
+        except Exception as e:
+            logger.error(f"Error fetching contact submission: {e}")
+            return jsonify({'error': 'Failed to fetch contact submission'}), 500
+    
+    elif request.method == 'DELETE':
+        try:
+            conn = sqlite3.connect(DATABASE)
+            cursor = conn.cursor()
+            
+            cursor.execute('DELETE FROM contact_submissions WHERE id = ?', (contact_id,))
+            
+            if cursor.rowcount == 0:
+                conn.close()
+                return jsonify({'error': 'Contact submission not found'}), 404
+            
+            conn.commit()
+            conn.close()
+            
+            return jsonify({'success': True, 'message': 'Contact submission deleted'})
+            
+        except Exception as e:
+            logger.error(f"Error deleting contact submission: {e}")
+            return jsonify({'error': 'Failed to delete contact submission'}), 500
+
+@app.route('/api/admin/contacts/<int:contact_id>/read', methods=['PUT'])
+def mark_contact_as_read(contact_id):
+    """Mark a contact submission as read"""
+    # TODO: Add authentication
+    try:
+        conn = sqlite3.connect(DATABASE)
+        cursor = conn.cursor()
+        
+        cursor.execute('''
+            UPDATE contact_submissions 
+            SET status = 'read' 
+            WHERE id = ?
+        ''', (contact_id,))
+        
+        if cursor.rowcount == 0:
+            conn.close()
+            return jsonify({'error': 'Contact submission not found'}), 404
+        
+        conn.commit()
+        conn.close()
+        
+        return jsonify({'success': True, 'message': 'Contact marked as read'})
+        
+    except Exception as e:
+        logger.error(f"Error marking contact as read: {e}")
+        return jsonify({'error': 'Failed to mark contact as read'}), 500
+
+@app.route('/api/admin/reply', methods=['POST'])
+def send_reply():
+    """Send a reply email to a contact submission"""
+    # TODO: Add authentication
+    try:
+        data = request.get_json()
+        to_email = data.get('to')
+        subject = data.get('subject')
+        message_body = data.get('message')
+        
+        if not all([to_email, subject, message_body]):
+            return jsonify({'error': 'Missing required fields'}), 400
+        
+        # Create email message
+        msg = Message(
+            subject=subject,
+            recipients=[to_email],
+            body=message_body,
+            sender=app.config['MAIL_DEFAULT_SENDER']
+        )
+        
+        # Send email
+        if send_email_safe(msg):
+            return jsonify({'success': True, 'message': 'Reply sent successfully'})
+        else:
+            return jsonify({'error': 'Failed to send reply'}), 500
+            
+    except Exception as e:
+        logger.error(f"Error sending reply: {e}")
+        return jsonify({'error': 'Failed to send reply'}), 500
 
 @app.route('/api/admin/donations', methods=['GET'])
 def admin_donations():
