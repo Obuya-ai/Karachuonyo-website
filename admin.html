@@ -775,6 +775,29 @@
         </div>
     </div>
 
+    <!-- Reply Modal -->
+    <div id="replyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('replyModal')">&times;</span>
+            <h3>Reply to Message</h3>
+            <form id="replyForm">
+                <div class="form-group">
+                    <label for="replyTo">To:</label>
+                    <input type="email" id="replyTo" name="to" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="replySubject">Subject:</label>
+                    <input type="text" id="replySubject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="replyMessage">Message:</label>
+                    <textarea id="replyMessage" name="message" rows="6" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Reply</button>
+            </form>
+        </div>
+    </div>
+
     <script>
         const API_BASE = 'https://karachuonyo-backend.onrender.com';
         let authToken = localStorage.getItem('adminToken');
@@ -1287,7 +1310,7 @@
         }
         
         function renderMessages(messages) {
-            const tbody = document.querySelector('#messagesTable tbody');
+            const tbody = document.getElementById('messagesTableBody');
             tbody.innerHTML = '';
             
             messages.forEach(message => {

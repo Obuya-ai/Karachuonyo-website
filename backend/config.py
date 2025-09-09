@@ -79,7 +79,7 @@ class ProductionConfig(Config):
     RATELIMIT_DEFAULT = '50 per hour'
     
     # Production CORS (override with environment variable)
-    CORS_ORIGINS = os.environ.get('CORS_ORIGINS', '').split(',') if os.environ.get('CORS_ORIGINS') else []
+    CORS_ORIGINS = os.environ.get('CORS_ORIGINS', 'https://karachuonyo-frontend.onrender.com,https://karachuonyo-backend.onrender.com').split(',')
 
 class TestingConfig(Config):
     """Testing configuration"""
