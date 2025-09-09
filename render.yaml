@@ -45,12 +45,16 @@ services:
   # Frontend Web Service (serving static files)
   - type: web
     name: karachuonyo-frontend
-    env: static
+    env: node
     buildCommand: |
+      # Install dependencies
+      npm install
+      # Build Tailwind CSS
+      npm run build-css-prod
       # Update API endpoints to production URLs
       sed -i 's|http://localhost:5000|https://karachuonyo-backend.onrender.com|g' *.html
-      # No additional build needed for static HTML
       echo "Frontend build complete"
+    startCommand: "npx serve -s . -p $PORT"
     staticPublishPath: .
     pullRequestPreviewsEnabled: false
     headers:

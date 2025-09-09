@@ -17,6 +17,9 @@
   ],
   "author": "Karachuonyo First Campaign",
   "license": "MIT",
+  "dependencies": {
+    "serve": "^14.2.1"
+  },
   "devDependencies": {
     "tailwindcss": "^3.4.0",
     "@tailwindcss/typography": "^0.5.10",
