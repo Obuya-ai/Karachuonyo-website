@@ -54,7 +54,7 @@ services:
       # Update API endpoints to production URLs
       sed -i 's|http://localhost:5000|https://karachuonyo-backend.onrender.com|g' *.html
       echo "Frontend build complete"
-    startCommand: "npx serve -s . -p $PORT"
+    startCommand: "npx serve -c serve.json -p $PORT"
     staticPublishPath: .
     pullRequestPreviewsEnabled: false
     headers:
@@ -67,6 +67,12 @@ services:
       - path: /*
         name: Referrer-Policy
         value: strict-origin-when-cross-origin
+      - path: /dist/*.css
+        name: Content-Type
+        value: text/css
+      - path: /*.css
+        name: Content-Type
+        value: text/css
     routes:
       - type: rewrite
         source: /*
