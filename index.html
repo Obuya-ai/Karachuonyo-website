@@ -1675,6 +1675,11 @@
                         <h4 class="text-xl font-bold text-gray-900">Choose Amount</h4>
                     </div>
                     <div class="grid grid-cols-3 gap-4 mb-6">
+                        <button onclick="selectAmount(1)" class="donation-amount-btn p-4 border-2 border-gray-200 rounded-2xl text-center hover:border-blue-500 hover:bg-gradient-to-br hover:from-blue-50 hover:to-green-50 transition-all duration-200 transform hover:scale-105 hover:shadow-lg">
+                            <span class="block text-xs text-gray-500 font-medium">KSH</span>
+                            <span class="block text-xl font-bold text-gray-900">1</span>
+                            <span class="block text-xs text-orange-500 font-medium">TEST</span>
+                        </button>
                         <button onclick="selectAmount(500)" class="donation-amount-btn p-4 border-2 border-gray-200 rounded-2xl text-center hover:border-blue-500 hover:bg-gradient-to-br hover:from-blue-50 hover:to-green-50 transition-all duration-200 transform hover:scale-105 hover:shadow-lg">
                             <span class="block text-xs text-gray-500 font-medium">KSH</span>
                             <span class="block text-xl font-bold text-gray-900">500</span>
@@ -1715,7 +1720,7 @@
                             </div>
                             <div id="customAmountHelp" class="text-xs text-gray-500 mt-2 flex items-center gap-1">
                                 <i data-lucide="info" class="h-3 w-3"></i>
-                                Minimum amount is KSH 100
+                                Minimum amount is KSH 1
                             </div>
                         </div>
                     </div>
@@ -1747,9 +1752,9 @@
                                     <img src="images/mpesa_paybill.jpeg" alt="M-Pesa Paybill" class="h-8 w-8 object-cover rounded" role="presentation">
                                 </div>
                                 <div class="text-left flex-1">
-                                    <p class="font-bold text-gray-900">M-Pesa Paybill</p>
-                                    <p id="mpesa-desc" class="text-sm text-gray-600">Paybill: <span class="font-semibold text-green-600">522522</span></p>
-                                    <p class="text-xs text-gray-500">Account: <span class="font-medium">1341327957</span></p>
+                                    <p class="font-bold text-gray-900">M-Pesa STK Push</p>
+                                    <p id="mpesa-desc" class="text-sm text-gray-600">Instant payment prompt to your phone</p>
+                                    <p class="text-xs text-gray-500">Enter phone number for instant STK push</p>
                                 </div>
                                 <div class="w-6 h-6 border-2 border-gray-300 rounded-full flex items-center justify-center">
                                     <div class="w-3 h-3 bg-green-500 rounded-full opacity-0 transition-opacity"></div>
@@ -3008,13 +3013,13 @@
              if (method === 'mpesa') {
                  selectedBtn.classList.add('border-green-500', 'bg-green-50');
                  document.getElementById('mpesaPhoneDiv').classList.remove('hidden');
-                 showPaymentInstructions('M-Pesa Paybill Instructions', [
-                     '1. Go to M-Pesa menu on your phone',
-                     '2. Select "Lipa na M-Pesa" then "Pay Bill"',
-                     '3. Enter Business Number: <strong>522522</strong>',
-                     '4. Enter Account Number: <strong>1341327957</strong>',
-                     '5. Enter the amount you wish to donate',
-                     '6. Enter your M-Pesa PIN to complete'
+                 showPaymentInstructions('M-Pesa STK Push Instructions', [
+                     '1. Enter your M-Pesa registered phone number below',
+                     '2. Click "Donate" to initiate STK push',
+                     '3. Check your phone for payment prompt',
+                     '4. Enter your M-Pesa PIN when prompted',
+                     '5. Payment will be processed instantly',
+                     '6. You\'ll receive SMS confirmation'
                  ]);
              } else if (method === 'loopbiz') {
                  selectedBtn.classList.add('border-orange-500', 'bg-orange-50');
@@ -3132,7 +3137,13 @@
                      let successMessage = '';
                      
                      if (selectedPaymentMethod === 'mpesa') {
-                         successMessage = `M-Pesa Paybill Instructions: Go to M-Pesa menu → Lipa na M-Pesa → Pay Bill → Enter Business Number: 522522 → Account Number: 1341327957 → Amount: KSH ${selectedDonationAmount.toLocaleString()} → Enter PIN to complete.`;
+                         if (result.transactionId && result.transactionId.startsWith('ws_CO_')) {
+                             // Real M-Pesa STK push initiated
+                             successMessage = `🎉 STK Push Sent Successfully! Check your phone (${donationData.donor.phone}) for the M-Pesa payment prompt. Enter your PIN to complete your donation of KSH ${selectedDonationAmount.toLocaleString()}. Transaction ID: ${result.transactionId}`;
+                         } else {
+                             // Fallback to paybill instructions
+                             successMessage = `M-Pesa Paybill Instructions: Go to M-Pesa menu → Lipa na M-Pesa → Pay Bill → Enter Business Number: 522522 → Account Number: 1341327957 → Amount: KSH ${selectedDonationAmount.toLocaleString()} → Enter PIN to complete.`;
+                         }
                      } else if (selectedPaymentMethod === 'loopbiz') {
                          successMessage = `Loop Biz Till Instructions: Go to M-Pesa/Airtel Money → Lipa na M-Pesa → Buy Goods & Services → Enter Till Number: 336118 → Amount: KSH ${selectedDonationAmount.toLocaleString()} → Enter PIN (No charges!).`;
                      } else if (selectedPaymentMethod === 'direct') {
@@ -3163,12 +3174,16 @@
                          errorMessage = 'Network error. Please check your internet connection and try again.';
                      } else if (error.message.includes('timeout')) {
                          errorMessage = 'Payment processing timed out. Please try again.';
-                     } else if (error.message.includes('invalid_phone')) {
+                     } else if (error.message.includes('invalid_phone') || error.message.includes('Invalid phone')) {
                          errorMessage = 'Invalid phone number. Please check your M-Pesa number and try again.';
-                     } else if (error.message.includes('insufficient_funds')) {
+                     } else if (error.message.includes('insufficient_funds') || error.message.includes('Insufficient')) {
                          errorMessage = 'Insufficient funds. Please check your account balance and try again.';
-                     } else if (error.message.includes('payment_declined')) {
+                     } else if (error.message.includes('payment_declined') || error.message.includes('declined')) {
                          errorMessage = 'Payment was declined. Please try a different payment method.';
+                     } else if (error.message.includes('M-Pesa') || error.message.includes('STK')) {
+                         errorMessage = 'M-Pesa payment failed. Please try again or use a different payment method.';
+                     } else if (error.message.includes('Missing required field')) {
+                         errorMessage = 'Please fill in all required information and try again.';
                      }
                      
                      showDonationMessage(errorMessage, 'error');
@@ -3183,40 +3198,67 @@
           
           // Enhanced donation payment processing function
           async function processDonationPayment(donationData) {
+              // For M-Pesa payments, use real API integration
+              if (donationData.paymentMethod === 'mpesa') {
+                  try {
+                      // Determine backend URL based on environment
+                       const backendUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+                           ? 'http://localhost:5000' 
+                           : 'https://karachuonyo-backend.onrender.com';
+                       
+                       const response = await fetch(`${backendUrl}/api/donations/mpesa`, {
+                          method: 'POST',
+                          headers: {
+                              'Content-Type': 'application/json',
+                          },
+                          body: JSON.stringify({
+                              amount: donationData.amount,
+                              phone: donationData.donor.phone,
+                              donor_name: donationData.donor.name,
+                              donor_email: donationData.donor.email
+                          })
+                      });
+                      
+                      const result = await response.json();
+                      
+                      if (response.ok && result.success) {
+                          return {
+                              status: 'success',
+                              transactionId: result.checkout_request_id,
+                              merchantRequestId: result.merchant_request_id,
+                              amount: donationData.amount,
+                              method: donationData.paymentMethod
+                          };
+                      } else {
+                          throw new Error(result.error || 'M-Pesa payment failed');
+                      }
+                  } catch (error) {
+                      console.error('M-Pesa payment error:', error);
+                      if (error.message.includes('fetch')) {
+                          throw new Error('network: Failed to connect to payment gateway');
+                      }
+                      throw error;
+                  }
+              }
+              
+              // For other payment methods, keep simulated processing
               return new Promise((resolve, reject) => {
                   const timeout = setTimeout(() => {
                       reject(new Error('timeout: Payment processing timed out'));
-                  }, 15000); // 15 second timeout for payments
+                  }, 15000);
                   
                   setTimeout(() => {
                       clearTimeout(timeout);
                       
-                      // Simulate various payment scenarios
-                      const random = Math.random();
-                      
-                      if (random < 0.05) { // 5% network error
-                          reject(new Error('network: Failed to connect to payment gateway'));
-                      } else if (random < 0.08) { // 3% invalid phone for M-Pesa
-                          if (donationData.paymentMethod === 'mpesa') {
-                              reject(new Error('invalid_phone: Invalid M-Pesa phone number'));
-                          } else {
-                              resolve({ status: 'success', transactionId: 'TXN' + Date.now() });
-                          }
-                      } else if (random < 0.1) { // 2% insufficient funds
-                          reject(new Error('insufficient_funds: Insufficient account balance'));
-                      } else if (random < 0.12) { // 2% payment declined
-                          reject(new Error('payment_declined: Payment was declined by provider'));
-                      } else {
-                          // Success case
-                          console.log('Donation processed successfully:', donationData);
-                          resolve({ 
-                              status: 'success', 
-                              transactionId: 'TXN' + Date.now(),
-                              amount: donationData.amount,
-                              method: donationData.paymentMethod
-                          });
-                      }
-                  }, 3000); // Simulate payment processing time
+                      // Simulate success for non-M-Pesa payments
+                      console.log('Donation processed successfully:', donationData);
+                      resolve({ 
+                          status: 'success', 
+                          transactionId: 'TXN' + Date.now(),
+                          amount: donationData.amount,
+                          method: donationData.paymentMethod
+                      });
+                  }, 2000);
               });
           }
           

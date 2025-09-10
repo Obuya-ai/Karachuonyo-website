@@ -14,6 +14,7 @@ import re
 import logging
 from werkzeug.security import generate_password_hash
 from config import get_config
+from mpesa import mpesa
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -107,11 +108,13 @@ def init_database():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             donor_name TEXT NOT NULL,
             donor_email TEXT,
-            phone TEXT,
+            phone_number TEXT,
             amount REAL NOT NULL,
             payment_method TEXT NOT NULL,
             status TEXT DEFAULT 'pending',
             transaction_id TEXT,
+            checkout_request_id TEXT,
+            merchant_request_id TEXT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             completed_at TIMESTAMP,
             ip_address TEXT,
@@ -2094,10 +2097,129 @@ def get_article_metrics(article_id):
 
 
 
+# M-Pesa Donation Endpoints
+@app.route('/api/donations/mpesa', methods=['POST'])
+def process_mpesa_donation():
+    try:
+        data = request.get_json()
+        
+        # Validate required fields
+        required_fields = ['amount', 'phone', 'donor_name', 'donor_email']
+        for field in required_fields:
+            if not data.get(field):
+                return jsonify({'error': f'Missing required field: {field}'}), 400
+        
+        amount = data['amount']
+        phone = data['phone']
+        donor_name = data['donor_name']
+        donor_email = data['donor_email']
+        
+        # Validate amount
+        if amount < 1:
+            return jsonify({'error': 'Minimum donation amount is KSH 1'}), 400
+        
+        # Generate account reference
+        account_ref = f"DONATION_{datetime.now().strftime('%Y%m%d%H%M%S')}"
+        
+        # Initiate STK push
+        result = mpesa.stk_push(
+            phone=phone,
+            amount=amount,
+            account_ref=account_ref,
+            description=f"Donation from {donor_name}"
+        )
+        
+        if result.get('ResponseCode') == '0':
+            # Save donation record to database
+            conn = sqlite3.connect('karachuonyo.db')
+            cursor = conn.cursor()
+            
+            cursor.execute('''
+                INSERT INTO donations (donor_name, amount, payment_method, status, transaction_id, created_at, donor_email, phone_number, checkout_request_id)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ''', (
+                donor_name,
+                amount,
+                'mpesa',
+                'pending',
+                result.get('CheckoutRequestID'),
+                datetime.now().isoformat(),
+                donor_email,
+                phone,
+                result.get('CheckoutRequestID')
+            ))
+            
+            conn.commit()
+            conn.close()
+            
+            return jsonify({
+                'success': True,
+                'message': 'STK push sent successfully',
+                'checkout_request_id': result.get('CheckoutRequestID'),
+                'merchant_request_id': result.get('MerchantRequestID')
+            })
+        else:
+            return jsonify({
+                'error': 'Failed to initiate payment',
+                'details': result.get('errorMessage', 'Unknown error')
+            }), 400
+            
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/mpesa/callback', methods=['POST'])
+def mpesa_callback():
+    try:
+        callback_data = request.get_json()
+        
+        # Process callback data
+        stk_callback = callback_data.get('Body', {}).get('stkCallback', {})
+        result_code = stk_callback.get('ResultCode')
+        checkout_request_id = stk_callback.get('CheckoutRequestID')
+        
+        # Update donation status in database
+        conn = sqlite3.connect('karachuonyo.db')
+        cursor = conn.cursor()
+        
+        if result_code == 0:  # Success
+            # Extract transaction details
+            callback_metadata = stk_callback.get('CallbackMetadata', {})
+            items = callback_metadata.get('Item', [])
+            
+            mpesa_receipt = None
+            transaction_date = None
+            
+            for item in items:
+                if item.get('Name') == 'MpesaReceiptNumber':
+                    mpesa_receipt = item.get('Value')
+                elif item.get('Name') == 'TransactionDate':
+                    transaction_date = item.get('Value')
+            
+            cursor.execute('''
+                UPDATE donations 
+                SET status = ?, completed_at = ?, transaction_id = ?
+                WHERE checkout_request_id = ?
+            ''', ('completed', datetime.now().isoformat(), mpesa_receipt, checkout_request_id))
+        else:
+            # Payment failed
+            cursor.execute('''
+                UPDATE donations 
+                SET status = ?
+                WHERE checkout_request_id = ?
+            ''', ('failed', checkout_request_id))
+        
+        conn.commit()
+        conn.close()
+        
+        return jsonify({'ResultCode': 0, 'ResultDesc': 'Success'})
+        
+    except Exception as e:
+        print(f"Callback error: {e}")
+        return jsonify({'ResultCode': 1, 'ResultDesc': 'Error'})
+
 if __name__ == '__main__':
-    # Initialize database
-    init_database()
-    
+    # Initialize database on startup
+    init_database()    
     # Run the application
     port = int(os.environ.get('PORT', 5000))
     debug = os.environ.get('FLASK_ENV') == 'development'
