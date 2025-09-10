@@ -287,12 +287,18 @@
         }
         
         .sidebar {
-            transform: translateX(-100%);
+            transform: translateY(-100%);
             transition: transform 0.3s ease;
+            width: 100%;
+            height: auto;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 50;
         }
         
         .sidebar.open {
-            transform: translateX(0);
+            transform: translateY(0);
         }
         
         /* Mobile overlay for sidebar */
@@ -316,10 +322,15 @@
         
         @media (min-width: 768px) {
             .sidebar {
-                transform: translateX(0);
+                transform: translateY(0);
+                position: sticky;
+                top: 0;
+                height: auto;
+                background-color: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(8px);
             }
             .main-content {
-                margin-left: 16rem;
+                margin-top: 0;
             }
             .sidebar-overlay {
                 display: none;
@@ -852,6 +863,7 @@
     
     <div class="flex">
         <!-- Sidebar Navigation -->
+<<<<<<< Updated upstream
         <aside id="sidebar" class="sidebar fixed left-0 top-0 h-screen w-64 bg-white/95 backdrop-blur border-r border-gray-200 z-50 shadow-lg flex flex-col" role="navigation" aria-label="Main navigation" aria-hidden="false">
             <div class="flex-shrink-0 p-6 pb-4">
                 <!-- Logo and Title -->
@@ -896,11 +908,37 @@
                     <button onclick="openDonationModal()" class="btn bg-blue-600 text-white hover:bg-blue-700 mt-3 w-full text-sm py-2.5" role="menuitem" aria-label="Open donation form" tabindex="0">
                         Donate Now
                     </button>
+=======
+        <aside id="sidebar" class="sidebar fixed left-0 top-0 w-full bg-white/95 backdrop-blur border-b border-gray-200 z-50 shadow-lg" role="navigation" aria-label="Main navigation" aria-hidden="false">
+            <div class="p-4">
+                <!-- Logo and Navigation Menu -->
+                <div class="flex items-center justify-between max-w-6xl mx-auto">
+                    <div class="flex items-center gap-4">
+                        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-700 to-green-600 flex items-center justify-center" role="img" aria-label="Karachuonyo First logo">
+                            <span class="text-white font-bold text-base text-center" aria-hidden="true">KF</span>
+                        </div>
+                        <h1 class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent">
+                            Karachuonyo First
+                        </h1>
+                    </div>
+                
+                <!-- Navigation Menu -->
+                <nav class="hidden md:flex items-center space-x-4" role="menubar" aria-label="Site navigation">
+                    <button onclick="scrollToSection('home')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem" aria-label="Navigate to Home section" tabindex="0">Home</button>
+                    <button onclick="scrollToSection('about')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem" aria-label="Navigate to About section" tabindex="0">About</button>
+                    <button onclick="scrollToSection('agenda')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem" aria-label="Navigate to Agenda section" tabindex="0">Agenda</button>
+                    <button onclick="scrollToSection('news')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem" aria-label="Navigate to News section" tabindex="0">News</button>
+                    <button onclick="scrollToSection('events')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem" aria-label="Navigate to Events section" tabindex="0">Events</button>
+                    <button onclick="scrollToSection('gallery')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem" aria-label="Navigate to Gallery section" tabindex="0">Gallery</button>
+                    <button onclick="scrollToSection('contact')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem" aria-label="Navigate to Contact section" tabindex="0">Contact</button>
+                    <button onclick="openDonationModal()" class="btn bg-blue-600 text-white hover:bg-blue-700 px-4 py-2" role="menuitem" aria-label="Open donation form" tabindex="0">Donate Now</button>
+>>>>>>> Stashed changes
                 </nav>
             </div>
         </aside>
         
         <!-- Main Content -->
+<<<<<<< Updated upstream
         <div class="main-content flex-1 ml-0 xl:ml-64">
             <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-gray-200">
                 <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
@@ -916,6 +954,26 @@
                     
                     <!-- Spacer for balance when hamburger is visible -->
                     <div class="xl:hidden w-10"></div>
+=======
+        <div class="main-content flex-1">
+            <header class="sticky top-0 z-40 bg-white/90 backdrop-blur shadow-sm">
+                <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between relative">
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar">
+                        <i data-lucide="menu" class="h-6 w-6" aria-hidden="true"></i>
+                    </button>
+                    <!-- Mobile Navigation Menu -->
+                    <nav class="md:hidden flex flex-col space-y-2 mt-4" role="menubar" aria-label="Mobile navigation">
+                        <button onclick="scrollToSection('home')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Home</button>
+                        <button onclick="scrollToSection('about')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">About</button>
+                        <button onclick="scrollToSection('agenda')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Agenda</button>
+                        <button onclick="scrollToSection('news')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">News</button>
+                        <button onclick="scrollToSection('events')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Events</button>
+                        <button onclick="scrollToSection('gallery')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Gallery</button>
+                        <button onclick="scrollToSection('contact')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Contact</button>
+                        <button onclick="openDonationModal()" class="btn bg-blue-600 text-white hover:bg-blue-700 px-4 py-2" role="menuitem">Donate Now</button>
+                    </nav>
+>>>>>>> Stashed changes
                 </div>
             </header>
 
