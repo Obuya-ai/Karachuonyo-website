@@ -976,19 +976,19 @@ def admin_donations():
         for row in cursor.fetchall():
             donations.append({
                 'id': row[0],
-                'donor_name': row[1],
-                'donor_email': row[2],
-                'phone': row[3],
+                'name': row[1],
+                'email': row[2],
+                'phone_number': row[3],
                 'amount': row[4],
                 'payment_method': row[5],
-                'status': row[6],
+                'payment_status': row[6],
                 'transaction_id': row[7],
                 'created_at': row[8],
                 'completed_at': row[9]
             })
         
         conn.close()
-        return jsonify({'donations': donations})
+        return jsonify(donations)
         
     except Exception as e:
         return jsonify({'error': str(e)}), 500
