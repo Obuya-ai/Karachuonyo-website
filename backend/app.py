@@ -966,7 +966,7 @@ def admin_donations():
         cursor = conn.cursor()
         
         cursor.execute('''
-            SELECT id, donor_name, donor_email, phone, amount, payment_method, 
+            SELECT id, donor_name, donor_email, phone_number, amount, payment_method, 
                    status, transaction_id, created_at, completed_at
             FROM donations 
             ORDER BY created_at DESC
