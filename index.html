@@ -2311,7 +2311,7 @@
             
             container.innerHTML = posts.map((post, index) => `
                 <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer" onclick="openArticle('${articleIds[index]}')">
-                    <div class="h-40 bg-gradient-to-br from-blue-400 to-purple-600 rounded-t-2xl relative overflow-hidden">
+                    <div class="h-40 bg-indigo-800 rounded-t-2xl relative overflow-hidden">
                         <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300"></div>
                         <div class="absolute inset-0 flex items-center justify-center text-white">
                             <div class="text-center">
@@ -2327,7 +2327,7 @@
                         <h3 class="font-bold mt-2 group-hover:text-blue-600 transition-colors duration-300">${post.title}</h3>
                         <p class="text-gray-600 mt-2">${post.excerpt}</p>
                         <div class="mt-4 flex items-center justify-between">
-                            <button class="btn bg-blue-800 text-white hover:bg-blue-700 flex items-center group-hover:translate-x-1 transition-transform duration-300">
+                            <button class="btn bg-red-700 text-white hover:bg-red-600 flex items-center group-hover:translate-x-1 transition-transform duration-300">
                                 Read Full Article <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
                             </button>
                             <div class="flex items-center space-x-2 text-gray-500">
