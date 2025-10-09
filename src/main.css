@@ -1,5 +1,5 @@
 
-        /* Global overflow prevention */
+/* Global overflow prevention */
         * {
             box-sizing: border-box;
         }
@@ -160,56 +160,7 @@
             gap: 0.5rem;
         }
         
-        .sidebar {
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
-            width: 100%;
-            height: auto;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 50;
-        }
         
-        .sidebar.open {
-            transform: translateY(0);
-        }
-        
-        /* Mobile overlay for sidebar */
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 40;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        
-        .sidebar-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        @media (min-width: 768px) {
-            .sidebar {
-                transform: translateY(0);
-                position: sticky;
-                top: 0;
-                height: auto;
-                background-color: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(8px);
-            }
-            .main-content {
-                margin-top: 0;
-            }
-            .sidebar-overlay {
-                display: none;
-            }
-        }
         
         /* Desktop footer enhancements */
         @media (min-width: 768px) {

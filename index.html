@@ -127,57 +127,70 @@
     <link rel="stylesheet" href="src/main.css">
 </head>
 <body class="text-center">
-    <!-- Mobile Sidebar Overlay -->
-    <div id="sidebarOverlay" class="sidebar-overlay" role="button" aria-label="Close navigation menu" tabindex="0" aria-hidden="true"></div>
-    
-    <div class="flex">
-        <!-- Sidebar Navigation -->
-        <aside id="sidebar" class="sidebar fixed left-0 top-0 w-full bg-white-800/95 backdrop-blur border-b border-gray-200 z-50 shadow-lg" role="navigation" aria-label="Main navigation" aria-hidden="false">
-            <div class="p-2">
-                <!-- Logo and Navigation Menu -->
-                <div class="flex items-center justify-between max-w-6xl mx-auto">
-                    <div class="flex items-center gap-4">
-                        <div class="h-10 w-10 rounded-xl bg-blue-800 flex items-center justify-center" role="img" aria-label="Karachuonyo First logo">
-                            <span class="text-white font-bold text-base text-center" aria-hidden="true">KF</span>
-                        </div>
-                        <h1 class="font-extrabold text-lg tracking-tight bg-blue-800 bg-clip-text text-transparent">
-                                Karachuonyo First
-                            </h1>
-                    </div>
-                
-                <!-- Navigation Menu -->
-                <nav class="hidden md:flex items-center space-x-4" role="menubar" aria-label="Site navigation">
-                    <button onclick="scrollToSection('home')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem" aria-label="Navigate to Home section" tabindex="0">Home</button>
-                    <button onclick="scrollToSection('about')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem" aria-label="Navigate to About section" tabindex="0">About</button>
-                    <button onclick="scrollToSection('agenda')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem" aria-label="Navigate to Agenda section" tabindex="0">Agenda</button>
-                    <button onclick="scrollToSection('news')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem" aria-label="Navigate to News section" tabindex="0">News</button>
-                    <button onclick="scrollToSection('events')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem" aria-label="Navigate to Events section" tabindex="0">Events</button>
-                    <button onclick="scrollToSection('gallery')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem" aria-label="Navigate to Gallery section" tabindex="0">Gallery</button>
-                    <button onclick="scrollToSection('contact')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem" aria-label="Navigate to Contact section" tabindex="0">Contact</button>
-                    <button onclick="openDonationModal()" class="btn bg-red-600 text-white hover:bg-red-700 px-4 py-2" role="menuitem" aria-label="Open donation form" tabindex="0">Donate Now</button>
-                </nav>
-            </div>
-        </aside>
+    <div class="flex flex-col min-h-screen">
         
         <!-- Main Content -->
         <div class="main-content flex-1">
+            <!-- Navigation -->
             <header class="sticky top-0 z-40 bg-gray-100/90 backdrop-blur shadow-sm">
-                <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between relative">
-                    <!-- Mobile Menu Button -->
-                    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar">
-                        <i data-lucide="menu" class="h-6 w-6" aria-hidden="true"></i>
-                    </button>
-                    <!-- Mobile Navigation Menu -->
-                    <nav class="md:hidden flex flex-col space-y-2 mt-4" role="menubar" aria-label="Mobile navigation">
-                        <button onclick="scrollToSection('home')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Home</button>
-                        <button onclick="scrollToSection('about')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">About</button>
-                        <button onclick="scrollToSection('agenda')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Agenda</button>
-                        <button onclick="scrollToSection('news')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">News</button>
-                        <button onclick="scrollToSection('events')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Events</button>
-                        <button onclick="scrollToSection('gallery')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Gallery</button>
-                        <button onclick="scrollToSection('contact')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Contact</button>
-                        <button onclick="openDonationModal()" class="btn bg-red-600 text-white hover:bg-red-700 px-4 py-2" role="menuitem">Donate Now</button>
-                    </nav>
+                <div class="max-w-6xl mx-auto px-4">
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex items-center justify-between h-16">
+                        <!-- Logo -->
+                        <div class="flex items-center gap-4">
+                            <div class="h-10 w-10 rounded-xl bg-blue-800 flex items-center justify-center" role="img" aria-label="Karachuonyo First logo">
+                                <span class="text-white font-bold text-base text-center" aria-hidden="true">KF</span>
+                            </div>
+                            <h1 class="font-extrabold text-lg tracking-tight bg-blue-800 bg-clip-text text-transparent">
+                                Karachuonyo First
+                            </h1>
+                        </div>
+                        
+                        <!-- Desktop Navigation Menu -->
+                        <nav class="flex items-center space-x-4" role="menubar" aria-label="Site navigation">
+                            <button onclick="scrollToSection('home')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Home</button>
+                            <button onclick="scrollToSection('about')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">About</button>
+                            <button onclick="scrollToSection('agenda')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Agenda</button>
+                            <button onclick="scrollToSection('news')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">News</button>
+                            <button onclick="scrollToSection('events')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Events</button>
+                            <button onclick="scrollToSection('gallery')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Gallery</button>
+                            <button onclick="scrollToSection('contact')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Contact</button>
+                            <button onclick="openDonationModal()" class="btn bg-red-600 text-white hover:bg-red-700 px-4 py-2" role="menuitem">Donate Now</button>
+                        </nav>
+                    </div>
+                    
+                    <!-- Mobile Navigation -->
+                    <div class="md:hidden">
+                        <!-- Logo and Hamburger Menu -->
+                        <div class="flex items-center justify-between h-16">
+                            <!-- Logo -->
+                            <div class="flex items-center gap-4">
+                                <div class="h-10 w-10 rounded-xl bg-blue-800 flex items-center justify-center" role="img" aria-label="Karachuonyo First logo">
+                                    <span class="text-white font-bold text-base text-center" aria-hidden="true">KF</span>
+                                </div>
+                                <h1 class="font-extrabold text-lg tracking-tight bg-blue-800 bg-clip-text text-transparent">
+                                    Karachuonyo First
+                                </h1>
+                            </div>
+                            
+                            <!-- Hamburger Menu Button -->
+                            <button id="mobileMenuBtn" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+                                <i data-lucide="menu" class="h-6 w-6" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Mobile Navigation Menu (hidden by default) -->
+                        <nav id="mobileMenu" class="hidden flex-col items-center gap-3 py-4 border-t border-gray-200 bg-white shadow-lg rounded-b-lg" role="menubar" aria-label="Mobile navigation">
+                            <button onclick="scrollToSection('home')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">Home</button>
+                            <button onclick="scrollToSection('about')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">About</button>
+                            <button onclick="scrollToSection('agenda')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">Agenda</button>
+                            <button onclick="scrollToSection('news')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">News</button>
+                            <button onclick="scrollToSection('events')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">Events</button>
+                            <button onclick="scrollToSection('gallery')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">Gallery</button>
+                            <button onclick="scrollToSection('contact')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">Contact</button>
+                            <button onclick="openDonationModal()" class="w-full text-center btn bg-red-600 text-white hover:bg-red-700 text-base font-medium px-4 py-3 rounded-lg" role="menuitem">Donate Now</button>
+                        </nav>
+                    </div>
                 </div>
             </header>
 
@@ -1583,71 +1596,12 @@ function toggleReadMore() {
             }
         }
 
-        // State management
-        let mobileMenuOpen = false;
         // Utility functions
         function scrollToSection(id) {
             const element = document.getElementById(id);
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                closeMobileMenu();
             }
-        }
-
-        function toggleMobileMenu() {
-            mobileMenuOpen = !mobileMenuOpen;
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            const menuBtn = document.getElementById('mobileMenuBtn');
-            
-            if (mobileMenuOpen) {
-                sidebar.classList.add('open');
-                overlay.classList.add('active');
-                menuBtn.innerHTML = '<i data-lucide="x" class="h-6 w-6" aria-hidden="true"></i>';
-                menuBtn.setAttribute('aria-expanded', 'true');
-                menuBtn.setAttribute('aria-label', 'Close navigation menu');
-                sidebar.setAttribute('aria-hidden', 'false');
-                overlay.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
-                
-                // Focus first menu item for keyboard users
-                setTimeout(() => {
-                    const firstMenuItem = sidebar.querySelector('[role="menuitem"]');
-                    if (firstMenuItem) firstMenuItem.focus();
-                }, 100);
-            } else {
-                sidebar.classList.remove('open');
-                overlay.classList.remove('active');
-                menuBtn.innerHTML = '<i data-lucide="menu" class="h-6 w-6" aria-hidden="true"></i>';
-                menuBtn.setAttribute('aria-expanded', 'false');
-                menuBtn.setAttribute('aria-label', 'Open navigation menu');
-                sidebar.setAttribute('aria-hidden', 'true');
-                overlay.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = 'auto';
-            }
-            lucide.createIcons();
-        }
-
-        function closeMobileMenu() {
-            if (!mobileMenuOpen) return;
-            
-            mobileMenuOpen = false;
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            const menuBtn = document.getElementById('mobileMenuBtn');
-            
-            sidebar.classList.remove('open');
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            menuBtn.innerHTML = '<i data-lucide="menu" class="h-6 w-6" aria-hidden="true"></i>';
-            menuBtn.setAttribute('aria-expanded', 'false');
-            menuBtn.setAttribute('aria-label', 'Open navigation menu');
-            sidebar.setAttribute('aria-hidden', 'true');
-            overlay.setAttribute('aria-hidden', 'true');
-            
-            // Return focus to menu button for keyboard users
-            menuBtn.focus();
-            lucide.createIcons();
         }
 
         // Render functions
@@ -1757,109 +1711,6 @@ function toggleReadMore() {
 
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
-            // Set up mobile menu button
-            document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
-            
-            // Set up overlay click to close menu
-            const overlay = document.getElementById('sidebarOverlay');
-            overlay.addEventListener('click', closeMobileMenu);
-            
-            // Add keyboard support for overlay
-            overlay.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    closeMobileMenu();
-                }
-            });
-            
-            // Add keyboard navigation for menu items
-            const menuItems = document.querySelectorAll('[role="menuitem"]');
-            menuItems.forEach((item, index) => {
-                item.addEventListener('keydown', function(e) {
-                    if (e.key === 'ArrowDown') {
-                        e.preventDefault();
-                        const nextIndex = (index + 1) % menuItems.length;
-                        menuItems[nextIndex].focus();
-                    } else if (e.key === 'ArrowUp') {
-                        e.preventDefault();
-                        const prevIndex = (index - 1 + menuItems.length) % menuItems.length;
-                        menuItems[prevIndex].focus();
-                    } else if (e.key === 'Escape') {
-                        closeMobileMenu();
-                    }
-                });
-            });
-            
-            // Add global keyboard shortcuts
-            document.addEventListener('keydown', function(e) {
-                // Alt + M to toggle mobile menu
-                if (e.altKey && e.key === 'm') {
-                    e.preventDefault();
-                    toggleMobileMenu();
-                }
-                // Escape to close modals and menus
-                if (e.key === 'Escape') {
-                    closeMobileMenu();
-                    closeDonationModal();
-                }
-            });
-            
-            // Add touch gesture support for sidebar
-            let touchStartX = 0;
-            let touchStartY = 0;
-            let isSwiping = false;
-            
-            document.addEventListener('touchstart', function(e) {
-                touchStartX = e.touches[0].clientX;
-                touchStartY = e.touches[0].clientY;
-                isSwiping = false;
-            }, { passive: true });
-            
-            document.addEventListener('touchmove', function(e) {
-                if (!touchStartX || !touchStartY) return;
-                
-                const touchEndX = e.touches[0].clientX;
-                const touchEndY = e.touches[0].clientY;
-                const diffX = touchStartX - touchEndX;
-                const diffY = touchStartY - touchEndY;
-                
-                // Check if horizontal swipe is more significant than vertical
-                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-                    isSwiping = true;
-                    
-                    // Swipe left to close menu (when menu is open)
-                    if (diffX > 0 && mobileMenuOpen && touchStartX < 300) {
-                        closeMobileMenu();
-                    }
-                    // Swipe right to open menu (when menu is closed and swipe starts from left edge)
-                    else if (diffX < 0 && !mobileMenuOpen && touchStartX < 50) {
-                        toggleMobileMenu();
-                    }
-                }
-            }, { passive: true });
-            
-            document.addEventListener('touchend', function() {
-                touchStartX = 0;
-                touchStartY = 0;
-                isSwiping = false;
-            }, { passive: true });
-            
-            // Close mobile menu when clicking on navigation links
-            document.querySelectorAll('.sidebar nav button').forEach(button => {
-                button.addEventListener('click', function() {
-                    if (window.innerWidth < 1280) {
-                        setTimeout(closeMobileMenu, 300); // Small delay for smooth transition
-                    }
-                });
-            });
-            
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                if (window.innerWidth >= 1280 && mobileMenuOpen) {
-                    closeMobileMenu();
-                }
-            });
-            
             // Render dynamic content
             renderNews();
             fetchEvents();
@@ -1888,6 +1739,64 @@ function toggleReadMore() {
             
             // Initialize contact form
             initializeContactForm();
+            
+            // Add global keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Escape to close modals
+                if (e.key === 'Escape') {
+                    closeDonationModal();
+                }
+            });
+            
+            // Hamburger menu functionality
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            let isMenuOpen = false;
+
+            function toggleMobileMenu() {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                    mobileMenuBtn.innerHTML = '<i data-lucide="x" class="h-6 w-6" aria-hidden="true"></i>';
+                    // Close menu when clicking outside
+                    document.addEventListener('click', closeMenuOnClickOutside);
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="h-6 w-6" aria-hidden="true"></i>';
+                    document.removeEventListener('click', closeMenuOnClickOutside);
+                }
+            }
+
+            function closeMenuOnClickOutside(event) {
+                if (!mobileMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                    toggleMobileMenu();
+                }
+            }
+
+            // Close menu when scrolling to a section
+            function closeMobileMenu() {
+                if (isMenuOpen) {
+                    toggleMobileMenu();
+                }
+            }
+
+            // Event listeners
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleMobileMenu();
+            });
+            
+            // Update scrollToSection to close mobile menu
+            const originalScrollToSection = window.scrollToSection;
+            window.scrollToSection = function(id) {
+                closeMobileMenu();
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            };
         });
         
         // Contact form validation and submission
