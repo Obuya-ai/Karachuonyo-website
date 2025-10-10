@@ -130,9 +130,9 @@
     <div class="flex flex-col min-h-screen">
         
         <!-- Main Content -->
-        <div class="main-content flex-1">
+        <div class="main-content flex-1 align-items-left">
             <!-- Navigation -->
-            <header class="sticky top-0 z-40 bg-gray-100/90 backdrop-blur shadow-sm">
+            <header class="sticky top-0 z-40 bg-gradient-to-r from-red-800 via-red-700 to-blue-700 backdrop-blur shadow-sm">
                 <div class="max-w-6xl mx-auto px-4">
                     <!-- Desktop Navigation -->
                     <div class="hidden md:flex items-center justify-between h-16">
@@ -141,13 +141,13 @@
                             <div class="h-10 w-10 rounded-xl bg-blue-800 flex items-center justify-center" role="img" aria-label="Karachuonyo First logo">
                                 <span class="text-white font-bold text-base text-center" aria-hidden="true">KF</span>
                             </div>
-                            <h1 class="font-extrabold text-lg tracking-tight bg-blue-800 bg-clip-text text-transparent">
+                            <h1 class="font-extrabold text-lg tracking-tight bg-white bg-clip-text text-transparent">
                                 Karachuonyo First
                             </h1>
                         </div>
                         
                         <!-- Desktop Navigation Menu -->
-                        <nav class="flex items-center space-x-4" role="menubar" aria-label="Site navigation">
+                        <nav class="flex items-center space-x-4 text-white role="menubar" aria-label="Site navigation">
                             <button onclick="scrollToSection('home')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Home</button>
                             <button onclick="scrollToSection('about')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">About</button>
                             <button onclick="scrollToSection('agenda')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Agenda</button>
@@ -196,8 +196,8 @@
 
             <main>
             <!-- Text and Social Links Bar -->
-            <div class="bg-blue-50 shadow-sm py-4">
-                <div class="max-w-6xl mx-auto px-4">
+            <div class="bg-white border-b border-blue-200 py-4">
+                <div class="max-w-6xl mx-auto px-4 text-align-right">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-4">
                             <a href="#about" onclick="scrollToSection('about')" class="text-blue-900 hover:text-blue-900 font-medium transition-colors underline hover:no-underline">Felix's Story</a>
@@ -225,20 +225,23 @@
                 </div>
             </div>
 
-            <section id="home" class="relative overflow-hidden min-h-screen flex items-left" role="banner" aria-label="Hero section">
+            <section id="home" class="relative overflow-hidden min-h-screen items-left" role="banner" aria-label="Hero section">
+
                 <!-- Background with overlay -->
-                <div class="absolute inset-0 bg-blue-50">
+                <div class="absolute inset-0">
+                                    <img src="images/Lake_Viktoria_2009 cropped.jpg" alt="Background Decoration" class="absolute top-0 left-0 w-full h-full object-cover opacity-60 pointer-events-none">
+
                     <!-- Decorative elements -->
                     <div class="absolute top-20 left-10 w-32 h-32 bg-gray-100 rounded-full blur-xl"></div>
-                    <div class="absolute bottom-20 right-10 w-48 h-48 bg-yellow-100 rounded-full blur-2xl"></div>
+                    
                 </div>
                 
                 <div class="relative max-w-6xl mx-auto px-2 py-6 md:py-6 text-gray-900 z-10">
                     <div class="flex flex-col md:flex-row items-center justify-between gap-12 fade-in">
                         <!-- Candidate Photo -->
                         <div class="relative group order-1 md:order-2 flex-shrink-0 md:self-center">
-                            <div class="w-55 h-45 md:w-70 md:h-70 relative overflow-hidden bg-white rounded-3xl">
-                                <img src="images/candidate_photo.png" alt="Felix Obuya" 
+                            <div class="w-55 h-45 md:w-100 md:h-70 relative overflow-hidden bg-transparent rounded-3xl">
+                                <img src="images/photobackground.png" alt="Felix Obuya" 
                                      class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300">
                             </div>
                            
@@ -265,18 +268,18 @@
                         <p class="text-lg text-gray-700 max-w-2xl mb-10 font-bold">
                             A people-centered agenda for opportunity, dignity, and shared prosperity across Karachuonyo.
                         </p>
-                        
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                       <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                             <button onclick="openVolunteerModal()" class="btn bg-red-700 text-white hover:bg-red-700 text-lg px-8 py-4 font-bold shadow-2xl" aria-label="Join the movement - navigate to agenda section">
                                 Join the Movement
                             </button>
                             <button onclick="openDonationModal()" class="btn border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white text-lg px-8 py-4 font-bold" style="background:transparent" aria-label="Open donation form">
                                 Donate Today <i data-lucide="arrow-right" class="inline-block ml-2 h-5 w-5" aria-hidden="true"></i>
                             </button>
-                        </div>
+                        </div> 
+                        
                     </div>
                 </div>
-                
+                 
                 <!-- Scroll indicator -->
                 <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gray-500">
                     <div class="flex flex-col items-center">
@@ -293,20 +296,16 @@
                 <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-white"></div>
                 
                 <!-- Animated Background Elements -->
-                <div class="absolute inset-0 opacity-10">
-                    <div class="absolute top-20 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-                    <div class="absolute top-40 right-10 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
-                    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
-                </div>
+               
                 
                 <!-- Geometric Pattern Overlay -->
-                <div class="absolute inset-0 opacity-5">
+                <div class="absolute inset-0 opacity-5 gap-0 ">
                     <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(59, 130, 246, 0.4) 2px, transparent 0); background-size: 40px 40px;"></div>
                 </div>
                 
                 <div class="max-w-7xl mx-auto px-4 py-24 relative z-10">
                     <!-- Enhanced Header with Animation -->
-                    <div class="text-center mb-6 fade-in">
+                    <div class="text-center mb-6 fade-in gap-2 flex flex-col items-center">
                         <div class="inline-flex items-center gap-0 bg-red-600 text-white px-6 py-3 rounded-full text-sm font-semibold mb-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                             <i data-lucide="user-check" class="h-6 w-6"></i>
                             About the Candidate
@@ -317,12 +316,12 @@
                     </div>
 
                     <!-- Revolutionary Content Grid -->
-                    <div class="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-20 items-stretch">
+                    <div class="grid grid-cols-1 xl:grid-cols-3 gap-4 mb-20 items-stretch">
                         <!-- Left Column: Candidate Info, Vision, Core Values -->
                         <div class="xl:col-span-2">
                             <div class="flex flex-col gap-1">
                                 <!-- Candidate Info and Vision -->
-                                <div class="group relative bg-gradient-to-br from-white via-blue-50/50 to-purple-50/30 rounded-3xl p-10 border border-slate-200/50 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 fade-in h-full flex flex-col">
+                                <div class="group relative bg-blue-800 rounded-3xl p-10 border border-slate-200/50 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 fade-in h-full flex flex-col">
                                     <div class="flex items-center gap-4 mb-6">
                                         <div class="w-24 h-24 rounded-full bg-blue-800 flex items-center justify-center flex-shrink-0" role="img" aria-label="Candidate Logo">
                                             <span class="text-white font-bold text-3xl">
@@ -330,12 +329,12 @@
                                             </span>
                                         </div>
                                         <div>
-                                            <h2 class="text-3xl font-bold text-slate-900">FELIX OBUYA</h2>
-                                            <p class="text-lg text-slate-700">I am committed to building a Karachuonyo where every child can go to school, every family can access healthcare, and every young person has a chance to succeed.</p>
+                                            <h2 class="text-2xl font-bold text-white text-centerfont-bold mb-4"> HON. FELIX OBUYA</h2>
+                                            <p class="text-base text-blue-100 leading-relaxed mb-6">I am committed to building a Karachuonyo where every child can go to school, every family can access healthcare, and every young person has a chance to succeed.</p>
                                         </div>
                                     </div>
-                                    <h3 class="text-2xl font-bold text-slate-900 mb-4">Vision</h3>
-                                    <p class="text-base text-slate-700 leading-relaxed mb-6">
+                                    <h3 class="text-2xl font-bold text-white text-center b-4">Vision</h3>
+                                    <p class="text-base text-blue-100 leading-relaxed mb-6">
                                         A prosperous, united constituency leveraging its land, lake, and people for economic transformation – through improved infrastructure, youth empowerment, modernized agriculture, and sustainable use of Lake Victoria resources.
                                     </p>
                                 </div>
@@ -345,35 +344,35 @@
                                         Core Values
                                     </h2>
                                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg border border-slate-200 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer p-3 h-40">
-                                            <i data-lucide="shield-check" class="h-4 w-6 text-blue-600 mb-1"></i>
-                                            <span class="text-slate-900 text-lg font-bold text-center leading-tight">Transparency</span>
-                                            <span class="text-slate-500 text-md text-center leading-tight mt-1 px-1">Open governance and honest communication</span>
+                                        <div class="bg-red-600 rounded-lg border border-slate-200 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer p-3 h-40">
+                                            <i data-lucide="shield-check" class="h-6 w-6 text-black mb-1"></i>
+                                            <span class="text-white text-lg font-bold text-center leading-tight">Transparency</span>
+                                            <span class="text-blue-100 text-md text-center leading-tight mt-1 px-1">Open governance and honest communication</span>
                                         </div>
-                                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg border border-slate-200 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer p-3 h-40">
-                                            <i data-lucide="users" class="h-4 w-6 text-green-600 mb-1"></i>
-                                            <span class="text-slate-900 text-lg font-bold text-center leading-tight">Community First</span>
-                                            <span class="text-slate-500 text-md text-center leading-tight mt-1 px-1">People-centered decision making</span>
+                                        <div class="bg-blue-800 rounded-lg border border-slate-200 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer p-3 h-40">
+                                            <i data-lucide="users" class="h-6 w-6 text-black mb-1"></i>
+                                            <span class="text-white text-lg font-bold text-center leading-tight">Community First</span>
+                                            <span class="text-blue-100 text-md text-center leading-tight mt-1 px-1">People-centered decision making</span>
                                         </div>
-                                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg border border-slate-200 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer p-3 h-40">
-                                            <i data-lucide="graduation-cap" class="h-4 w-6 text-yellow-600 mb-1"></i>
-                                            <span class="text-slate-900 text-lg font-bold text-center leading-tight">Youth Empowerment</span>
-                                            <span class="text-slate-500 text-md text-center leading-tight mt-1 px-1">Investing in education and opportunities</span>
+                                        <div class="bg-red-600 rounded-lg border border-slate-200 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer p-3 h-40">
+                                            <i data-lucide="graduation-cap" class="h-6 w-6 text-black mb-1"></i>
+                                            <span class="text-white text-lg font-bold text-center leading-tight">Youth Empowerment</span>
+                                            <span class="text-blue-100 text-md text-center leading-tight mt-1 px-1">Investing in education and opportunities</span>
                                         </div>
-                                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg border border-slate-200 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer p-3 h-40">
-                                            <i data-lucide="leaf" class="h-6 w-6 text-purple-600 mb-1"></i>
-                                            <span class="text-slate-900 text-lg font-bold text-center leading-tight">Sustainable Development</span>
-                                            <span class="text-slate-500 text-md text-center leading-tight mt-1 px-1">Building infrastructure for long-term prosperity</span>
+                                        <div class="bg-blue-800 rounded-lg border border-slate-200 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer p-3 h-40">
+                                            <i data-lucide="leaf" class="h-6 w-6 text-black mb-1"></i>
+                                            <span class="text-white text-lg font-bold text-center leading-tight">Sustainable Development</span>
+                                            <span class="text-blue-100 text-md text-center leading-tight mt-1 px-1">Building infrastructure for long-term prosperity</span>
                                         </div>
-                                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg border border-slate-200 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer p-3 h-40">
-                                            <i data-lucide="handshake" class="h-6 w-6 text-gray-600 mb-1"></i>
-                                            <span class="text-slate-900 text-lg font-bold text-center leading-tight">Integrity</span>
-                                            <span class="text-slate-500 text-md text-center leading-tight mt-1 px-1">Honest leadership with zero tolerance for corruption</span>
+                                        <div class="bg-red-600 rounded-lg border border-slate-200 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer p-3 h-40">
+                                            <i data-lucide="handshake" class="h-6 w-6 text-black mb-1"></i>
+                                            <span class="text-white text-lg font-bold text-center leading-tight">Integrity</span>
+                                            <span class="text-blue-100 text-md text-center leading-tight mt-1 px-1">Honest leadership with zero tolerance for corruption</span>
                                         </div>
-                                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg border border-slate-200 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer p-3 h-40">
-                                            <i data-lucide="heart" class="h-6 w-6 text-red-600 mb-1"></i>
-                                            <span class="text-slate-900 text-lg font-bold text-center leading-tight">Service First</span>
-                                            <span class="text-slate-500 text-md text-center leading-tight mt-1 px-1">Leadership that listens, acts, and delivers results</span>
+                                        <div class="bg-blue-800 rounded-lg border border-slate-200 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer p-3 h-40">
+                                            <i data-lucide="heart" class="h-6 w-6 text-black mb-1"></i>
+                                            <span class="text-white text-lg font-bold text-center leading-tight">Service First</span>
+                                            <span class="text-blue-100 text-md text-center leading-tight mt-1 px-1">Leadership that listens, acts, and delivers results</span>
                                         </div>
                                     </div>
                                 </div>
@@ -383,7 +382,7 @@
                         <!-- Right Column: Join Our Movement -->
                        <div class="xl:col-span-1">
   <div class="sticky top-8">
-    <div class="bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 rounded-3xl p-4 sm:p-6 md:p-8 text-white shadow-2xl transform hover:scale-105 transition-all duration-300 fade-in h-full sm:max-h-none md:max-h-[600px] lg:max-h-[800px] flex flex-col">
+    <div class="bg-blue-800 rounded-3xl p-4 sm:p-6 md:p-8 text-white  transform hover:scale-105 transition-all duration-300 fade-in h-full sm:max-h-none md:max-h-[600px] lg:max-h-[800px] flex flex-col">
       
       <!-- Header Section -->
       <div class="text-center mb-4 sm:mb-6 md:mb-8">
@@ -410,7 +409,7 @@
         </button>
 
         <button onclick="openDonationModal()"
-          class="group w-full border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-4 sm:px-6 py-3 sm:py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 text-base sm:text-lg backdrop-blur-sm transform hover:-translate-y-1">
+          class="group w-full border-2 border-red-700 bg-red-600 text-white hover:bg-red-700 hover:border-white/50 px-4 sm:px-6 py-3 sm:py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 text-base sm:text-lg backdrop-blur-sm transform hover:-translate-y-1">
           <i data-lucide="heart" class="h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform duration-200"></i>
           Support the Campaign
         </button>
@@ -423,12 +422,12 @@
             </section>
 
             <section id="agenda" class="bg-blue-50">
-                <div class="max-w-6xl mx-auto px-4 py-16">
-                    <div class="text-center mb-12 fade-in">
-                        <h2 class="text-2xl md:text-3xl font-bold text-blue-900 mb-4">
-                                        OUR PROMISE - <span class="text-blue-700">The People’s Manifesto</span>
+                <div class="max-w-7xl mx-auto px-4 py-24 relative z-10">
+                    <div class="text-center mb-12 fade-in gap-2">
+                        <h2 class="text-2xl md:text-3xl font-bold text-red-700 mb-4">
+                                        OUR PROMISE - <span class="text-blue-900">The People’s Manifesto</span>
                                     </h2>
-                        <p class="text- text-red-700 font-semibold max-w-3xl mx-auto">
+                        <p class="text- text-blue-700 font-semibold max-w-3xl mx-auto">
                             Nine actionable pillars that turn promises into measurable projects for Karachuonyo's development.
                         </p>
                     </div>
@@ -588,20 +587,25 @@ function toggleReadMore() {
                     </p>
                 </div>
                 <div class="grid md:grid-cols-3 gap-6 mt-8" id="newsContainer">
+                    
                     <!-- News items will be populated by JavaScript -->
                 </div>
             </section>
 
-            <section id="events" class="bg-blue-50">
-                <div class="max-w-6xl mx-auto px-4 py-16">
+            <section id="events" class="relative overflow-hidden">
+                
+                <img src="images/kenya_rally002.jpg" alt="Background Decoration" class="absolute top-0 left-1/2 transform -translate-x-1/2 opacity-20 w-full h-40 object-cover pointer-events-none">
+
                     <div class="text-center mb-12 fade-in">
+                        
                         <h2 class="text-3xl md:text-4xl text-blue-800 font-extrabold mb-4">Upcoming Events</h2>
+
                         <p class="text-black font-semibold text-lg">
                             Join us at these community events and town halls.
                         </p>
                     </div>
                     
-                    <div class="grid md:grid-cols-3  gap-6" id="eventsContainer">
+                    <div class="grid md:grid-cols-3 gap-4" id="eventsContainer">
                         <!-- Events will be populated by JavaScript -->
                     </div>
                 </div>
@@ -776,7 +780,8 @@ function toggleReadMore() {
                 </div>
             </section>
 
-            <section id="contact" class="bg-blue-50 relative overflow-hidden">
+            <section id="contact" class=" relative overflow-hidden">
+                <img src="images/rubondo-island-national-park.jpg" alt="Background Decoration" class="absolute top-0 left-1/2 transform -translate-x-1/2 opacity-80 w-full h-full object-cover pointer-events-none">
                 <!-- Subtle background decoration -->
                
                <div class="max-w-4xl mx-auto px-4 py-10 relative z-10">
@@ -791,8 +796,8 @@ function toggleReadMore() {
         <div class="fade-in h-(800px)">
             <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center">
-                        <i data-lucide="phone" class="h-19 w-10 text-white"></i>
+                    <div class="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center">
+                        <i data-lucide="user" class="h-6 w-6 text-white"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900">Contact Information</h3>
                 </div>
@@ -835,7 +840,7 @@ function toggleReadMore() {
                         Support Our Campaign
                     </h4>
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <button id="donateBtn" class="flex-1 bg-gradient-to-r from-blue-600 to-green-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-700 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2" onclick="openDonationModal()">
+                        <button id="donateBtn" class="flex-1 bg-blue-800 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-700 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2" onclick="openDonationModal()">
                             <i data-lucide="heart" class="h-5 w-5"></i>
                             Donate Now
                         </button>
@@ -851,8 +856,8 @@ function toggleReadMore() {
         <div class="fade-in h-(800px)">
             <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl flex items-center justify-center">
-                        <i data-lucide="send" class="h-19 w-10 text-white"></i>
+                    <div class="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center">
+                        <i data-lucide="message-circle" class="h-5 w-5 text-white"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900">Send us a Message</h3>
                 </div>
@@ -902,7 +907,7 @@ function toggleReadMore() {
                         <div id="messageError" class="text-red-500 text-sm mt-1 hidden"></div>
                     </div>
                     
-                    <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-700 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 mt-auto" aria-describedby="formMessage">
+                    <button type="submit" id="submitBtn" class="w-full bg-blue-800 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-700 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2 mt-auto" aria-describedby="formMessage">
                         <span id="submitText" class="flex items-center gap-2">
                             <i data-lucide="send" class="h-5 w-5"></i>
                             Send Message
@@ -925,7 +930,7 @@ function toggleReadMore() {
                     <div class="grid md:grid-cols-4 gap-8 lg:gap-12">
                         <div>
                             <div class="flex items-center gap-3 mb-4">
-                                <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-700 to-green-600 flex items-center justify-center">
+                                <div class="h-10 w-10 rounded-xl bg-red-600 flex items-center justify-center">
                                     <span class="text-white font-bold">KF</span>
                                 </div>
                                 <span class="font-bold text-lg">Karachuonyo First</span>
@@ -1001,7 +1006,7 @@ function toggleReadMore() {
                                 
                                 <button 
                                     type="submit" 
-                                    class="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white py-2 px-4 rounded-lg font-medium hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    class="w-full bg-red-600 text-white py-2 px-4 rounded-lg font-medium hover:from-blue-700 hover:to-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                                     id="newsletterSubmit"
                                 >
                                     <span class="flex items-center justify-center gap-2">
@@ -1523,7 +1528,7 @@ function toggleReadMore() {
                         Cancel
                     </button>
                     <button id="submitVolunteerBtn" onclick="submitVolunteerRegistration()" 
-                            class="flex-1 px-6 py-4 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-xl hover:from-blue-700 hover:to-green-700 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                            class="flex-1 px-6 py-4 bg-red-600 text-white rounded-xl hover:bg-red-600 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
                         <span id="volunteerBtnText" class="flex items-center gap-2">
                             <i data-lucide="user-plus" class="h-5 w-5"></i>
                             Join Our Team
