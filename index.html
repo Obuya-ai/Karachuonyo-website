@@ -162,8 +162,8 @@
             animation-play-state: paused;
         }
     </style>
-    <!-- Floating Donate Button -->
-    <button onclick="openDonationModal()" class="fixed bottom-6 right-6 z-50 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2 font-semibold animate-bounce hover:animate-none group donate-glow donate-entrance donate-button donate-rotate">
+    <!-- Floating Donate Button - positioned at top of viewport -->
+    <button onclick="openDonationModal()" class="fixed top-6 right-6 z-50 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2 font-semibold animate-bounce hover:animate-none group donate-glow donate-entrance donate-button donate-rotate">
         <i data-lucide="heart" class="h-5 w-5 group-hover:animate-pulse"></i>
         <span class="group-hover:animate-pulse">Donate</span>
         <div class="absolute -inset-1 bg-red-600 rounded-full opacity-75 animate-ping group-hover:animate-none"></div>
@@ -197,7 +197,6 @@
                             <button onclick="scrollToSection('events')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Events</button>
                             <button onclick="scrollToSection('gallery')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Gallery</button>
                             <button onclick="scrollToSection('contact')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Contact</button>
-                            <button onclick="openDonationModal()" class="btn bg-red-600 text-white hover:bg-red-700 px-4 py-2" role="menuitem">Donate Now</button>
                         </nav>
                     </div>
                     
@@ -230,7 +229,6 @@
                             <button onclick="scrollToSection('events')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">Events</button>
                             <button onclick="scrollToSection('gallery')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">Gallery</button>
                             <button onclick="scrollToSection('contact')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">Contact</button>
-                            <button onclick="openDonationModal()" class="w-full text-center btn bg-red-600 text-white hover:bg-red-700 text-base font-medium px-4 py-3 rounded-lg" role="menuitem">Donate Now</button>
                         </nav>
                     </div>
                 </div>
