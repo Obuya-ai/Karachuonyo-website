@@ -126,14 +126,56 @@
     </script>
     <link rel="stylesheet" href="src/main.css">
 </head>
-<body class="text-center">
+  <body class="text-center">
+    <style>
+        /* Custom animations for floating donate button */
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(220, 38, 38, 0.4), 0 0 40px rgba(220, 38, 38, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(220, 38, 38, 0.6), 0 0 60px rgba(220, 38, 38, 0.3); }
+        }
+        
+        @keyframes slideInUp {
+            0% { transform: translateY(100px) translateX(100px); opacity: 0; }
+            100% { transform: translateY(0) translateX(0); opacity: 1; }
+        }
+        
+        .donate-glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        .donate-entrance {
+            animation: slideInUp 0.8s ease-out;
+        }
+        
+        @keyframes subtleRotate {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-3deg); }
+            75% { transform: rotate(3deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        .donate-rotate {
+            animation: subtleRotate 3s ease-in-out infinite;
+        }
+        
+        .donate-button:hover .donate-rotate {
+            animation-play-state: paused;
+        }
+    </style>
+    <!-- Floating Donate Button -->
+    <button onclick="openDonationModal()" class="fixed bottom-6 right-6 z-50 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2 font-semibold animate-bounce hover:animate-none group donate-glow donate-entrance donate-button donate-rotate">
+        <i data-lucide="heart" class="h-5 w-5 group-hover:animate-pulse"></i>
+        <span class="group-hover:animate-pulse">Donate</span>
+        <div class="absolute -inset-1 bg-red-600 rounded-full opacity-75 animate-ping group-hover:animate-none"></div>
+    </button>
+
     <div class="flex flex-col min-h-screen">
         
         <!-- Main Content -->
         <div class="main-content flex-1 align-items-left">
             <!-- Navigation -->
             <header class="sticky top-0 z-40 bg-gradient-to-r from-red-800 via-red-700 to-blue-700 backdrop-blur shadow-sm">
-                <div class="max-w-6xl mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-2">
                     <!-- Desktop Navigation -->
                     <div class="hidden md:flex items-center justify-between h-16">
                         <!-- Logo -->
@@ -197,14 +239,14 @@
             <main>
             <!-- Text and Social Links Bar -->
             <div class="bg-white border-b border-blue-200 py-4">
-                <div class="max-w-6xl mx-auto px-4">
+                <div class="max-w-6xl mx-auto px-2">
                     <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
                         <div class="flex items-center gap-4">
                             <a href="#about" onclick="scrollToSection('about')" class="text-blue-900 hover:text-blue-900 font-medium transition-colors underline hover:no-underline">Felix's Story</a>
                             <a href="#about" onclick="scrollToSection('about')" class="text-blue-900 hover:text-blue-900 font-medium transition-colors underline hover:no-underline">Our Vision</a>
                         </div>
                         <div class="text-center flex-1 px-4">
-                            <p class="text-sm font-poppins text-blue-800 text-sm sm:text-base md:text-lg lg:text-xl mb-0 font-extrabold leading-tight">
+                            <p class="text-xs font-poppins text-blue-800 text-xs sm:text-xs md:text-sm lg:text-base mb-0 font-medium leading-tight">
                             A people-centered agenda for opportunity, dignity, and shared prosperity across Karachuonyo.
                         </p>
                         </div>
@@ -314,7 +356,7 @@
                     <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(59, 130, 246, 0.4) 2px, transparent 0); background-size: 40px 40px;"></div>
                 </div>
                 
-                <div class="w-full px-24 py-0 relative z-10">
+                <div class="w-full px-4 py-0 relative z-10">
                     <!-- Enhanced Header with Animation -->
                     <div class="text-center mb-2 mt-2 pt-0 fade-in gap-2 flex flex-col items-center">
                         <div class="inline-flex items-center gap-0 bg-red-600 text-white px-6 py-3 rounded-full text-sm font-semibold mb-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
@@ -408,7 +450,7 @@
 
       <!-- Image Section -->
     <div class="mb-6 rounded-xl shadow-lg flex-shrink-0">
-  <img src="images/logo2.jpg" alt="Campaign Logo" class="w-full max-h-48 sm:max-h-56 md:max-h-64 object-contain object-center rounded-xl">
+  <img src="images/logo2.jpg" alt="Campaign Logo" class="w-full h-64 sm:h-72 md:h-80 object-cover object-center rounded-xl">
 </div>
 
       <!-- Button Section -->
@@ -1573,15 +1615,21 @@ function toggleReadMore() {
         
         // Fetch events from API
         async function fetchEvents() {
+            // Always show hardcoded events first for immediate display
+            events = [
+                { date: "Sep 05, 2025", title: "Town Hall – Kendu Bay", place: "Kendu Bay Market Hall" },
+                { date: "Sep 12, 2025", title: "Youth Skills Clinic", place: "Homa Hills Vocational Center" },
+                { date: "Sep 19, 2025", title: "Health Outreach", place: "Kadel Dispensary Grounds" }
+            ];
+            renderEvents();
+            
             try {
-                const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-                    ? 'http://localhost:5000/api' 
-                    : 'https://karachuonyo-backend.onrender.com/api';
+                const API_BASE_URL = 'https://karachuonyo-backend.onrender.com/api';
                 
                 const response = await fetch(`${API_BASE_URL}/events`);
                 const data = await response.json();
                 
-                if (data.success && data.events) {
+                if (data.success && data.events && data.events.length > 0) {
                     events = data.events.map(event => ({
                         id: event.id,
                         date: new Date(event.event_date).toLocaleDateString('en-US', {
@@ -1595,24 +1643,11 @@ function toggleReadMore() {
                         registration_required: event.registration_required,
                         spots_available: event.spots_available
                     }));
-                } else {
-                    // Fallback to static events if API fails
-                    events = [
-                        { date: "Sep 05, 2025", title: "Town Hall – Kendu Bay", place: "Kendu Bay Market Hall" },
-                        { date: "Sep 12, 2025", title: "Youth Skills Clinic", place: "Homa Hills Vocational Center" },
-                        { date: "Sep 19, 2025", title: "Health Outreach", place: "Kadel Dispensary Grounds" }
-                    ];
+                    renderEvents();
                 }
-                renderEvents();
             } catch (error) {
                 console.error('Error fetching events:', error);
-                // Fallback to static events
-                events = [
-                    { date: "Sep 05, 2025", title: "Town Hall – Kendu Bay", place: "Kendu Bay Market Hall" },
-                    { date: "Sep 12, 2025", title: "Youth Skills Clinic", place: "Homa Hills Vocational Center" },
-                    { date: "Sep 19, 2025", title: "Health Outreach", place: "Kadel Dispensary Grounds" }
-                ];
-                renderEvents();
+                // Keep hardcoded events displayed
             }
         }
 
@@ -1787,6 +1822,8 @@ function toggleReadMore() {
                     mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="h-6 w-6" aria-hidden="true"></i>';
                     document.removeEventListener('click', closeMenuOnClickOutside);
                 }
+                // Refresh Lucide icons to ensure the new icon is rendered
+                lucide.createIcons();
             }
 
             function closeMenuOnClickOutside(event) {
@@ -2004,9 +2041,7 @@ function toggleReadMore() {
          
          // Enhanced form submission function with backend API integration
          async function submitFormData(data) {
-             const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-                ? 'http://localhost:5000/api' 
-                : 'https://karachuonyo-backend.onrender.com/api';
+             const API_BASE_URL = 'https://karachuonyo-backend.onrender.com/api';
              
              try {
                  const response = await fetch(`${API_BASE_URL}/contact`, {
@@ -2051,9 +2086,7 @@ function toggleReadMore() {
           
           // Newsletter subscription function with backend API integration
           async function submitNewsletterData(data) {
-              const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-            ? 'http://localhost:5000/api'
-            : 'https://karachuonyo-backend.onrender.com/api';
+              const API_BASE_URL = 'https://karachuonyo-backend.onrender.com/api';
               
               try {
                   const response = await fetch(`${API_BASE_URL}/newsletter/subscribe`, {
@@ -2502,9 +2535,7 @@ function toggleReadMore() {
               if (donationData.paymentMethod === 'mpesa') {
                   try {
                       // Determine backend URL based on environment
-                       const backendUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-                           ? 'http://localhost:5000' 
-                           : 'https://karachuonyo-backend.onrender.com';
+                       const backendUrl = 'https://karachuonyo-backend.onrender.com';
                        
                        const response = await fetch(`${backendUrl}/api/donations/mpesa`, {
                           method: 'POST',
@@ -2935,9 +2966,7 @@ function toggleReadMore() {
              btnLoader.classList.remove('hidden');
              
              try {
-                 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-                     ? 'http://localhost:5000/api' 
-                     : 'https://karachuonyo-backend.onrender.com/api';
+                 const API_BASE_URL = 'https://karachuonyo-backend.onrender.com/api';
                  
                  const response = await fetch(`${API_BASE_URL}/events/${eventId}/register`, {
                      method: 'POST',
@@ -3069,9 +3098,7 @@ function toggleReadMore() {
              btnLoader.classList.remove('hidden');
              
              try {
-                 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
-                     ? 'http://localhost:5000/api' 
-                     : 'https://karachuonyo-backend.onrender.com/api';
+                 const API_BASE_URL = 'https://karachuonyo-backend.onrender.com/api';
                  
                  const response = await fetch(`${API_BASE_URL}/volunteer/register`, {
                      method: 'POST',
