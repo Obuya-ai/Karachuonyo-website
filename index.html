@@ -193,9 +193,29 @@
                             <button onclick="scrollToSection('home')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Home</button>
                             <button onclick="scrollToSection('about')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">About</button>
                             <button onclick="scrollToSection('agenda')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Agenda</button>
-                            <button onclick="scrollToSection('news')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">News</button>
-                            <button onclick="scrollToSection('events')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Events</button>
-                            <button onclick="scrollToSection('gallery')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Gallery</button>
+                            
+                            <!-- Media & Events Dropdown -->
+                            <div class="relative group" role="menuitem">
+                                <button class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2 flex items-center gap-1" aria-haspopup="true" aria-expanded="false">
+                                    Media & Events
+                                    <i data-lucide="chevron-down" class="h-4 w-4 transition-transform duration-200 group-hover:rotate-180"></i>
+                                </button>
+                                <div class="absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2" role="menu">
+                                    <button onclick="scrollToSection('news')" class="block w-full text-left px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 rounded-t-lg" role="menuitem">
+                                        <i data-lucide="newspaper" class="h-4 w-4 inline mr-2"></i>
+                                        News
+                                    </button>
+                                    <button onclick="scrollToSection('events')" class="block w-full text-left px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200" role="menuitem">
+                                        <i data-lucide="calendar" class="h-4 w-4 inline mr-2"></i>
+                                        Events
+                                    </button>
+                                    <button onclick="scrollToSection('gallery')" class="block w-full text-left px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 rounded-b-lg" role="menuitem">
+                                        <i data-lucide="image" class="h-4 w-4 inline mr-2"></i>
+                                        Gallery
+                                    </button>
+                                </div>
+                            </div>
+                            
                             <button onclick="scrollToSection('contact')" class="text-base font-medium hover:text-blue-700 transition-all duration-200 px-3 py-2" role="menuitem">Contact</button>
                         </nav>
                     </div>
@@ -225,9 +245,29 @@
                             <button onclick="scrollToSection('home')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">Home</button>
                             <button onclick="scrollToSection('about')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">About</button>
                             <button onclick="scrollToSection('agenda')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">Agenda</button>
-                            <button onclick="scrollToSection('news')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">News</button>
-                            <button onclick="scrollToSection('events')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">Events</button>
-                            <button onclick="scrollToSection('gallery')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">Gallery</button>
+                            
+                            <!-- Media & Events Mobile Dropdown -->
+                            <div class="w-full" role="menuitem">
+                                <button onclick="toggleMobileDropdown('mobileMediaDropdown')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg flex items-center justify-center gap-2" aria-expanded="false" aria-controls="mobileMediaDropdown">
+                                    Media & Events
+                                    <i data-lucide="chevron-down" class="h-4 w-4 transition-transform duration-200" id="mobileMediaDropdownIcon"></i>
+                                </button>
+                                <div id="mobileMediaDropdown" class="hidden w-full bg-gray-50 rounded-lg mt-1 overflow-hidden">
+                                    <button onclick="scrollToSection('news')" class="block w-full text-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 border-b border-gray-200 last:border-b-0">
+                                        <i data-lucide="newspaper" class="h-4 w-4 inline mr-2"></i>
+                                        News
+                                    </button>
+                                    <button onclick="scrollToSection('events')" class="block w-full text-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 border-b border-gray-200 last:border-b-0">
+                                        <i data-lucide="calendar" class="h-4 w-4 inline mr-2"></i>
+                                        Events
+                                    </button>
+                                    <button onclick="scrollToSection('gallery')" class="block w-full text-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200">
+                                        <i data-lucide="image" class="h-4 w-4 inline mr-2"></i>
+                                        Gallery
+                                    </button>
+                                </div>
+                            </div>
+                            
                             <button onclick="scrollToSection('contact')" class="w-full text-center text-base font-medium hover:text-blue-700 hover:bg-gray-50 transition-all duration-200 px-4 py-3 rounded-lg" role="menuitem">Contact</button>
                         </nav>
                     </div>
@@ -687,6 +727,9 @@ function toggleReadMore() {
                             </summary>
                             <div class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
                                 <div class="relative max-w-4xl max-h-full w-full h-full flex items-center justify-center">
+                                    <button onclick="this.closest('details').open = false" class="absolute top-4 right-4 z-10 bg-white bg-opacity-20 hover:bg-opacity-30 text-white rounded-full p-3 transition-all duration-200 hover:scale-110" aria-label="Close image">
+                                        <i data-lucide="x" class="h-6 w-6"></i>
+                                    </button>
                                     <div class="text-center">
                                         <img src="images/lake.jpg" alt="Community meeting with local leaders" class="max-w-full max-h-[80vh] object-contain rounded-lg">
                                         <div class="mt-4 text-white">
@@ -706,6 +749,9 @@ function toggleReadMore() {
                             </summary>
                             <div class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
                                 <div class="relative max-w-4xl max-h-full w-full h-full flex items-center justify-center">
+                                    <button onclick="this.closest('details').open = false" class="absolute top-4 right-4 z-10 bg-white bg-opacity-20 hover:bg-opacity-30 text-white rounded-full p-3 transition-all duration-200 hover:scale-110" aria-label="Close image">
+                                        <i data-lucide="x" class="h-6 w-6"></i>
+                                    </button>
                                     <div class="text-center">
                                         <img src="images/kenya-sports.jpg" alt="Campaign rally inspiring the community" class="max-w-full max-h-[80vh] object-contain rounded-lg">
                                         <div class="mt-4 text-white">
@@ -725,6 +771,9 @@ function toggleReadMore() {
                             </summary>
                             <div class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
                                 <div class="relative max-w-4xl max-h-full w-full h-full flex items-center justify-center">
+                                    <button onclick="this.closest('details').open = false" class="absolute top-4 right-4 z-10 bg-white bg-opacity-20 hover:bg-opacity-30 text-white rounded-full p-3 transition-all duration-200 hover:scale-110" aria-label="Close image">
+                                        <i data-lucide="x" class="h-6 w-6"></i>
+                                    </button>
                                     <div class="text-center">
                                         <img src="images/image1.jpg" alt="Community service and environmental conservation" class="max-w-full max-h-[80vh] object-contain rounded-lg">
                                         <div class="mt-4 text-white">
@@ -744,6 +793,9 @@ function toggleReadMore() {
                             </summary>
                             <div class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
                                 <div class="relative max-w-4xl max-h-full w-full h-full flex items-center justify-center">
+                                    <button onclick="this.closest('details').open = false" class="absolute top-4 right-4 z-10 bg-white bg-opacity-20 hover:bg-opacity-30 text-white rounded-full p-3 transition-all duration-200 hover:scale-110" aria-label="Close image">
+                                        <i data-lucide="x" class="h-6 w-6"></i>
+                                    </button>
                                     <div class="text-center">
                                         <img src="images/school.jpg" alt="School visit supporting education" class="max-w-full max-h-[80vh] object-contain rounded-lg">
                                         <div class="mt-4 text-white">
@@ -763,6 +815,9 @@ function toggleReadMore() {
                             </summary>
                             <div class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
                                 <div class="relative max-w-4xl max-h-full w-full h-full flex items-center justify-center">
+                                    <button onclick="this.closest('details').open = false" class="absolute top-4 right-4 z-10 bg-white bg-opacity-20 hover:bg-opacity-30 text-white rounded-full p-3 transition-all duration-200 hover:scale-110" aria-label="Close image">
+                                        <i data-lucide="x" class="h-6 w-6"></i>
+                                    </button>
                                     <div class="text-center">
                                         <img src="images/hospital.jpg" alt="Healthcare visit improving health services" class="max-w-full max-h-[80vh] object-contain rounded-lg">
                                         <div class="mt-4 text-white">
@@ -782,6 +837,9 @@ function toggleReadMore() {
                             </summary>
                             <div class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
                                 <div class="relative max-w-4xl max-h-full w-full h-full flex items-center justify-center">
+                                    <button onclick="this.closest('details').open = false" class="absolute top-4 right-4 z-10 bg-white bg-opacity-20 hover:bg-opacity-30 text-white rounded-full p-3 transition-all duration-200 hover:scale-110" aria-label="Close image">
+                                        <i data-lucide="x" class="h-6 w-6"></i>
+                                    </button>
                                     <div class="text-left">
                                         <img src="images/tanzania-lake-victoria.jpg" alt="Infrastructure development building for the future" class="max-w-full max-h-[80vh] object-contain rounded-lg">
                                         <div class="mt-4 text-white">
@@ -801,6 +859,9 @@ function toggleReadMore() {
                             </summary>
                             <div class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
                                 <div class="relative max-w-4xl max-h-full w-full h-full flex items-center justify-center">
+                                    <button onclick="this.closest('details').open = false" class="absolute top-4 right-4 z-10 bg-white bg-opacity-20 hover:bg-opacity-30 text-white rounded-full p-3 transition-all duration-200 hover:scale-110" aria-label="Close image">
+                                        <i data-lucide="x" class="h-6 w-6"></i>
+                                    </button>
                                     <div class="text-left">
                                         <img src="images/kenya_rally002.jpg" alt="Infrastructure development building for the future" class="max-w-full max-h-[80vh] object-contain rounded-lg">
                                         <div class="mt-4 text-white">
@@ -820,6 +881,9 @@ function toggleReadMore() {
                             </summary>
                             <div class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
                                 <div class="relative max-w-4xl max-h-full w-full h-full flex items-center justify-center">
+                                    <button onclick="this.closest('details').open = false" class="absolute top-4 right-4 z-10 bg-white bg-opacity-20 hover:bg-opacity-30 text-white rounded-full p-3 transition-all duration-200 hover:scale-110" aria-label="Close image">
+                                        <i data-lucide="x" class="h-6 w-6"></i>
+                                    </button>
                                     <div class="text-left">
                                         <img src="images/image2.jpg" alt="Infrastructure development building for the future" class="max-w-full max-h-[80vh] object-contain rounded-lg">
                                         <div class="mt-4 text-white">
@@ -2681,6 +2745,21 @@ function toggleReadMore() {
          
          // Gallery images now use CSS-only lightboxes with <details> elements
          // No JavaScript required for gallery functionality
+         
+         // Mobile dropdown functionality
+         function toggleMobileDropdown(dropdownId) {
+             const dropdown = document.getElementById(dropdownId);
+             const chevron = document.getElementById(dropdownId + 'Icon');
+             const isExpanded = dropdown.classList.contains('hidden');
+             
+             if (isExpanded) {
+                 dropdown.classList.remove('hidden');
+                 chevron.style.transform = 'rotate(180deg)';
+             } else {
+                 dropdown.classList.add('hidden');
+                 chevron.style.transform = 'rotate(0deg)';
+             }
+         }
          
          // Newsletter form functionality
          document.getElementById('newsletterForm').addEventListener('submit', function(e) {
