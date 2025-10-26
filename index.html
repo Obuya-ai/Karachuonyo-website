@@ -163,10 +163,10 @@
         }
     </style>
     <!-- Floating Donate Button - positioned at top of viewport -->
-    <button onclick="openDonationModal()" class="fixed top-24 right-10 z-50 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2 font-semibold animate-bounce hover:animate-none group donate-glow donate-entrance donate-button donate-rotate">
-        <i data-lucide="heart" class="h-5 w-5 group-hover:animate-pulse"></i>
-        <span class="group-hover:animate-pulse">Donate</span>
-        <div class="absolute -inset-1 bg-red-600 rounded-full opacity-75 animate-ping group-hover:animate-none"></div>
+    <button onclick="openDonationModal()" class="fixed top-24 right-10 z-50 bg-blue-900 hover:bg-red-600 text-white px-6 py-3 rounded-full  flex items-center gap-2 font-semibold">
+        <i data-lucide="Coins" class="h-5 w-5 text-white"></i>
+        <span class=" text-white">Donate</span>
+        
     </button>
 
     <div class="flex flex-col min-h-screen">
@@ -201,15 +201,15 @@
                                     <i data-lucide="chevron-down" class="h-4 w-4 transition-transform duration-200 group-hover:rotate-180"></i>
                                 </button>
                                 <div class="absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-2" role="menu">
-                                    <button onclick="scrollToSection('news')" class="block w-full text-left px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 rounded-t-lg" role="menuitem">
+                                    <button onclick="scrollToSection('news')" class="block w-full text-left px-4 py-3 text-blue-800 hover:bg-blue-100 hover:text-blue-700 transition-all duration-200 rounded-t-lg" role="menuitem">
                                         <i data-lucide="newspaper" class="h-4 w-4 inline mr-2"></i>
                                         News
                                     </button>
-                                    <button onclick="scrollToSection('events')" class="block w-full text-left px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200" role="menuitem">
+                                    <button onclick="scrollToSection('events')" class="block w-full text-left px-4 py-3 text-blue-800 hover:bg-blue-100 hover:text-blue-700 transition-all duration-200" role="menuitem">
                                         <i data-lucide="calendar" class="h-4 w-4 inline mr-2"></i>
                                         Events
                                     </button>
-                                    <button onclick="scrollToSection('gallery')" class="block w-full text-left px-4 py-3 text-gray-800 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 rounded-b-lg" role="menuitem">
+                                    <button onclick="scrollToSection('gallery')" class="block w-full text-left px-4 py-3 text-blue-800 hover:bg-blue-100 hover:text-blue-700 transition-all duration-200 rounded-b-lg" role="menuitem">
                                         <i data-lucide="image" class="h-4 w-4 inline mr-2"></i>
                                         Gallery
                                     </button>
@@ -253,15 +253,15 @@
                                     <i data-lucide="chevron-down" class="h-4 w-4 transition-transform duration-200" id="mobileMediaDropdownIcon"></i>
                                 </button>
                                 <div id="mobileMediaDropdown" class="hidden w-full bg-gray-50 rounded-lg mt-1 overflow-hidden">
-                                    <button onclick="scrollToSection('news')" class="block w-full text-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 border-b border-gray-200 last:border-b-0">
+                                    <button onclick="scrollToSection('news')" class="block w-full text-center px-4 py-3 text-blue-800 hover:bg-blue-100 hover:text-blue-700 transition-all duration-200 border-b border-gray-200 last:border-b-0">
                                         <i data-lucide="newspaper" class="h-4 w-4 inline mr-2"></i>
                                         News
                                     </button>
-                                    <button onclick="scrollToSection('events')" class="block w-full text-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200 border-b border-gray-200 last:border-b-0">
+                                    <button onclick="scrollToSection('events')" class="block w-full text-center px-4 py-3 text-blue-800 hover:bg-blue-100 hover:text-blue-700 transition-all duration-200 border-b border-gray-200 last:border-b-0">
                                         <i data-lucide="calendar" class="h-4 w-4 inline mr-2"></i>
                                         Events
                                     </button>
-                                    <button onclick="scrollToSection('gallery')" class="block w-full text-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition-all duration-200">
+                                    <button onclick="scrollToSection('gallery')" class="block w-full text-center px-4 py-3 text-blue-800 hover:bg-blue-100 hover:text-blue-700 transition-all duration-200">
                                         <i data-lucide="image" class="h-4 w-4 inline mr-2"></i>
                                         Gallery
                                     </button>
@@ -360,7 +360,7 @@
                         
                        
                        <div class="flex flex-col sm:flex-row gap-4 mt-4 justify-center md:justify-start">
-                            <button onclick="openVolunteerModal()" class="btn bg-red-700 text-white hover:bg-red-700 text-lg px-8 py-4 font-bold shadow-2xl" aria-label="Join the movement - navigate to agenda section">
+                            <button onclick="openVolunteerModal()" class="btn bg-red-700 text-white hover:bg-red-700 text-lg px-8 py-4 rounded-full font-bold shadow-2xl" aria-label="Join the movement - navigate to agenda section">
                                 Join the Movement
                             </button>
                             <button onclick="openDonationModal()" class="btn border-2 border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white text-lg px-8 py-4 font-bold" style="background:transparent" aria-label="Open donation form">
@@ -382,7 +382,7 @@
                 </div>
             </section>
 
-            <section id="about" class="relative overflow-hidden p-6 mb-0 pb-0">
+            <section id="about" class="relative overflow-hidden p-8 mb-12 pb-12">
                 <!-- Dynamic Gradient Background -->
                 <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-white"></div>
                 
