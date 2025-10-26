@@ -1151,7 +1151,7 @@ function toggleReadMore() {
     <div id="donationModal" class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="donationModalTitle" aria-hidden="true">
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 transform transition-all duration-300">
             <!-- Header with gradient background -->
-            <div class="bg-gradient-to-r from-blue-600 to-green-600 p-8 rounded-t-3xl relative overflow-hidden">
+            <div class="bg-blue-800 p-8 rounded-t-3xl relative overflow-hidden">
                 <!-- Decorative elements -->
                 <div class="absolute top-0 right-0 w-32 h-32 bg-white bg-opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
                 <div class="absolute bottom-0 left-0 w-24 h-24 bg-white bg-opacity-10 rounded-full translate-y-12 -translate-x-12"></div>
@@ -1177,7 +1177,7 @@ function toggleReadMore() {
                 <!-- Donation Amount Selection -->
                 <div class="mb-8">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+                        <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
                             <i data-lucide="dollar-sign" class="h-4 w-4 text-white"></i>
                         </div>
                         <h4 class="text-xl font-bold text-gray-900">Choose Amount</h4>
@@ -1247,7 +1247,7 @@ function toggleReadMore() {
                 <!-- Payment Methods -->
                 <div class="mb-8">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+                        <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
                             <i data-lucide="credit-card" class="h-4 w-4 text-white"></i>
                         </div>
                         <h4 class="text-xl font-bold text-gray-900">Choose Payment Method</h4>
@@ -1324,7 +1324,7 @@ function toggleReadMore() {
                 <!-- Donor Information -->
                 <div id="donorInfoDiv" class="hidden mb-8">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+                        <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
                             <i data-lucide="user" class="h-4 w-4 text-white"></i>
                         </div>
                         <h4 class="text-xl font-bold text-gray-900">Donor Information</h4>
@@ -1383,14 +1383,14 @@ function toggleReadMore() {
                 <!-- Payment Instructions -->
                 <div id="paymentInstructionsDiv" class="hidden mb-8">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-green-600 rounded-lg flex items-center justify-center">
+                        <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
                             <i data-lucide="info" class="h-4 w-4 text-white"></i>
                         </div>
                         <h4 id="paymentInstructionsTitle" class="text-xl font-bold text-gray-900">Payment Instructions</h4>
                     </div>
                     <div class="bg-gradient-to-br from-blue-50 to-green-50 p-6 rounded-2xl border border-blue-200">
                         <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <div class="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
                                 <i data-lucide="smartphone" class="h-5 w-5 text-white"></i>
                             </div>
                             <div class="flex-1">
@@ -1412,11 +1412,11 @@ function toggleReadMore() {
                 
                 <!-- Action Buttons -->
                 <div class="flex gap-4 pt-6 border-t border-gray-200">
-                    <button onclick="closeDonationModal()" class="flex-1 px-6 py-4 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-semibold" aria-label="Cancel donation and close modal">
+                    <button onclick="closeDonationModal()" class="flex-1 px-6 py-4 border-2 border-gray-300 text-white  rounded-xl bg-red-600 hover:bg-red-600 hover:border-gray-400 transition-all duration-200 font-semibold" aria-label="Cancel donation and close modal">
                         Cancel
                     </button>
                     <button id="proceedDonationBtn" onclick="processDonation()" disabled 
-                            class="flex-1 px-6 py-4 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-xl hover:from-blue-700 hover:to-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none flex items-center justify-center gap-2" aria-label="Proceed with donation payment">
+                            class="flex-1 px-6 py-4 bg-blue-800 text-white rounded-xl hover:blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none flex items-center justify-center gap-2" aria-label="Proceed with donation payment">
                         <span id="donationBtnText" class="flex items-center gap-2">
                             <i data-lucide="heart" class="h-5 w-5"></i>
                             Select Amount & Method
@@ -1517,7 +1517,7 @@ function toggleReadMore() {
     <div id="volunteerModal" class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="volunteerModalTitle">
         <div id="volunteerModalContent" class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 transform transition-all duration-300">
             <!-- Header with gradient background -->
-            <div class="bg-gradient-to-r from-blue-600 to-green-600 p-8 rounded-t-3xl relative overflow-hidden">
+            <div class="bg-blue-800 p-8 rounded-t-3xl relative overflow-hidden">
                 <!-- Decorative elements -->
                 <div class="absolute top-0 right-0 w-32 h-32 bg-white bg-opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
                 <div class="absolute bottom-0 left-0 w-24 h-24 bg-white bg-opacity-10 rounded-full translate-y-12 -translate-x-12"></div>
@@ -1529,7 +1529,7 @@ function toggleReadMore() {
                         </div>
                         <div>
                             <h3 id="volunteerModalTitle" class="text-2xl font-bold text-white">Join Our Team</h3>
-                            <p class="text-blue-100 text-sm">Make a difference in Karachuonyo</p>
+                            <p class="text-blue-100  font-semibold text-sm">Make a difference in Karachuonyo</p>
                         </div>
                     </div>
                     <button onclick="closeVolunteerModal()" class="text-white hover:text-blue-100 transition-colors p-2 hover:bg-white hover:bg-opacity-20 rounded-xl">
@@ -1643,11 +1643,11 @@ function toggleReadMore() {
                 
                 <!-- Action Buttons -->
                 <div class="flex gap-4 pt-6 border-t border-gray-200 mt-8">
-                    <button onclick="closeVolunteerModal()" class="flex-1 px-6 py-4 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-semibold" aria-label="Cancel volunteer registration and close modal">
+                    <button onclick="closeVolunteerModal()" class="flex-1 px-6 py-4 border-2 border-gray-300 text-white rounded-xl bg-red-600 hover:bg-red-600 hover:border-gray-400 transition-all duration-200 font-semibold" aria-label="Cancel volunteer registration and close modal">
                         Cancel
                     </button>
                     <button id="submitVolunteerBtn" onclick="submitVolunteerRegistration()" 
-                            class="flex-1 px-6 py-4 bg-red-600 text-white rounded-xl hover:bg-red-600 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                            class="flex-1 px-6 py-4 bg-blue-800 text-white rounded-xl hover:bg-blue-800 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
                         <span id="volunteerBtnText" class="flex items-center gap-2">
                             <i data-lucide="user-plus" class="h-5 w-5"></i>
                             Join Our Team
